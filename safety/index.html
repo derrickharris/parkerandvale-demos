@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hot Springs Metropolitan Area Crash Analysis — Parker & Vale Transportation Planning">
+  <title>Safety Analysis | Parker & Vale</title>
+
+  <!-- Leaflet core -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <!-- Marker cluster -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+  <!-- Fullscreen control -->
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       DESIGN SYSTEM
+       Tone: Government-grade authority with editorial precision.
+       Dark sidebar, clean map canvas, data-forward typography.
+       Accent: ARDOT safety red cut with slate infrastructure grey.
+    ============================================================ */
+    :root {
+      --red:        #C1281B;
+      --red-light:  #E8453A;
+      --amber:      #E89B1B;
+      --green:      #2D9E6B;
+      --blue-dim:   #4A7FA5;
+
+      --ink:        #0E1117;
+      --ink-2:      #161C26;
+      --ink-3:      #1E2733;
+      --slate:      #2C3744;
+      --rule:       rgba(255,255,255,0.07);
+      --rule-light: rgba(255,255,255,0.13);
+
+      --text-primary:   #F0F2F5;
+      --text-secondary: #8A96A8;
+      --text-dim:       #566070;
+
+      --font-display: 'Syne', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+      --font-mono:    'DM Mono', monospace;
+
+      --sidebar-w: 340px;
+      --header-h:  56px;
+      --radius:    6px;
+      --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      font-family: var(--font-body);
+      background: var(--ink);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout ───────────────────────────────────────────────── */
+    #app {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ── Sidebar ──────────────────────────────────────────────── */
+    #sidebar {
+      width: var(--sidebar-w);
+      min-width: var(--sidebar-w);
+      height: 100%;
+      background: var(--ink-2);
+      border-right: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 1000;
+      transition: transform var(--transition);
+    }
+
+    #sidebar.collapsed {
+      transform: translateX(calc(-1 * var(--sidebar-w)));
+    }
+
+    /* brand header */
+    .sidebar-brand {
+      padding: 20px 24px 18px;
+      border-bottom: 1px solid var(--rule);
+      flex-shrink: 0;
+    }
+
+    .brand-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .brand-name span {
+      color: var(--red-light);
+    }
+
+    .brand-subtitle {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-top: 5px;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+    }
+
+    /* scrollable body */
+    .sidebar-body {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: var(--slate) transparent;
+    }
+
+    .sidebar-body::-webkit-scrollbar { width: 4px; }
+    .sidebar-body::-webkit-scrollbar-track { background: transparent; }
+    .sidebar-body::-webkit-scrollbar-thumb { background: var(--slate); border-radius: 2px; }
+
+    /* section wrapper */
+    .sidebar-section {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+    }
+
+    /* ── Stat Cards ───────────────────────────────────────────── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .stat-card {
+      background: var(--ink-3);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      transition: border-color var(--transition);
+    }
+
+    .stat-card:hover { border-color: var(--rule-light); }
+
+    .stat-card.full { grid-column: 1 / -1; }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-card.fatal   .stat-value { color: var(--red-light); }
+    .stat-card.injury  .stat-value { color: var(--amber); }
+    .stat-card.ped     .stat-value { color: var(--green); }
+    .stat-card.total   .stat-value { color: var(--text-primary); }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    .stat-period {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+
+    /* ── Legend ───────────────────────────────────────────────── */
+    .legend-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      padding: 6px 8px;
+      border-radius: var(--radius);
+      transition: background var(--transition);
+      user-select: none;
+    }
+
+    .legend-item:hover { background: var(--ink-3); }
+
+    .legend-item.inactive { opacity: 0.4; }
+
+    .legend-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+
+    .legend-dot.fatal  { background: var(--red-light); box-shadow: 0 0 6px rgba(232,69,58,0.5); }
+    .legend-dot.injury { background: var(--amber);     box-shadow: 0 0 6px rgba(232,155,27,0.4); }
+    .legend-dot.ped    { background: var(--green);     box-shadow: 0 0 6px rgba(45,158,107,0.4); }
+
+    .legend-text { flex: 1; }
+    .legend-name { font-size: 13px; font-weight: 500; }
+    .legend-count {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-dim);
+      margin-top: 1px;
+    }
+
+    .legend-toggle {
+      width: 28px;
+      height: 16px;
+      background: var(--slate);
+      border-radius: 8px;
+      position: relative;
+      flex-shrink: 0;
+      transition: background var(--transition);
+    }
+
+    .legend-toggle::after {
+      content: '';
+      position: absolute;
+      top: 2px; left: 2px;
+      width: 12px; height: 12px;
+      background: white;
+      border-radius: 50%;
+      transition: transform var(--transition);
+    }
+
+    .legend-item:not(.inactive) .legend-toggle { background: var(--blue-dim); }
+    .legend-item:not(.inactive) .legend-toggle::after { transform: translateX(12px); }
+
+    /* ── Filters ──────────────────────────────────────────────── */
+    .filter-group { margin-bottom: 16px; }
+
+    .filter-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .filter-label span {
+      font-family: var(--font-mono);
+      color: var(--text-primary);
+    }
+
+    /* Year range slider */
+    .range-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .range-input {
+      flex: 1;
+      -webkit-appearance: none;
+      height: 3px;
+      border-radius: 2px;
+      background: var(--slate);
+      outline: none;
+    }
+
+    .range-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--red-light);
+      cursor: pointer;
+      border: 2px solid var(--ink-2);
+      box-shadow: 0 0 4px rgba(232,69,58,0.5);
+    }
+
+    .range-year {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+      min-width: 36px;
+      text-align: center;
+    }
+
+    /* Checkboxes */
+    .check-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      padding: 4px 0;
+    }
+
+    .check-item input[type="checkbox"] {
+      width: 14px; height: 14px;
+      accent-color: var(--red-light);
+      cursor: pointer;
+    }
+
+    .check-item label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    /* ── Basemap Switcher ─────────────────────────────────────── */
+    .basemap-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .basemap-btn {
+      flex: 1;
+      padding: 7px 10px;
+      background: var(--ink-3);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all var(--transition);
+    }
+
+    .basemap-btn:hover { border-color: var(--rule-light); color: var(--text-primary); }
+    .basemap-btn.active { background: var(--slate); border-color: var(--blue-dim); color: var(--text-primary); }
+
+    /* ── Data Source ──────────────────────────────────────────── */
+    .source-block {
+      background: var(--ink-3);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+    }
+
+    .source-block p {
+      font-size: 11px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .source-block strong {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* ── CTA ──────────────────────────────────────────────────── */
+    .sidebar-cta {
+      padding: 20px 24px;
+      flex-shrink: 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .cta-heading {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .cta-sub {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .btn-primary {
+      display: block;
+      width: 100%;
+      padding: 11px 16px;
+      background: var(--red);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .btn-primary:hover {
+      background: var(--red-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: block;
+      width: 100%;
+      margin-top: 8px;
+      padding: 9px 16px;
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 12px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--rule-light);
+      color: var(--text-primary);
+    }
+
+    /* ── Map Container ────────────────────────────────────────── */
+    #map-wrap {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ── Top Bar (map overlay) ────────────────────────────────── */
+    #topbar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: var(--header-h);
+      background: rgba(14,17,23,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 12px;
+      z-index: 800;
+    }
+
+    #sidebar-toggle {
+      width: 36px; height: 36px;
+      background: var(--ink-3);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background var(--transition);
+    }
+
+    #sidebar-toggle:hover { background: var(--slate); }
+
+    #sidebar-toggle svg { stroke: var(--text-secondary); }
+
+    .topbar-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .topbar-period {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-left: 2px;
+    }
+
+    .topbar-demo-badge {
+      margin-left: auto;
+      padding: 4px 10px;
+      background: rgba(232,155,27,0.15);
+      border: 1px solid rgba(232,155,27,0.3);
+      border-radius: 100px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    /* ── Leaflet popup overrides ──────────────────────────────── */
+    .leaflet-popup-content-wrapper {
+      background: var(--ink-2) !important;
+      border: 1px solid var(--rule-light) !important;
+      border-radius: var(--radius) !important;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+      padding: 0 !important;
+      min-width: 240px;
+      max-width: 300px;
+    }
+
+    .leaflet-popup-content {
+      margin: 0 !important;
+      font-family: var(--font-body) !important;
+      color: var(--text-primary) !important;
+    }
+
+    .leaflet-popup-tip-container { display: none; }
+
+    .leaflet-popup-close-button {
+      color: var(--text-dim) !important;
+      top: 10px !important;
+      right: 10px !important;
+      font-size: 16px !important;
+    }
+
+    /* popup inner */
+    .popup-inner { overflow: hidden; border-radius: var(--radius); }
+
+    .popup-header {
+      padding: 12px 14px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .popup-header .ph-icon {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .popup-header.fatal   { background: rgba(193,40,27,0.18); }
+    .popup-header.injury  { background: rgba(232,155,27,0.15); }
+    .popup-header.ped     { background: rgba(45,158,107,0.15); }
+
+    .popup-header.fatal   .ph-icon { background: var(--red-light); box-shadow: 0 0 4px rgba(232,69,58,0.8); }
+    .popup-header.injury  .ph-icon { background: var(--amber); }
+    .popup-header.ped     .ph-icon { background: var(--green); }
+
+    .popup-header .ph-type {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .popup-header.fatal  .ph-type { color: var(--red-light); }
+    .popup-header.injury .ph-type { color: var(--amber); }
+    .popup-header.ped    .ph-type { color: var(--green); }
+
+    .popup-body { padding: 10px 14px 12px; }
+
+    .popup-location {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .popup-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 4px 12px;
+    }
+
+    .pg-label {
+      font-size: 10px;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding-top: 1px;
+    }
+
+    .pg-value {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .pg-value.highlight { color: var(--text-primary); font-weight: 500; }
+
+    .popup-footer {
+      padding: 8px 14px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Cluster overrides ────────────────────────────────────── */
+    .marker-cluster-small,
+    .marker-cluster-medium,
+    .marker-cluster-large {
+      background: rgba(193,40,27,0.25) !important;
+    }
+
+    .marker-cluster-small div,
+    .marker-cluster-medium div,
+    .marker-cluster-large div {
+      background: rgba(193,40,27,0.7) !important;
+      color: white !important;
+      font-family: var(--font-display) !important;
+      font-weight: 700 !important;
+      font-size: 13px !important;
+    }
+
+    /* ── Leaflet controls ─────────────────────────────────────── */
+    .leaflet-control-zoom {
+      border: 1px solid var(--rule) !important;
+      border-radius: var(--radius) !important;
+      overflow: hidden;
+    }
+
+    .leaflet-control-zoom a {
+      background: var(--ink-2) !important;
+      color: var(--text-secondary) !important;
+      border-bottom: 1px solid var(--rule) !important;
+      width: 32px !important;
+      height: 32px !important;
+      line-height: 32px !important;
+      font-size: 16px !important;
+      transition: all var(--transition);
+    }
+
+    .leaflet-control-zoom a:hover {
+      background: var(--slate) !important;
+      color: var(--text-primary) !important;
+    }
+
+    .leaflet-control-attribution {
+      background: rgba(14,17,23,0.75) !important;
+      color: var(--text-dim) !important;
+      font-size: 9px !important;
+      backdrop-filter: blur(4px);
+    }
+
+    .leaflet-control-attribution a { color: var(--text-dim) !important; }
+
+    /* ── Loading overlay ──────────────────────────────────────── */
+    #loading {
+      position: absolute;
+      inset: 0;
+      background: var(--ink);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.4s ease;
+    }
+
+    #loading.hidden { opacity: 0; pointer-events: none; }
+
+    .loader-brand {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .loader-brand span { color: var(--red-light); }
+
+    .loader-sub {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-bottom: 28px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .loader-bar {
+      width: 200px;
+      height: 2px;
+      background: var(--ink-3);
+      border-radius: 1px;
+      overflow: hidden;
+    }
+
+    .loader-bar-inner {
+      height: 100%;
+      background: var(--red-light);
+      border-radius: 1px;
+      animation: load 1.2s ease-in-out forwards;
+    }
+
+    @keyframes load {
+      from { width: 0; }
+      to   { width: 100%; }
+    }
+
+    /* ── Mobile ───────────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      #sidebar {
+        position: absolute;
+        top: 0; left: 0;
+        height: 100%;
+        z-index: 1100;
+        box-shadow: 4px 0 24px rgba(0,0,0,0.5);
+      }
+
+      #sidebar.collapsed {
+        transform: translateX(-100%);
+      }
+
+      #map-wrap { width: 100%; }
+    }
+
+    /* ── Entrance animation ───────────────────────────────────── */
+    .sidebar-brand,
+    .sidebar-section {
+      animation: fadeUp 0.4s ease both;
+    }
+
+    .sidebar-section:nth-child(2) { animation-delay: 0.05s; }
+    .sidebar-section:nth-child(3) { animation-delay: 0.10s; }
+    .sidebar-section:nth-child(4) { animation-delay: 0.15s; }
+    .sidebar-section:nth-child(5) { animation-delay: 0.20s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Loading screen -->
+<div id="loading">
+  <div class="loader-brand">Parker <span>&</span> Vale</div>
+  <div class="loader-sub">Loading Safety Analysis</div>
+  <div class="loader-bar"><div class="loader-bar-inner"></div></div>
+</div>
+
+<div id="app">
+
+  <!-- ── Sidebar ─────────────────────────────────────────────── -->
+  <aside id="sidebar">
+
+    <div class="sidebar-brand">
+      <div class="brand-eyebrow">Transportation Planning</div>
+      <div class="brand-name">Parker <span>&</span> Vale</div>
+      <div class="brand-subtitle">Hot Springs Metro Area · Crash Safety Analysis</div>
+    </div>
+
+    <div class="sidebar-body">
+
+      <!-- Summary stats -->
+      <div class="sidebar-section">
+        <div class="section-label">Summary · 2019 – 2023</div>
+        <div class="stat-grid">
+          <div class="stat-card fatal">
+            <div class="stat-value" id="stat-fatal">—</div>
+            <div class="stat-label">Fatal Crashes</div>
+            <div class="stat-period">2019–2023</div>
+          </div>
+          <div class="stat-card injury">
+            <div class="stat-value" id="stat-injury">—</div>
+            <div class="stat-label">Serious Injuries</div>
+            <div class="stat-period">2019–2023</div>
+          </div>
+          <div class="stat-card ped">
+            <div class="stat-value" id="stat-ped">—</div>
+            <div class="stat-label">Ped / Bike</div>
+            <div class="stat-period">2019–2023</div>
+          </div>
+          <div class="stat-card total">
+            <div class="stat-value" id="stat-total">—</div>
+            <div class="stat-label">Total Crashes</div>
+            <div class="stat-period">in dataset</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legend / layer toggle -->
+      <div class="sidebar-section">
+        <div class="section-label">Crash Layers</div>
+        <ul class="legend-list">
+          <li class="legend-item" data-layer="fatal" onclick="toggleLayer('fatal', this)">
+            <div class="legend-dot fatal"></div>
+            <div class="legend-text">
+              <div class="legend-name">Fatal Crashes</div>
+              <div class="legend-count" id="count-fatal">loading…</div>
+            </div>
+            <div class="legend-toggle"></div>
+          </li>
+          <li class="legend-item" data-layer="injury" onclick="toggleLayer('injury', this)">
+            <div class="legend-dot injury"></div>
+            <div class="legend-text">
+              <div class="legend-name">Serious Injuries</div>
+              <div class="legend-count" id="count-injury">loading…</div>
+            </div>
+            <div class="legend-toggle"></div>
+          </li>
+          <li class="legend-item" data-layer="ped" onclick="toggleLayer('ped', this)">
+            <div class="legend-dot ped"></div>
+            <div class="legend-text">
+              <div class="legend-name">Pedestrian / Bike</div>
+              <div class="legend-count" id="count-ped">loading…</div>
+            </div>
+            <div class="legend-toggle"></div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Filters -->
+      <div class="sidebar-section">
+        <div class="section-label">Filters</div>
+
+        <div class="filter-group">
+          <div class="filter-label">Year Range <span id="year-display">2019 – 2023</span></div>
+          <div class="range-row">
+            <span class="range-year">2019</span>
+            <input type="range" class="range-input" id="year-min" min="2019" max="2023" value="2019" oninput="updateYearFilter()">
+            <input type="range" class="range-input" id="year-max" min="2019" max="2023" value="2023" oninput="updateYearFilter()">
+            <span class="range-year">2023</span>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-label">Crash Conditions</div>
+          <div class="check-group">
+            <label class="check-item">
+              <input type="checkbox" id="filter-dark" onchange="applyFilters()">
+              <label for="filter-dark">Dark / No Streetlight</label>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" id="filter-wet" onchange="applyFilters()">
+              <label for="filter-wet">Wet / Rain Conditions</label>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" id="filter-alcohol" onchange="applyFilters()">
+              <label for="filter-alcohol">Alcohol / Drug Involved</label>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" id="filter-intersection" onchange="applyFilters()">
+              <label for="filter-intersection">At Intersection</label>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Basemap -->
+      <div class="sidebar-section">
+        <div class="section-label">Basemap</div>
+        <div class="basemap-row">
+          <button class="basemap-btn" onclick="setBasemap('light', this)">Light</button>
+          <button class="basemap-btn active" onclick="setBasemap('dark', this)">Dark</button>
+          <button class="basemap-btn" onclick="setBasemap('satellite', this)">Satellite</button>
+        </div>
+      </div>
+
+      <!-- Data source -->
+      <div class="sidebar-section">
+        <div class="section-label">Data Source</div>
+        <div class="source-block">
+          <p>
+            <strong>Arkansas DOT · CRIS Database</strong><br>
+            Fatal and serious injury crash records for Garland County, AR. 
+            Data period: 2019–2023. Pedestrian and bicycle crashes extracted as a separate layer.<br><br>
+            <strong>Note:</strong> This map displays <em>sample data</em> for demonstration purposes.
+            Contact Parker &amp; Vale for a map built from current ARDOT crash records for your jurisdiction.
+          </p>
+        </div>
+      </div>
+
+    </div><!-- /sidebar-body -->
+
+    <!-- CTA -->
+    <div class="sidebar-cta">
+      <div class="cta-heading">Need this for your MPO?</div>
+      <div class="cta-sub">We build safety maps and crash analysis dashboards for MPOs, municipalities, and grant writers across the region.</div>
+      <a href="mailto:info@parkerandvale.com?subject=Safety Map Inquiry" class="btn-primary">Request a Map →</a>
+      <a href="../" class="btn-secondary">← View All Demos</a>
+    </div>
+
+  </aside>
+
+  <!-- ── Map ─────────────────────────────────────────────────── -->
+  <div id="map-wrap">
+    <div id="topbar">
+      <button id="sidebar-toggle" onclick="toggleSidebar()" title="Toggle sidebar">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round">
+          <line x1="2" y1="4" x2="14" y2="4"/>
+          <line x1="2" y1="8" x2="14" y2="8"/>
+          <line x1="2" y1="12" x2="14" y2="12"/>
+        </svg>
+      </button>
+      <div>
+        <div class="topbar-title">Hot Springs Metro Area · Crash Safety Analysis</div>
+        <div class="topbar-period">Garland County, AR · 2019–2023</div>
+      </div>
+      <div class="topbar-demo-badge">Demo</div>
+      <a href="../" style="
+        margin-left:10px;padding:5px 11px;
+        background:rgba(255,255,255,0.04);
+        border:1px solid rgba(255,255,255,0.08);
+        border-radius:4px;
+        font-family:'DM Mono',monospace;font-size:9px;
+        letter-spacing:0.1em;text-transform:uppercase;
+        color:var(--text-secondary);text-decoration:none;
+        transition:all 180ms;white-space:nowrap;
+      " onmouseover="this.style.color='#F0F2F5';this.style.borderColor='rgba(255,255,255,0.16)'"
+         onmouseout="this.style.color='';this.style.borderColor=''">
+        ← All Demos
+      </a>
+    </div>
+    <div id="map"></div>
+  </div>
+
+</div><!-- /app -->
+
+<!-- Scripts -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script src="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js"></script>
+
+<script>
+// ================================================================
+//  SAMPLE DATA — Replace with real ARDOT CRIS GeoJSON
+//  Fields: date, time, street, severity, num_fatal, num_inj,
+//          is_ped, light_cond, weather, alcohol, at_intersection
+// ================================================================
+
+// Hot Springs coordinates center: 34.5037° N, 93.0552° W
+// Sample points scattered around the metro area
+const SAMPLE_FATALITIES = {
+  type: "FeatureCollection",
+  features: [
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.0552,34.5037]}, properties:{date:"2021-03-14",time:"11:42 PM",street:"Central Ave & Ouachita St",num_fatal:1,num_inj:0,is_ped:false,light:"Dark – No Streetlight",weather:"Rain",alcohol:false,intersection:true,year:2021}},
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.0831,34.4912]}, properties:{date:"2022-07-04",time:"1:15 AM",street:"Airport Rd near Higdon Ferry",num_fatal:1,num_inj:1,is_ped:false,light:"Dark",weather:"Clear",alcohol:true,intersection:false,year:2022}},
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.0612,34.5210]}, properties:{date:"2020-11-22",time:"6:47 AM",street:"US-70 & Shady Grove Rd",num_fatal:1,num_inj:2,is_ped:false,light:"Dawn/Dusk",weather:"Fog",alcohol:false,intersection:true,year:2020}},
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.0389,34.4870]}, properties:{date:"2019-05-09",time:"3:22 PM",street:"Malvern Ave & Park Ave",num_fatal:2,num_inj:0,is_ped:false,light:"Daylight",weather:"Clear",alcohol:false,intersection:true,year:2019}},
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.1102,34.5334]}, properties:{date:"2023-01-18",time:"9:05 PM",street:"Albert Pike Rd near Lake Hamilton",num_fatal:1,num_inj:0,is_ped:true,light:"Dark – No Streetlight",weather:"Clear",alcohol:false,intersection:false,year:2023}},
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.0745,34.5155]}, properties:{date:"2022-09-30",time:"8:18 PM",street:"Higdon Ferry Rd & Shady Grove",num_fatal:1,num_inj:3,is_ped:false,light:"Dark",weather:"Wet",alcohol:true,intersection:true,year:2022}},
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.0290,34.5080]}, properties:{date:"2021-06-12",time:"2:44 PM",street:"Albert Pike & Carpenter Dam Rd",num_fatal:1,num_inj:1,is_ped:false,light:"Daylight",weather:"Clear",alcohol:false,intersection:true,year:2021}},
+  ]
+};
+
+const SAMPLE_INJURIES = {
+  type: "FeatureCollection",
+  features: [
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.0601,34.5022]}, properties:{date:"2021-08-03",time:"4:15 PM",street:"Ouachita Ave & Whittington",num_fatal:0,num_inj:2,is_ped:false,light:"Daylight",weather:"Clear",alcohol:false,intersection:true,year:2021}},
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.0490,34.5180]}, properties:{date:"2020-02-14",time:"7:30 AM",street:"Central Ave & Reserve St",num_fatal:0,num_inj:1,is_ped:false,light:"Dawn/Dusk",weather:"Rain",alcohol:false,intersection:true,year:2020}},
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.0720,34.4990]}, properties:{date:"2022-12-01",time:"5:55 PM",street:"Malvern Ave near Grand",num_fatal:0,num_inj:3,is_ped:false,light:"Dark",weather:"Clear",alcohol:false,intersection:false,year:2022}},
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.0880,34.5270]}, properties:{date:"2019-09-17",time:"11:10 AM",street:"US-270 W & Hwy 5",num_fatal:0,num_inj:2,is_ped:false,light:"Daylight",weather:"Clear",alcohol:false,intersection:true,year:2019}},
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.0650,34.5350]}, properties:{date:"2023-03-22",time:"6:05 PM",street:"Hwy 7 N & Gulley Rd",num_fatal:0,num_inj:1,is_ped:false,light:"Dawn/Dusk",weather:"Fog",alcohol:false,intersection:true,year:2023}},
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.0420,34.5095]}, properties:{date:"2022-06-08",time:"2:30 PM",street:"Albert Pike & Marion Anderson",num_fatal:0,num_inj:2,is_ped:false,light:"Daylight",weather:"Clear",alcohol:true,intersection:true,year:2022}},
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.0530,34.4940]}, properties:{date:"2020-10-31",time:"10:15 PM",street:"Park Ave & Hobson",num_fatal:0,num_inj:1,is_ped:false,light:"Dark – No Streetlight",weather:"Clear",alcohol:true,intersection:false,year:2020}},
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.0780,34.5090]}, properties:{date:"2021-04-19",time:"3:40 PM",street:"Higdon Ferry near Lakeshore",num_fatal:0,num_inj:2,is_ped:false,light:"Daylight",weather:"Clear",alcohol:false,intersection:false,year:2021}},
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.0340,34.5220]}, properties:{date:"2019-07-23",time:"8:50 AM",street:"Central Ave & Benton Rd",num_fatal:0,num_inj:1,is_ped:true,light:"Daylight",weather:"Clear",alcohol:false,intersection:true,year:2019}},
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.1050,34.5010]}, properties:{date:"2023-11-05",time:"7:15 PM",street:"Airport Rd & Hwy 270",num_fatal:0,num_inj:2,is_ped:false,light:"Dark",weather:"Rain",alcohol:false,intersection:true,year:2023}},
+  ]
+};
+
+const SAMPLE_PED = {
+  type: "FeatureCollection",
+  features: [
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.0561,34.5055]}, properties:{date:"2021-10-15",time:"8:20 PM",street:"Central Ave near McClendon",num_fatal:0,num_inj:1,is_ped:true,light:"Dark – No Streetlight",weather:"Clear",alcohol:false,intersection:false,year:2021}},
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.0635,34.5130]}, properties:{date:"2020-07-04",time:"10:45 PM",street:"Ouachita & Ramble St",num_fatal:1,num_inj:0,is_ped:true,light:"Dark",weather:"Clear",alcohol:true,intersection:false,year:2020}},
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.0502,34.5005]}, properties:{date:"2022-04-02",time:"7:05 AM",street:"Malvern Ave near Superior",num_fatal:0,num_inj:1,is_ped:true,light:"Dawn/Dusk",weather:"Clear",alcohol:false,intersection:true,year:2022}},
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.0710,34.5200]}, properties:{date:"2019-11-28",time:"5:30 PM",street:"Hwy 7 near Ramble",num_fatal:1,num_inj:0,is_ped:true,light:"Dark",weather:"Rain",alcohol:false,intersection:false,year:2019}},
+    { type:"Feature", geometry:{type:"Point",coordinates:[-93.0450,34.5140]}, properties:{date:"2023-08-18",time:"9:00 PM",street:"Central Ave & Park Ave",num_fatal:0,num_inj:1,is_ped:true,light:"Dark – No Streetlight",weather:"Clear",alcohol:false,intersection:true,year:2023}},
+  ]
+};
+
+// ================================================================
+//  MAP INIT
+// ================================================================
+
+const map = L.map('map', {
+  center: [34.5037, -93.0552],
+  zoom: 12,
+  zoomControl: false,
+});
+
+// Zoom control placement (top-right, below topbar)
+L.control.zoom({ position: 'topright' }).addTo(map);
+
+// Fullscreen
+L.control.fullscreen({ position: 'topright' }).addTo(map);
+
+// ── Basemaps ────────────────────────────────────────────────────
+const basemaps = {
+  dark: L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OSM</a> © <a href="https://carto.com/">CARTO</a>',
+    maxZoom: 20
+  }),
+  light: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '© OSM © CARTO', maxZoom: 20
+  }),
+  satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: '© Esri', maxZoom: 19
+  })
+};
+
+let activeBasemap = basemaps.dark;
+activeBasemap.addTo(map);
+
+function setBasemap(type, btn) {
+  map.removeLayer(activeBasemap);
+  activeBasemap = basemaps[type];
+  activeBasemap.addTo(map);
+  activeBasemap.bringToBack();
+  document.querySelectorAll('.basemap-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// ── Layer factories ─────────────────────────────────────────────
+function makeCircleLayer(geojson, color, radius) {
+  return L.geoJSON(geojson, {
+    pointToLayer: (feature, latlng) =>
+      L.circleMarker(latlng, {
+        radius,
+        fillColor: color,
+        color: 'rgba(255,255,255,0.25)',
+        weight: 1.5,
+        opacity: 1,
+        fillOpacity: 0.92,
+      }),
+    onEachFeature: bindPopup
+  });
+}
+
+// ── Clusters ────────────────────────────────────────────────────
+function makeCluster(color) {
+  return L.markerClusterGroup({
+    maxClusterRadius: 40,
+    iconCreateFunction: count => {
+      const n = count.getChildCount();
+      const size = n > 20 ? 40 : n > 5 ? 34 : 28;
+      return L.divIcon({
+        html: `<div style="
+          width:${size}px;height:${size}px;
+          border-radius:50%;
+          background:${color}cc;
+          border:2px solid ${color};
+          display:flex;align-items:center;justify-content:center;
+          font-family:'Syne',sans-serif;font-weight:700;font-size:${size > 34 ? 14 : 12}px;
+          color:white;box-shadow:0 0 10px ${color}66;
+        ">${n}</div>`,
+        className: '',
+        iconSize: [size, size]
+      });
+    }
+  });
+}
+
+// ── Popup builder ───────────────────────────────────────────────
+function buildPopup(feature, type, headerClass) {
+  const p = feature.properties;
+  const flags = [
+    p.alcohol ? '🍺 Alcohol/Drug' : null,
+    p.light && p.light.includes('No Streetlight') ? '🌑 No Streetlight' : null,
+    p.weather && (p.weather === 'Rain' || p.weather === 'Wet') ? '🌧 Wet Conditions' : null,
+    p.intersection ? '✦ At Intersection' : null,
+  ].filter(Boolean);
+
+  return `
+    <div class="popup-inner">
+      <div class="popup-header ${headerClass}">
+        <div class="ph-icon"></div>
+        <div class="ph-type">${type}</div>
+      </div>
+      <div class="popup-body">
+        <div class="popup-location">📍 ${p.street}</div>
+        <div class="popup-grid">
+          <div class="pg-label">Date</div>
+          <div class="pg-value">${p.date}</div>
+          <div class="pg-label">Time</div>
+          <div class="pg-value">${p.time}</div>
+          <div class="pg-label">Fatalities</div>
+          <div class="pg-value highlight">${p.num_fatal}</div>
+          <div class="pg-label">Ser. Injuries</div>
+          <div class="pg-value highlight">${p.num_inj}</div>
+          <div class="pg-label">Light</div>
+          <div class="pg-value">${p.light || '—'}</div>
+          <div class="pg-label">Weather</div>
+          <div class="pg-value">${p.weather || '—'}</div>
+          ${flags.length ? `<div class="pg-label">Flags</div><div class="pg-value">${flags.join(' · ')}</div>` : ''}
+        </div>
+      </div>
+      <div class="popup-footer">Source: ARDOT CRIS · Sample Data</div>
+    </div>`;
+}
+
+function bindPopup(feature, layer) {
+  const t = feature.properties;
+  let type, cls;
+  if (t.num_fatal > 0 && !t.is_ped) { type = 'Fatal Crash';    cls = 'fatal';  }
+  else if (t.is_ped)                 { type = 'Ped / Bike Crash'; cls = 'ped';  }
+  else                               { type = 'Serious Injury';  cls = 'injury'; }
+  layer.bindPopup(buildPopup(feature, type, cls), { maxWidth: 300 });
+}
+
+// ── Create layers ───────────────────────────────────────────────
+const clusterFatal  = makeCluster('#E8453A');
+const clusterInjury = makeCluster('#E89B1B');
+const clusterPed    = makeCluster('#2D9E6B');
+
+const layerFatal  = makeCircleLayer(SAMPLE_FATALITIES, '#E8453A', 9);
+const layerInjury = makeCircleLayer(SAMPLE_INJURIES,  '#E89B1B', 7);
+const layerPed    = makeCircleLayer(SAMPLE_PED,       '#2D9E6B', 7);
+
+clusterFatal.addLayer(layerFatal);
+clusterInjury.addLayer(layerInjury);
+clusterPed.addLayer(layerPed);
+
+map.addLayer(clusterFatal);
+map.addLayer(clusterInjury);
+map.addLayer(clusterPed);
+
+// layer state
+const layerState = { fatal: true, injury: true, ped: true };
+const clusterMap = { fatal: clusterFatal, injury: clusterInjury, ped: clusterPed };
+const layerData  = { fatal: SAMPLE_FATALITIES, injury: SAMPLE_INJURIES, ped: SAMPLE_PED };
+
+// ── Stats ────────────────────────────────────────────────────────
+function updateStats(data) {
+  const f = data.fatal.features;
+  const i = data.injury.features;
+  const p = data.ped.features;
+
+  document.getElementById('stat-fatal').textContent  = f.reduce((s,x) => s + x.properties.num_fatal, 0);
+  document.getElementById('stat-injury').textContent = i.reduce((s,x) => s + x.properties.num_inj, 0);
+  document.getElementById('stat-ped').textContent    = p.length;
+  document.getElementById('stat-total').textContent  = f.length + i.length + p.length;
+
+  document.getElementById('count-fatal').textContent  = `${f.length} crash ${f.length === 1 ? 'location' : 'locations'}`;
+  document.getElementById('count-injury').textContent = `${i.length} crash ${i.length === 1 ? 'location' : 'locations'}`;
+  document.getElementById('count-ped').textContent    = `${p.length} crash ${p.length === 1 ? 'location' : 'locations'}`;
+}
+
+updateStats(layerData);
+
+// ── Toggle layers ───────────────────────────────────────────────
+function toggleLayer(type, el) {
+  layerState[type] = !layerState[type];
+  el.classList.toggle('inactive', !layerState[type]);
+  if (layerState[type]) {
+    map.addLayer(clusterMap[type]);
+  } else {
+    map.removeLayer(clusterMap[type]);
+  }
+}
+
+// ── Year filter ──────────────────────────────────────────────────
+function updateYearFilter() {
+  let min = parseInt(document.getElementById('year-min').value);
+  let max = parseInt(document.getElementById('year-max').value);
+  if (min > max) [min, max] = [max, min];
+  document.getElementById('year-display').textContent = min === max ? min : `${min} – ${max}`;
+  applyFilters();
+}
+
+// ── All filters ──────────────────────────────────────────────────
+function applyFilters() {
+  let min = parseInt(document.getElementById('year-min').value);
+  let max = parseInt(document.getElementById('year-max').value);
+  if (min > max) [min, max] = [max, min];
+
+  const filterDark  = document.getElementById('filter-dark').checked;
+  const filterWet   = document.getElementById('filter-wet').checked;
+  const filterAlc   = document.getElementById('filter-alcohol').checked;
+  const filterInter = document.getElementById('filter-intersection').checked;
+
+  function passesFilters(p) {
+    if (p.year < min || p.year > max) return false;
+    if (filterDark  && !(p.light && p.light.includes('No Streetlight'))) return false;
+    if (filterWet   && !(p.weather === 'Rain' || p.weather === 'Wet'))   return false;
+    if (filterAlc   && !p.alcohol)      return false;
+    if (filterInter && !p.intersection) return false;
+    return true;
+  }
+
+  ['fatal','injury','ped'].forEach(type => {
+    const cluster = clusterMap[type];
+    const source  = layerData[type];
+
+    cluster.clearLayers();
+
+    const filtered = {
+      type: "FeatureCollection",
+      features: source.features.filter(f => passesFilters(f.properties))
+    };
+
+    const newLayer = L.geoJSON(filtered, {
+      pointToLayer: (feature, latlng) => {
+        const colors = { fatal:'#E8453A', injury:'#E89B1B', ped:'#2D9E6B' };
+        const radii  = { fatal: 9, injury: 7, ped: 7 };
+        return L.circleMarker(latlng, {
+          radius: radii[type],
+          fillColor: colors[type],
+          color: 'rgba(255,255,255,0.25)',
+          weight: 1.5, opacity: 1, fillOpacity: 0.92
+        });
+      },
+      onEachFeature: bindPopup
+    });
+
+    cluster.addLayer(newLayer);
+
+    if (layerState[type] && !map.hasLayer(cluster)) {
+      map.addLayer(cluster);
+    }
+  });
+}
+
+// ── Sidebar toggle ───────────────────────────────────────────────
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('collapsed');
+  setTimeout(() => map.invalidateSize(), 220);
+}
+
+// ── Loading screen ───────────────────────────────────────────────
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loading').classList.add('hidden');
+    setTimeout(() => document.getElementById('loading').remove(), 500);
+  }, 1400);
+});
+</script>
+</body>
+</html>
