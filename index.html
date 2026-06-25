@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Interactive planning dashboards and GIS maps built by Parker & Vale — transportation planning and infrastructure storytelling for governments and MPOs.">
+  <meta name="description" content="Custom interactive HTML maps and dashboards built, hosted, and maintained by Parker & Vale for nonprofits, local governments, regional agencies, and small businesses.">
   <title>Interactive Demos — Parker & Vale</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -365,6 +365,15 @@
       box-shadow: 0 12px 40px rgba(0,0,0,0.4);
     }
 
+    .demo-card.disabled {
+      cursor: default;
+    }
+
+    .demo-card.disabled:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
     .demo-card::before {
       content: '';
       position: absolute;
@@ -507,6 +516,17 @@
     .demo-card:hover .card-arrow {
       border-color: rgba(255,255,255,0.2);
       background: rgba(255,255,255,0.05);
+    }
+
+    .demo-card.disabled .card-arrow {
+      width: auto;
+      padding: 0 10px;
+      border-radius: 100px;
+      font-family: var(--fm);
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--txt3);
     }
 
     /* ── How it works ──────────────────────────────────────── */
@@ -762,17 +782,17 @@
 
   <!-- Hero -->
   <div class="hero">
-    <div class="hero-eyebrow">Live Interactive Demos</div>
+    <div class="hero-eyebrow">Custom Interactive Dashboards</div>
     <h1>
       Planning data,<br>
       <em>built to be seen.</em>
       <span class="line2">Not buried in a PDF.</span>
     </h1>
     <p class="hero-body">
-      Parker & Vale builds interactive maps and dashboards that transform public planning data into tools your team, your council, and your community can actually use — for safety analysis, grant applications, equity reporting, and more.
+      Parker & Vale creates, publishes, hosts, and maintains custom HTML maps and dashboards for nonprofits, local governments, regional agencies, and small businesses. We turn spreadsheets, public datasets, and planning documents into fast, shareable tools that are easier to understand than a static PDF or GIS export.
     </p>
     <div class="hero-actions">
-      <a href="#demos" class="btn-primary">Explore the Demos</a>
+      <a href="#demos" class="btn-primary">Explore the Concepts</a>
       <a href="mailto:info@parkerandvale.com?subject=Custom Map Inquiry" class="btn-ghost">Request a Custom Map</a>
     </div>
   </div>
@@ -780,16 +800,16 @@
   <!-- Stats bar -->
   <div class="stats-bar reveal">
     <div class="stat-item">
-      <div class="stat-val">6</div>
-      <div class="stat-lbl">Map product types</div>
+      <div class="stat-val">4</div>
+      <div class="stat-lbl">Featured dashboard concepts</div>
     </div>
     <div class="stat-item">
       <div class="stat-val">Any</div>
       <div class="stat-lbl">Jurisdiction, any state</div>
     </div>
     <div class="stat-item">
-      <div class="stat-val">48h</div>
-      <div class="stat-lbl">Typical turnaround</div>
+      <div class="stat-val">Webhook</div>
+      <div class="stat-lbl">Spreadsheet-driven updates</div>
     </div>
     <div class="stat-item">
       <div class="stat-val">No</div>
@@ -859,59 +879,8 @@
         </div>
       </a>
 
-      <!-- Transit Equity -->
-      <a href="./transit/" class="demo-card teal reveal">
-        <div class="card-preview">
-          <svg class="preview-canvas" viewBox="0 0 420 160" preserveAspectRatio="xMidYMid slice">
-            <rect width="420" height="160" fill="#0E1520"/>
-            <line x1="0" y1="80" x2="420" y2="80" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-            <line x1="210" y1="0" x2="210" y2="160" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-            <!-- Gap zones -->
-            <rect x="290" y="30" width="100" height="50" rx="2" fill="rgba(224,92,106,0.1)" stroke="rgba(224,92,106,0.4)" stroke-width="1" stroke-dasharray="4,3"/>
-            <rect x="30" y="90" width="80" height="45" rx="2" fill="rgba(232,137,75,0.1)" stroke="rgba(232,137,75,0.35)" stroke-width="1" stroke-dasharray="4,3"/>
-            <!-- Routes -->
-            <polyline points="50,80 120,70 200,65 290,70 370,65" fill="none" stroke="rgba(232,184,75,0.7)" stroke-width="2.5" stroke-linecap="round"/>
-            <polyline points="80,140 150,110 220,90 300,80" fill="none" stroke="rgba(232,184,75,0.5)" stroke-width="2" stroke-dasharray="6,3" stroke-linecap="round"/>
-            <!-- Coverage -->
-            <circle cx="120" cy="70" r="18" fill="rgba(42,157,143,0.08)"/>
-            <circle cx="200" cy="65" r="18" fill="rgba(42,157,143,0.08)"/>
-            <circle cx="290" cy="70" r="18" fill="rgba(42,157,143,0.08)"/>
-            <!-- Stops -->
-            <circle cx="120" cy="70" r="4.5" fill="#2A9D8F" stroke="rgba(42,157,143,0.4)" stroke-width="1.5"/>
-            <circle cx="200" cy="65" r="4.5" fill="#2A9D8F" stroke="rgba(42,157,143,0.4)" stroke-width="1.5"/>
-            <circle cx="290" cy="70" r="4.5" fill="#2A9D8F"/>
-            <circle cx="150" cy="110" r="3.5" fill="#2A9D8F" opacity="0.6"/>
-            <!-- Employers -->
-            <rect x="326" y="48" width="9" height="9" rx="1.5" fill="rgba(58,127,193,0.4)" stroke="#3A7FC1" stroke-width="1.5"/>
-            <rect x="55"  y="102" width="9" height="9" rx="1.5" fill="rgba(58,127,193,0.85)" stroke="#3A7FC1" stroke-width="1.5"/>
-            <!-- No service label -->
-            <text x="294" y="59" font-family="'DM Mono',monospace" font-size="7" fill="rgba(224,92,106,0.8)" letter-spacing="0.05em">NO SERVICE</text>
-          </svg>
-          <div class="card-status status-live">● Live Demo</div>
-        </div>
-        <div class="card-body">
-          <div class="card-type">Equity Analysis</div>
-          <div class="card-title">Transit Equity Map</div>
-          <div class="card-desc">Bus routes, stop coverage, service gaps, and major employment centers mapped against demographic data. Supports Title VI compliance, transit development plans, and grant narratives.</div>
-          <div class="card-tags">
-            <span class="tag">GTFS</span>
-            <span class="tag">Census ACS</span>
-            <span class="tag">Title VI</span>
-            <span class="tag">TDP</span>
-          </div>
-          <div class="card-footer">
-            <div class="card-data-source">Source: Transit Agency / Census</div>
-            <div class="card-arrow">
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="var(--txt2)" stroke-width="1.5" stroke-linecap="round">
-                <path d="M2 5h6M5 2l3 3-3 3"/>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </a>
-
       <!-- TIP Tracker -->
-      <a href="./tip/" class="demo-card blue reveal">
+      <article class="demo-card blue reveal disabled" aria-disabled="true">
         <div class="card-preview">
           <svg class="preview-canvas" viewBox="0 0 420 160" preserveAspectRatio="xMidYMid slice">
             <rect width="420" height="160" fill="#0E1520"/>
@@ -945,171 +914,109 @@
         <div class="card-body">
           <div class="card-type">Program Management</div>
           <div class="card-title">TIP Project Tracker</div>
-          <div class="card-desc">Transportation Improvement Program projects mapped by phase, funding source, and let date. Filter by MPO boundary, project type, or federal funding category. Built for annual TIP updates and public meetings.</div>
+          <div class="card-desc">Transportation Improvement Program projects mapped by category, phase, sponsor, funding source, fiscal year, and cost. Built to turn dense DOT and MPO project lists into a public-facing map that makes capital programs easier to explain.</div>
           <div class="card-tags">
             <span class="tag">FHWA TIP</span>
             <span class="tag">STBG</span>
             <span class="tag">HSIP</span>
             <span class="tag">CMAQ</span>
-            <span class="tag">Arkansas STIP</span>
+            <span class="tag">Public Meetings</span>
           </div>
           <div class="card-footer">
-            <div class="card-data-source">Source: FHWA / ARDOT STIP</div>
-            <div class="card-arrow">
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="var(--txt2)" stroke-width="1.5" stroke-linecap="round">
-                <path d="M2 5h6M5 2l3 3-3 3"/>
-              </svg>
-            </div>
+            <div class="card-data-source">Source: DOT / MPO TIP</div>
+            <div class="card-arrow">Concept</div>
           </div>
         </div>
-      </a>
+      </article>
 
-      <!-- Pavement -->
-      <a href="./pavement/" class="demo-card amber reveal">
+      <!-- Trail / Greenway -->
+      <article class="demo-card green reveal disabled" aria-disabled="true">
         <div class="card-preview">
           <svg class="preview-canvas" viewBox="0 0 420 160" preserveAspectRatio="xMidYMid slice">
             <rect width="420" height="160" fill="#0E1520"/>
             <line x1="0" y1="80" x2="420" y2="80" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-            <!-- Condition segments -->
-            <line x1="30"  y1="50"  x2="110" y2="55"  stroke="rgba(42,157,92,0.8)"  stroke-width="5" stroke-linecap="round"/>
-            <line x1="110" y1="55"  x2="190" y2="60"  stroke="rgba(232,184,75,0.8)" stroke-width="5" stroke-linecap="round"/>
-            <line x1="190" y1="60"  x2="260" y2="55"  stroke="rgba(193,40,27,0.85)" stroke-width="5" stroke-linecap="round"/>
-            <line x1="260" y1="55"  x2="390" y2="50"  stroke="rgba(232,184,75,0.7)" stroke-width="5" stroke-linecap="round"/>
-            <line x1="50"  y1="90"  x2="150" y2="100" stroke="rgba(42,157,92,0.7)"  stroke-width="4" stroke-linecap="round"/>
-            <line x1="150" y1="100" x2="230" y2="95"  stroke="rgba(193,40,27,0.8)"  stroke-width="4" stroke-linecap="round"/>
-            <line x1="230" y1="95"  x2="380" y2="100" stroke="rgba(193,40,27,0.75)" stroke-width="4" stroke-linecap="round"/>
-            <line x1="80"  y1="125" x2="200" y2="120" stroke="rgba(232,184,75,0.65)" stroke-width="3.5" stroke-linecap="round"/>
-            <line x1="200" y1="120" x2="340" y2="125" stroke="rgba(42,157,92,0.65)"  stroke-width="3.5" stroke-linecap="round"/>
-            <!-- IRI popup -->
-            <rect x="245" y="30" width="110" height="42" rx="3" fill="#131920" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-            <text x="253" y="43" font-family="'DM Mono',monospace" font-size="7" fill="rgba(193,40,27,0.9)" letter-spacing="0.05em">POOR CONDITION</text>
-            <text x="253" y="53" font-family="'DM Sans',sans-serif" font-size="8" fill="#8A96A8">IRI: 172 in/mi</text>
-            <text x="253" y="63" font-family="'DM Mono',monospace" font-size="7" fill="#3D4F63">Last surveyed: 2023</text>
-            <line x1="245" y1="56" x2="215" y2="57" stroke="rgba(193,40,27,0.4)" stroke-width="1" stroke-dasharray="3,2"/>
+            <line x1="210" y1="0" x2="210" y2="160" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <!-- Parks and water -->
+            <ellipse cx="90" cy="55" rx="55" ry="30" fill="rgba(42,157,92,0.09)" stroke="rgba(42,157,92,0.18)" stroke-width="1"/>
+            <ellipse cx="310" cy="100" rx="70" ry="38" fill="rgba(42,157,92,0.07)" stroke="rgba(42,157,92,0.15)" stroke-width="1"/>
+            <path d="M30 125 C95 95 130 120 185 90 S300 45 390 38" fill="none" stroke="rgba(58,127,193,0.25)" stroke-width="10" stroke-linecap="round"/>
+            <!-- Greenway network -->
+            <path d="M35 120 C95 92 135 108 188 82 S285 48 370 36" fill="none" stroke="rgba(42,157,92,0.85)" stroke-width="5" stroke-linecap="round"/>
+            <path d="M90 55 C132 62 168 72 202 95 S278 125 350 112" fill="none" stroke="rgba(42,157,92,0.55)" stroke-width="4" stroke-linecap="round" stroke-dasharray="8,5"/>
+            <path d="M205 94 C230 80 252 72 285 70" fill="none" stroke="rgba(201,124,42,0.65)" stroke-width="4" stroke-linecap="round" stroke-dasharray="5,4"/>
+            <!-- Trailheads and gaps -->
+            <circle cx="95" cy="93" r="5" fill="#2A9D5C" stroke="rgba(42,157,92,0.4)" stroke-width="1.5"/>
+            <circle cx="188" cy="82" r="5" fill="#2A9D5C" stroke="rgba(42,157,92,0.4)" stroke-width="1.5"/>
+            <circle cx="285" cy="70" r="5" fill="rgba(201,124,42,0.9)" stroke="rgba(201,124,42,0.35)" stroke-width="1.5"/>
+            <circle cx="350" cy="112" r="4.5" fill="#2A9D5C"/>
+            <rect x="228" y="24" width="130" height="34" rx="3" fill="#131920" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+            <text x="236" y="37" font-family="'DM Mono',monospace" font-size="7" fill="#2A9D5C" letter-spacing="0.05em">PLANNED SEGMENT</text>
+            <text x="236" y="48" font-family="'DM Sans',sans-serif" font-size="8" fill="#8A96A8">2.4 mi connector gap</text>
+            <line x1="256" y1="58" x2="245" y2="77" stroke="rgba(42,157,92,0.4)" stroke-width="1" stroke-dasharray="3,2"/>
           </svg>
           <div class="card-status status-soon">◎ Coming Soon</div>
         </div>
         <div class="card-body">
-          <div class="card-type">Asset Management</div>
-          <div class="card-title">Pavement Condition Map</div>
-          <div class="card-desc">Road segments colored by IRI condition rating — Good, Fair, or Poor. Filter by functional class, jurisdiction, or survey year. Supports asset management plans, TIP prioritization, and FHWA reporting requirements.</div>
+          <div class="card-type">Trails & Recreation</div>
+          <div class="card-title">Trail & Greenway Map</div>
+          <div class="card-desc">Existing trails, planned greenways, network gaps, trailheads, amenities, and priority segments shown in one public map. Useful for parks plans, active transportation plans, grant applications, and community engagement.</div>
           <div class="card-tags">
-            <span class="tag">HPMS</span>
-            <span class="tag">IRI</span>
-            <span class="tag">NHS</span>
-            <span class="tag">Asset Management</span>
-          </div>
-          <div class="card-footer">
-            <div class="card-data-source">Source: FHWA HPMS</div>
-            <div class="card-arrow">
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="var(--txt2)" stroke-width="1.5" stroke-linecap="round">
-                <path d="M2 5h6M5 2l3 3-3 3"/>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </a>
-
-      <!-- ADA Gap -->
-      <a href="./ada/" class="demo-card green reveal">
-        <div class="card-preview">
-          <svg class="preview-canvas" viewBox="0 0 420 160" preserveAspectRatio="xMidYMid slice">
-            <rect width="420" height="160" fill="#0E1520"/>
-            <!-- Street grid -->
-            <line x1="140" y1="0"   x2="140" y2="160" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-            <line x1="280" y1="0"   x2="280" y2="160" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-            <line x1="0"   y1="60"  x2="420" y2="60"  stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-            <line x1="0"   y1="110" x2="420" y2="110" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-            <!-- Sidewalk gaps (red dashed) -->
-            <line x1="140" y1="0"  x2="140" y2="60"  stroke="rgba(193,40,27,0.7)" stroke-width="3" stroke-dasharray="5,3" stroke-linecap="round"/>
-            <line x1="280" y1="60" x2="280" y2="110" stroke="rgba(193,40,27,0.65)" stroke-width="3" stroke-dasharray="5,3" stroke-linecap="round"/>
-            <line x1="0"   y1="110" x2="70" y2="110" stroke="rgba(193,40,27,0.6)"  stroke-width="3" stroke-dasharray="5,3" stroke-linecap="round"/>
-            <!-- Existing sidewalks (green) -->
-            <line x1="140" y1="60"  x2="280" y2="60"  stroke="rgba(42,157,92,0.7)" stroke-width="3" stroke-linecap="round"/>
-            <line x1="140" y1="110" x2="280" y2="110" stroke="rgba(42,157,92,0.65)" stroke-width="3" stroke-linecap="round"/>
-            <line x1="280" y1="0"   x2="280" y2="60"  stroke="rgba(42,157,92,0.6)" stroke-width="3" stroke-linecap="round"/>
-            <!-- Curb cuts -->
-            <circle cx="140" cy="60"  r="4" fill="rgba(42,157,92,0.9)" stroke="rgba(42,157,92,0.4)" stroke-width="1.5"/>
-            <circle cx="280" cy="60"  r="4" fill="rgba(42,157,92,0.9)"/>
-            <circle cx="140" cy="110" r="4" fill="rgba(42,157,92,0.9)"/>
-            <circle cx="280" cy="110" r="3.5" fill="rgba(193,40,27,0.9)" stroke="rgba(193,40,27,0.4)" stroke-width="1.5"/>
-            <!-- Missing curb cut label -->
-            <rect x="290" y="98" width="110" height="26" rx="3" fill="#131920" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-            <text x="297" y="109" font-family="'DM Mono',monospace" font-size="7" fill="rgba(193,40,27,0.9)" letter-spacing="0.05em">MISSING CURB CUT</text>
-            <text x="297" y="119" font-family="'DM Sans',sans-serif" font-size="8" fill="#8A96A8">ADA Transition Priority</text>
-          </svg>
-          <div class="card-status status-build">▲ In Build</div>
-        </div>
-        <div class="card-body">
-          <div class="card-type">Accessibility</div>
-          <div class="card-title">ADA Transition Plan Map</div>
-          <div class="card-desc">Sidewalk gaps, missing curb cuts, and inaccessible transit stops mapped by location and ADA transition priority. Required for municipalities under 50,000 — most have no interactive version of their plan.</div>
-          <div class="card-tags">
-            <span class="tag">ADA</span>
-            <span class="tag">Transition Plan</span>
+            <span class="tag">Trail Gaps</span>
+            <span class="tag">Amenities</span>
             <span class="tag">TAP</span>
-            <span class="tag">Safe Streets</span>
+            <span class="tag">Public Input</span>
           </div>
           <div class="card-footer">
-            <div class="card-data-source">Source: City Field Survey / OSM</div>
-            <div class="card-arrow">
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="var(--txt2)" stroke-width="1.5" stroke-linecap="round">
-                <path d="M2 5h6M5 2l3 3-3 3"/>
-              </svg>
-            </div>
+            <div class="card-data-source">Source: City / OSM / Survey</div>
+            <div class="card-arrow">Concept</div>
           </div>
         </div>
-      </a>
+      </article>
 
-      <!-- Grant Support -->
-      <a href="./grants/" class="demo-card gold reveal">
+      <!-- Custom Dashboard -->
+      <article class="demo-card gold reveal disabled" aria-disabled="true">
         <div class="card-preview">
           <svg class="preview-canvas" viewBox="0 0 420 160" preserveAspectRatio="xMidYMid slice">
             <rect width="420" height="160" fill="#0E1520"/>
-            <!-- Equity zone shading -->
-            <ellipse cx="180" cy="90" rx="120" ry="65" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.15)" stroke-width="1" stroke-dasharray="6,3"/>
-            <ellipse cx="300" cy="70" rx="70"  ry="45" fill="rgba(201,168,76,0.04)" stroke="rgba(201,168,76,0.1)"  stroke-width="1" stroke-dasharray="4,3"/>
-            <!-- Project corridor -->
-            <line x1="60" y1="95" x2="340" y2="85" stroke="rgba(201,168,76,0.7)" stroke-width="5" stroke-linecap="round"/>
-            <!-- Context layers -->
-            <circle cx="120" cy="70" r="6" fill="rgba(193,40,27,0.5)"  stroke="rgba(193,40,27,0.3)" stroke-width="1"/>
-            <circle cx="200" cy="100" r="5" fill="rgba(193,40,27,0.45)" stroke="rgba(193,40,27,0.3)" stroke-width="1"/>
-            <circle cx="260" cy="75" r="5" fill="rgba(193,40,27,0.4)"/>
-            <!-- Schools -->
-            <rect x="148" y="112" width="10" height="10" rx="1.5" fill="rgba(42,157,92,0.7)" stroke="rgba(42,157,92,0.4)" stroke-width="1.5"/>
-            <rect x="288" y="45"  width="9"  height="9"  rx="1.5" fill="rgba(42,157,92,0.6)"/>
-            <!-- Stat overlays -->
-            <rect x="20" y="20" width="120" height="42" rx="3" fill="rgba(14,21,32,0.9)" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
-            <text x="28" y="35" font-family="'Syne',sans-serif" font-size="14" font-weight="800" fill="#C9A84C">68%</text>
-            <text x="28" y="46" font-family="'DM Sans',sans-serif" font-size="8" fill="#8A96A8">Low-Income HH</text>
-            <text x="28" y="56" font-family="'DM Mono',monospace" font-size="7" fill="#3D4F63">Project impact area</text>
-            <!-- Grant label -->
-            <rect x="290" y="105" width="100" height="24" rx="3" fill="rgba(201,168,76,0.1)" stroke="rgba(201,168,76,0.25)" stroke-width="1"/>
-            <text x="298" y="116" font-family="'DM Mono',monospace" font-size="7" fill="#C9A84C" letter-spacing="0.06em">RAISE GRANT</text>
-            <text x="298" y="124" font-family="'DM Sans',sans-serif" font-size="8" fill="#8A96A8">Supporting Map</text>
+            <line x1="0" y1="80" x2="420" y2="80" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <line x1="210" y1="0" x2="210" y2="160" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <!-- Dashboard panels -->
+            <rect x="28" y="24" width="112" height="52" rx="4" fill="rgba(201,168,76,0.09)" stroke="rgba(201,168,76,0.22)" stroke-width="1"/>
+            <rect x="156" y="24" width="96" height="52" rx="4" fill="rgba(58,127,193,0.09)" stroke="rgba(58,127,193,0.18)" stroke-width="1"/>
+            <rect x="268" y="24" width="124" height="52" rx="4" fill="rgba(42,157,92,0.08)" stroke="rgba(42,157,92,0.18)" stroke-width="1"/>
+            <text x="42" y="48" font-family="'Syne',sans-serif" font-size="22" font-weight="800" fill="#C9A84C">42</text>
+            <text x="42" y="62" font-family="'DM Mono',monospace" font-size="7" fill="#8A96A8" letter-spacing="0.05em">ACTIVE ITEMS</text>
+            <path d="M174 62 L190 44 L204 52 L224 36" fill="none" stroke="#3A7FC1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="288" y="39" width="72" height="6" rx="3" fill="rgba(42,157,92,0.75)"/>
+            <rect x="288" y="53" width="48" height="6" rx="3" fill="rgba(42,157,92,0.45)"/>
+            <!-- Webhook/data flow -->
+            <rect x="44" y="104" width="76" height="26" rx="3" fill="#131920" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+            <text x="56" y="120" font-family="'DM Mono',monospace" font-size="8" fill="#8A96A8">SHEET</text>
+            <line x1="124" y1="117" x2="182" y2="117" stroke="rgba(201,168,76,0.5)" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <rect x="186" y="104" width="82" height="26" rx="3" fill="#131920" stroke="rgba(201,168,76,0.22)" stroke-width="1"/>
+            <text x="202" y="120" font-family="'DM Mono',monospace" font-size="8" fill="#C9A84C">WEBHOOK</text>
+            <line x1="272" y1="117" x2="330" y2="117" stroke="rgba(201,168,76,0.5)" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <rect x="334" y="104" width="52" height="26" rx="3" fill="#131920" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+            <text x="345" y="120" font-family="'DM Mono',monospace" font-size="8" fill="#8A96A8">LIVE</text>
           </svg>
-          <div class="card-status status-live">● Available Now</div>
+          <div class="card-status status-soon">◎ Custom Fit</div>
         </div>
         <div class="card-body">
-          <div class="card-type">Grant Support</div>
-          <div class="card-title">Grant Application Map Package</div>
-          <div class="card-desc">Project location, equity impact area, crash history on corridor, and demographic context — bundled for a single grant application. Built for RAISE, HSIP, Safe Streets, CDBG, and STBG applications.</div>
+          <div class="card-type">Custom Service</div>
+          <div class="card-title">Custom Dashboard / Data Storytelling</div>
+          <div class="card-desc">A flexible map or dashboard built around the data your organization already uses: shared spreadsheets, public datasets, surveys, project lists, grant metrics, or operations trackers. We can publish, host, deploy, and keep it updated.</div>
           <div class="card-tags">
-            <span class="tag">RAISE</span>
-            <span class="tag">HSIP</span>
-            <span class="tag">Safe Streets</span>
-            <span class="tag">CDBG</span>
+            <span class="tag">HTML / JS / CSS</span>
+            <span class="tag">Hosting</span>
+            <span class="tag">Webhooks</span>
+            <span class="tag">Small Teams</span>
           </div>
           <div class="card-footer">
-            <div class="card-data-source">Source: Multi-source</div>
-            <div class="card-arrow">
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="var(--txt2)" stroke-width="1.5" stroke-linecap="round">
-                <path d="M2 5h6M5 2l3 3-3 3"/>
-              </svg>
-            </div>
+            <div class="card-data-source">Source: Your data</div>
+            <div class="card-arrow">Concept</div>
           </div>
         </div>
-      </a>
+      </article>
 
     </div>
   </section>
@@ -1123,23 +1030,23 @@
     <div class="process-grid reveal">
       <div class="process-step">
         <div class="step-num">01</div>
-        <div class="step-title">Public Data Sources</div>
-        <div class="step-desc">We pull from NHTSA FARS, FHWA HPMS, ARDOT CRIS, Census ACS, GTFS feeds, and other public datasets — or work directly from data you provide.</div>
+        <div class="step-title">Your Data Sources</div>
+        <div class="step-desc">We can start from public datasets, TIP documents, shared spreadsheets, surveys, GIS exports, or the simple project list your team already maintains.</div>
       </div>
       <div class="process-step">
         <div class="step-num">02</div>
         <div class="step-title">Automated Pipeline</div>
-        <div class="step-desc">Custom scripts fetch, clean, and format data into GeoJSON. Scheduled automation keeps hosted maps current when source data updates.</div>
+        <div class="step-desc">Custom scripts clean and format the data into web-ready GeoJSON or JSON. Updates can run on a schedule or from a webhook tied to a shared spreadsheet.</div>
       </div>
       <div class="process-step">
         <div class="step-num">03</div>
-        <div class="step-title">Built for Your Jurisdiction</div>
-        <div class="step-desc">Every map is scoped to your city, county, or MPO boundary. Data is filtered, labeled, and contextualized for your audience — not generic.</div>
+        <div class="step-title">Built for Your Audience</div>
+        <div class="step-desc">Every dashboard is scoped, labeled, and written for the people who need to use it: staff, boards, councils, funders, customers, or the public.</div>
       </div>
       <div class="process-step">
         <div class="step-num">04</div>
         <div class="step-title">Hosted or Handed Off</div>
-        <div class="step-desc">We host it on your subdomain with automatic updates, or package it as a standalone file your team deploys on your own infrastructure.</div>
+        <div class="step-desc">We can publish and host it for you, connect it to a custom subdomain, or package the code so your team can deploy it on your own infrastructure.</div>
       </div>
     </div>
   </section>
@@ -1155,10 +1062,10 @@
         <div class="service-price">$2,500+</div>
         <div class="service-period">One-time</div>
         <div class="service-name">Static Deliverable</div>
-        <div class="service-desc">A fully built map for your jurisdiction, handed off as a standalone file you host and control.</div>
+        <div class="service-desc">A fully built map or dashboard, handed off as a standalone website your team can host and control.</div>
         <ul class="service-features">
-          <li>Custom-scoped to your boundary</li>
-          <li>3–5 year data range</li>
+          <li>Custom-scoped to your audience</li>
+          <li>Cleaned source data included</li>
           <li>Designed popups and sidebar</li>
           <li>GitHub Pages or self-hosted</li>
           <li>One round of revisions</li>
@@ -1168,10 +1075,10 @@
         <div class="service-price">$150–$250</div>
         <div class="service-period">Per month</div>
         <div class="service-name">Hosted Dashboard</div>
-        <div class="service-desc">We host it, update it when data refreshes, and keep it live at your subdomain. Most popular for MPOs and small cities.</div>
+        <div class="service-desc">We host it, update it when the data changes, and keep it live at your subdomain. Useful for small teams that need a polished public interface without a GIS buildout.</div>
         <ul class="service-features">
           <li>Hosted on Parker & Vale infrastructure</li>
-          <li>Automatic data updates on schedule</li>
+          <li>Scheduled or webhook-based updates</li>
           <li>Email notification on each update</li>
           <li>SSL + custom subdomain</li>
           <li>Minor content edits included</li>
@@ -1181,9 +1088,9 @@
         <div class="service-price">$3,500+</div>
         <div class="service-period">Full handoff</div>
         <div class="service-name">Build + Train</div>
-        <div class="service-desc">We build it, document it, train your staff, and hand over the full codebase and pipeline. One year of email support.</div>
+        <div class="service-desc">We build it, document it, train your staff, and hand over the full codebase and update process. One year of email support.</div>
         <ul class="service-features">
-          <li>Full source code and data pipeline</li>
+          <li>Full source code and update pipeline</li>
           <li>Staff training session</li>
           <li>Documentation package</li>
           <li>One year email support</li>
@@ -1200,7 +1107,7 @@
         <div class="cta-eyebrow">Get Started</div>
         <div class="cta-heading">Ready to see your data on a map?</div>
         <div class="cta-body">
-          Tell us your jurisdiction and what you're trying to show. We'll tell you exactly what data we need, what it'll look like, and what it'll cost. Most projects scope in a single 30-minute call.
+          Tell us what you are trying to show and what data you already have. We'll outline the dashboard, the update process, the hosting path, and the cost. Most projects scope in a single 30-minute call.
         </div>
       </div>
       <div class="cta-actions">
