@@ -1,0 +1,3262 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "title": "Garland County, Arkansas fatal motor vehicle crashes",
+    "source": "NHTSA Fatality Analysis Reporting System (FARS)",
+    "source_url": "https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars",
+    "years": [
+      2019,
+      2023
+    ],
+    "state_code": "5",
+    "county_code": "51",
+    "generated_by": "safety/scripts/fetch_fars_garland.py",
+    "notes": [
+      "FARS is a census of fatal motor vehicle traffic crashes.",
+      "Suspected serious injury counts here are only injuries that occurred within fatal-crash records.",
+      "Alcohol/drug involvement is not inferred by this normalizer."
+    ]
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.94874167,
+          34.463675
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50024",
+        "date": "2019-01-04",
+        "time": "5:00 AM",
+        "street": "US-270-06",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Rain",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2019,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Sideswipe - Opposite Direction",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.04946944,
+          34.52963333
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50016",
+        "date": "2019-01-12",
+        "time": "5:35 PM",
+        "street": "SR-7-09",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": true,
+        "light": "Dark - Lighted",
+        "weather": "Rain",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2019,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Pedestrian",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.94164722,
+          34.46331389
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50099",
+        "date": "2019-03-14",
+        "time": "7:55 AM",
+        "street": "US-270-060",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2019,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Tree (Standing Only)",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.15861944,
+          34.40846944
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50056",
+        "date": "2019-03-19",
+        "time": "3:55 PM",
+        "street": "CR-H0064",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": true,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2019,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "County Road",
+        "functional_system": "Major Collector",
+        "first_harmful_event": "Pedestrian",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.2842,
+          34.46395
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50058",
+        "date": "2019-03-19",
+        "time": "10:00 PM",
+        "street": "CR-G0105",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2019,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "County Road",
+        "functional_system": "Local",
+        "first_harmful_event": "Rollover/Overturn",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.11818333,
+          34.69296667
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50085",
+        "date": "2019-04-06",
+        "time": "5:40 PM",
+        "street": "SR-298-020",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Rain",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2019,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Major Collector",
+        "first_harmful_event": "Traffic Sign Support",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.062775,
+          34.47618333
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50127",
+        "date": "2019-05-03",
+        "time": "5:40 AM",
+        "street": "SR-88-4",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": true,
+        "light": "Dark - Unknown Lighting",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2019,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Minor Arterial",
+        "first_harmful_event": "Pedalcyclist",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Intersection",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.05496667,
+          34.48903056
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50218",
+        "date": "2019-05-13",
+        "time": "10:24 AM",
+        "street": "TRIVISTA RIGHT ST",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2019,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "Local Street - Municipality",
+        "functional_system": "Local",
+        "first_harmful_event": "Tree (Standing Only)",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Intersection-Related",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.17531389,
+          34.45020556
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50255",
+        "date": "2019-06-15",
+        "time": "9:40 AM",
+        "street": "US-70-08",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2019,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Intersection",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.33930278,
+          34.53041111
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50263",
+        "date": "2019-06-16",
+        "time": "2:56 AM",
+        "street": "CR- CORDELL DR",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2019,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "County Road",
+        "functional_system": "Local",
+        "first_harmful_event": "Pavement Surface Irregularity (Ruts, Potholes, Grates, etc.)",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.12549444,
+          34.50295
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50201",
+        "date": "2019-06-17",
+        "time": "10:41 PM",
+        "street": "US-270-050",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": true,
+        "light": "Dark - Unknown Lighting",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2019,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Pedestrian",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.16691944,
+          34.50951944
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50214",
+        "date": "2019-07-02",
+        "time": "1:04 PM",
+        "street": "US-270-5",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 2,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2019,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Front-to-Rear",
+        "relation_to_junction": "Intersection-Related",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.08970833,
+          34.44616667
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50247",
+        "date": "2019-08-01",
+        "time": "4:59 PM",
+        "street": "SR-7-9",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 3,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2019,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Front-to-Front",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.95541944,
+          34.50675556
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50251",
+        "date": "2019-08-06",
+        "time": "6:40 PM",
+        "street": "US-70-090",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": true,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2019,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Pedestrian",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.90500278,
+          34.53315278
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50310",
+        "date": "2019-08-29",
+        "time": "12:02 AM",
+        "street": "US-70-090",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2019,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Rollover/Overturn",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.92293056,
+          34.46543056
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50323",
+        "date": "2019-09-01",
+        "time": "6:20 PM",
+        "street": "US-270-060",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2019,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Tree (Standing Only)",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.119675,
+          34.47588056
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50343",
+        "date": "2019-09-14",
+        "time": "2:59 PM",
+        "street": "US-70-8",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2019,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Sideswipe - Opposite Direction",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.06943889,
+          34.46572222
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50369",
+        "date": "2019-09-26",
+        "time": "6:21 AM",
+        "street": "US-270-5",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dawn",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2019,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Front-to-Front",
+        "relation_to_junction": "Through Roadway",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.02075,
+          34.46782222
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50414",
+        "date": "2019-11-01",
+        "time": "3:49 PM",
+        "street": "SR-128-10",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2019,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Minor Arterial",
+        "first_harmful_event": "Culvert",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.20693611,
+          34.44526111
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50441",
+        "date": "2019-11-21",
+        "time": "4:50 PM",
+        "street": "US-70-8",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Rain",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2019,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.109875,
+          34.39554722
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50026",
+        "date": "2020-01-06",
+        "time": "5:26 PM",
+        "street": "SR-7-090",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dusk",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2020,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Minor Arterial",
+        "first_harmful_event": "Traffic Sign Support",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.06593333,
+          34.40358333
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50012",
+        "date": "2020-01-14",
+        "time": "2:30 AM",
+        "street": "SR-290-1",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Lighted",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2020,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Major Collector",
+        "first_harmful_event": "Ditch",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.08695,
+          34.44801667
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50016",
+        "date": "2020-01-21",
+        "time": "4:28 AM",
+        "street": "SR-7-9",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2020,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Other Object (not fixed)",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.82252222,
+          34.55615
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50041",
+        "date": "2020-02-04",
+        "time": "6:47 PM",
+        "street": "US-70-090",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 2,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2020,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.01955833,
+          34.59875556
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50075",
+        "date": "2020-03-12",
+        "time": "10:00 PM",
+        "street": "SR-7-100",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Rain",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2020,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Front-to-Front",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.01059167,
+          34.55498056
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50093",
+        "date": "2020-03-26",
+        "time": "11:09 PM",
+        "street": "SR-7-9 PARK AVE",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2020,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Utility Pole/Light Support",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.98736111,
+          34.47123889
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50105",
+        "date": "2020-04-03",
+        "time": "12:46 PM",
+        "street": "US-270-6",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Rain",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2020,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Intersection",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.38272778,
+          34.51460556
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50186",
+        "date": "2020-05-15",
+        "time": "8:05 PM",
+        "street": "US-270-5",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Rain",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2020,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Sideswipe - Opposite Direction",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.03396667,
+          34.48682778
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50231",
+        "date": "2020-06-10",
+        "time": "12:44 PM",
+        "street": "US-270-6B",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2020,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Front-to-Rear",
+        "relation_to_junction": "Intersection",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.16337778,
+          34.54201389
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50242",
+        "date": "2020-06-16",
+        "time": "9:58 AM",
+        "street": "CR-CLEARCREEK",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2020,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "County Road",
+        "functional_system": "Local",
+        "first_harmful_event": "Post, Pole or Other Supports",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.04330833,
+          34.50771111
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50329",
+        "date": "2020-07-15",
+        "time": "4:04 PM",
+        "street": "US-70-01",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2020,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Intersection",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.05635833,
+          34.49972778
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50338",
+        "date": "2020-07-17",
+        "time": "8:15 PM",
+        "street": "SR-7-9",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Unknown Lighting",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2020,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Intersection",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.90246944,
+          34.53447778
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50434",
+        "date": "2020-09-23",
+        "time": "6:57 AM",
+        "street": "US-70-090",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Dawn",
+        "weather": "Rain",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2020,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.08538333,
+          34.52633056
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50435",
+        "date": "2020-09-29",
+        "time": "9:21 PM",
+        "street": "CR-CEDARGLADE",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2020,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "County Road",
+        "functional_system": "Local",
+        "first_harmful_event": "Tree (Standing Only)",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.12047222,
+          34.49507778
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50513",
+        "date": "2020-10-26",
+        "time": "3:27 PM",
+        "street": "US-270-5",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2020,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Intersection-Related",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.92450833,
+          34.61057222
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50549",
+        "date": "2020-11-07",
+        "time": "1:40 PM",
+        "street": "SR-5-06",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2020,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Minor Arterial",
+        "first_harmful_event": "Traffic Sign Support",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.06611111,
+          34.65645556
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50573",
+        "date": "2020-11-24",
+        "time": "7:15 AM",
+        "street": "SR-7-100",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2020,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Minor Arterial",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Driveway Access",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.31491389,
+          34.46109444
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50576",
+        "date": "2020-11-27",
+        "time": "12:55 PM",
+        "street": "CR-OLD DALLAS RD",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2020,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "County Road",
+        "functional_system": "Local",
+        "first_harmful_event": "Fell/Jumped from Vehicle",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.05981944,
+          34.47670833
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50058",
+        "date": "2021-01-19",
+        "time": "7:45 PM",
+        "street": "SR-7-9",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2021,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Intersection",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.86041667,
+          34.54945833
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50051",
+        "date": "2021-02-13",
+        "time": "6:30 PM",
+        "street": "US-70-090",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 2,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2021,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Sideswipe - Opposite Direction",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.96189167,
+          34.59353333
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50056",
+        "date": "2021-02-22",
+        "time": "7:20 PM",
+        "street": "SR-5-060",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2021,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Minor Arterial",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Front-to-Front",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.919425,
+          34.46616944
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50068",
+        "date": "2021-03-09",
+        "time": "10:55 AM",
+        "street": "US-270-060",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2021,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Driveway Access Related",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.14249167,
+          34.49023889
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50081",
+        "date": "2021-03-15",
+        "time": "2:31 PM",
+        "street": "CR-THORNTON FERRY RD",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 2,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2021,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "County Road",
+        "functional_system": "Local",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Front-to-Front",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.27346944,
+          34.5104
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50126",
+        "date": "2021-04-12",
+        "time": "6:35 AM",
+        "street": "US-270-5",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2021,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.14000833,
+          34.46791389
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50142",
+        "date": "2021-04-13",
+        "time": "8:00 PM",
+        "street": "US-70-08",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2021,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Sideswipe - Same Direction",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.24531944,
+          34.51143056
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50194",
+        "date": "2021-05-15",
+        "time": "4:00 PM",
+        "street": "US-270-5",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 2,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2021,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Intersection",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.90601944,
+          34.53244167
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50227",
+        "date": "2021-06-06",
+        "time": "1:35 AM",
+        "street": "US-70-9",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 2,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2021,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Sideswipe - Same Direction",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.34150833,
+          34.40106389
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50267",
+        "date": "2021-06-26",
+        "time": "9:01 PM",
+        "street": "US-70-8",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2021,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Minor Arterial",
+        "first_harmful_event": "Fell/Jumped from Vehicle",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.24175,
+          34.45441389
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50353",
+        "date": "2021-08-14",
+        "time": "2:40 PM",
+        "street": "CR- WHITFIELD ROAD",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2021,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "County Road",
+        "functional_system": "Local",
+        "first_harmful_event": "Fell/Jumped from Vehicle",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.28988611,
+          34.42885278
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50365",
+        "date": "2021-08-24",
+        "time": "8:42 AM",
+        "street": "US-70-080",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2021,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Minor Arterial",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Front-to-Rear",
+        "relation_to_junction": "Driveway Access Related",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.11453056,
+          34.478025
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50390",
+        "date": "2021-09-02",
+        "time": "10:51 PM",
+        "street": "US-70-08B",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2021,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Intersection",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.07749722,
+          34.45480556
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50398",
+        "date": "2021-09-06",
+        "time": "5:52 AM",
+        "street": "SR-88-4",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": true,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2021,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Minor Arterial",
+        "first_harmful_event": "Pedestrian",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.01864722,
+          34.47155
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50410",
+        "date": "2021-09-10",
+        "time": "3:23 PM",
+        "street": "US-270-6B",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2021,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Intersection",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.17643333,
+          34.44958611
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50412",
+        "date": "2021-09-10",
+        "time": "4:03 PM",
+        "street": "US-70-080",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2021,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Intersection",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.29058333,
+          34.42865833
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50437",
+        "date": "2021-09-30",
+        "time": "3:50 PM",
+        "street": "US-70-8",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2021,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Minor Arterial",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Driveway Access Related",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.99675833,
+          34.52626944
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50442",
+        "date": "2021-10-03",
+        "time": "4:27 PM",
+        "street": "CR-MILLCREEKRD",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2021,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "County Road",
+        "functional_system": "Local",
+        "first_harmful_event": "Rollover/Overturn",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.08733333,
+          34.48989722
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50619",
+        "date": "2021-12-17",
+        "time": "5:47 PM",
+        "street": "US-70-8B",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": true,
+        "light": "Dark - Not Lighted",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2021,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Pedestrian",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.093525,
+          34.48692222
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50631",
+        "date": "2021-12-22",
+        "time": "11:20 AM",
+        "street": "US-70-08B",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": true,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2021,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Pedestrian",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.03838333,
+          34.51578611
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50018",
+        "date": "2022-01-19",
+        "time": "5:53 PM",
+        "street": "US-70B",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": true,
+        "light": "Dark - Not Lighted",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2022,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "US Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Pedestrian",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Intersection-Related",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.87118333,
+          34.54489722
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50017",
+        "date": "2022-01-22",
+        "time": "5:10 PM",
+        "street": "US-70",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2022,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "US Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Rollover/Overturn",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.81078889,
+          34.55611667
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50022",
+        "date": "2022-01-27",
+        "time": "6:43 PM",
+        "street": "US-70",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2022,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "US Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Intersection",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.81081944,
+          34.5561
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50051",
+        "date": "2022-02-19",
+        "time": "6:13 PM",
+        "street": "US-70",
+        "city": "LONSDALE",
+        "num_fatal": 2,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dusk",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2022,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "US Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Intersection",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.08443333,
+          34.46578333
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50052",
+        "date": "2022-02-19",
+        "time": "9:05 PM",
+        "street": "US-270",
+        "city": "HOT SPRINGS",
+        "num_fatal": 2,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2022,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "US Highway",
+        "functional_system": "Principal Arterial - Other Freeways and Expressways",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Front-to-Front",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.12125556,
+          34.49563333
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50159",
+        "date": "2022-04-25",
+        "time": "9:16 PM",
+        "street": "US-270",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Dark - Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2022,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "US Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Front-to-Front",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.0808,
+          34.49367222
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50173",
+        "date": "2022-05-03",
+        "time": "7:31 PM",
+        "street": "US-70B",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dusk",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2022,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "US Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Driveway Access Related",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.12098611,
+          34.59577222
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50161",
+        "date": "2022-05-05",
+        "time": "6:38 PM",
+        "street": "CR-W GLAZYPEAU RD",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2022,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "County Road",
+        "functional_system": "Major Collector",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Front-to-Front",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.40110833,
+          34.52413056
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50197",
+        "date": "2022-06-03",
+        "time": "3:11 PM",
+        "street": "US-270",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2022,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "US Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Front-to-Front",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.93181944,
+          34.46313611
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50276",
+        "date": "2022-07-27",
+        "time": "4:17 PM",
+        "street": "US-270",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Rain",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2022,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "US Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Intersection-Related",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.05966667,
+          34.48423333
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50285",
+        "date": "2022-08-02",
+        "time": "1:09 PM",
+        "street": "SR-7",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": true,
+        "light": "Daylight",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2022,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Pedestrian",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Driveway Access Related",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.93644444,
+          34.51128611
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50418",
+        "date": "2022-09-10",
+        "time": "2:22 PM",
+        "street": "US-70",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 4,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Rain",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2022,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "US Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.95845833,
+          34.46499444
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50400",
+        "date": "2022-09-26",
+        "time": "1:19 PM",
+        "street": "US-270",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 2,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2022,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "US Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Driveway Access Related",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.08113333,
+          34.46946389
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50446",
+        "date": "2022-10-22",
+        "time": "9:20 PM",
+        "street": "CS-ROSEWOOD ST",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2022,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "Local Street - Municipality",
+        "functional_system": "Local",
+        "first_harmful_event": "Culvert",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Intersection-Related",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.12588889,
+          34.50104722
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50490",
+        "date": "2022-11-22",
+        "time": "4:25 PM",
+        "street": "CS-THORNTON FERRY RD",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 1,
+        "is_ped": true,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2022,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "Local Street - Municipality",
+        "functional_system": "Major Collector",
+        "first_harmful_event": "Fence",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.07068611,
+          34.48273333
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50520",
+        "date": "2022-12-09",
+        "time": "11:51 PM",
+        "street": "CS-ALPINE ST",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2022,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "Local Street - Municipality",
+        "functional_system": "Local",
+        "first_harmful_event": "Tree (Standing Only)",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.05975556,
+          34.48353611
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50531",
+        "date": "2022-12-18",
+        "time": "6:15 PM",
+        "street": "SR-7",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": true,
+        "light": "Dark - Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2022,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Principal Arterial - Other",
+        "first_harmful_event": "Pedestrian",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.07061944,
+          34.45247222
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50085",
+        "date": "2023-02-21",
+        "time": "9:51 PM",
+        "street": "SR-7-9",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Dark - Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2023,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Other Principal Arterial",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Front-to-Rear",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.14547778,
+          34.58721389
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50070",
+        "date": "2023-02-26",
+        "time": "9:02 PM",
+        "street": "SR-227-1",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Fog, Smog, Smoke",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2023,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Major Collector",
+        "first_harmful_event": "Tree (Standing Only)",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.09140278,
+          34.48774167
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50110",
+        "date": "2023-03-17",
+        "time": "11:59 PM",
+        "street": "US-70-8B",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Dark - Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2023,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Other Principal Arterial",
+        "first_harmful_event": "Curb",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.16914722,
+          34.40423611
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50099",
+        "date": "2023-03-25",
+        "time": "11:32 AM",
+        "street": "CR-AMITYRD",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2023,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "County",
+        "functional_system": "Major Collector",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Intersection",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.91898889,
+          34.61563056
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50128",
+        "date": "2023-04-05",
+        "time": "6:40 PM",
+        "street": "SR-5-6",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dusk",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2023,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Minor Arterial",
+        "first_harmful_event": "Utility Pole/Light Support",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.05982222,
+          34.48076944
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50133",
+        "date": "2023-04-12",
+        "time": "8:17 PM",
+        "street": "SR-7-9",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2023,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Other Principal Arterial",
+        "first_harmful_event": "Rollover/Overturn",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Intersection-Related",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.23795,
+          34.40058611
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50135",
+        "date": "2023-04-17",
+        "time": "8:35 PM",
+        "street": "CR-AMITYRD",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 2,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2023,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "County",
+        "functional_system": "Major Collector",
+        "first_harmful_event": "Post, Pole or Other Supports",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.80227222,
+          34.555
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50227",
+        "date": "2023-06-24",
+        "time": "5:50 AM",
+        "street": "US-70",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2023,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Other Principal Arterial",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Front-to-Front",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.98400278,
+          34.47168889
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50318",
+        "date": "2023-08-15",
+        "time": "11:35 PM",
+        "street": "US-270-6",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": true,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2023,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Other Principal Arterial",
+        "first_harmful_event": "Pedestrian",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.95629167,
+          34.59755556
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50356",
+        "date": "2023-09-02",
+        "time": "8:50 PM",
+        "street": "SR-5",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 2,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2023,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Minor Arterial",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.33176667,
+          34.52324722
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50367",
+        "date": "2023-09-17",
+        "time": "3:32 PM",
+        "street": "US-270",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2023,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Other Principal Arterial",
+        "first_harmful_event": "Tree (Standing Only)",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.87833611,
+          34.61876111
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50452",
+        "date": "2023-10-15",
+        "time": "2:20 AM",
+        "street": "SR-5",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2023,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Minor Arterial",
+        "first_harmful_event": "Fell/Jumped from Vehicle",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.90501389,
+          34.61660833
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50415",
+        "date": "2023-10-21",
+        "time": "3:06 PM",
+        "street": "SR-5",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2023,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Minor Arterial",
+        "first_harmful_event": "Rollover/Overturn",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.97470278,
+          34.51096111
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50483",
+        "date": "2023-11-03",
+        "time": "10:30 PM",
+        "street": "US-HIGHWAY 5",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2023,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Other Principal Arterial",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Front-to-Front",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.99008333,
+          34.471525
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "case_id": "50516",
+        "date": "2023-12-15",
+        "time": "10:05 AM",
+        "street": "US-270",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2023,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Other Principal Arterial",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Intersection",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    }
+  ]
+}
