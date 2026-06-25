@@ -6,7 +6,7 @@
     "source_url": "https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars",
     "years": [
       2019,
-      2023
+      2024
     ],
     "state_code": "5",
     "county_code": "51",
@@ -29,6 +29,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2019-50024",
         "case_id": "50024",
         "date": "2019-01-04",
         "time": "5:00 AM",
@@ -65,6 +66,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2019-50016",
         "case_id": "50016",
         "date": "2019-01-12",
         "time": "5:35 PM",
@@ -101,6 +103,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2019-50099",
         "case_id": "50099",
         "date": "2019-03-14",
         "time": "7:55 AM",
@@ -137,6 +140,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2019-50056",
         "case_id": "50056",
         "date": "2019-03-19",
         "time": "3:55 PM",
@@ -173,6 +177,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2019-50058",
         "case_id": "50058",
         "date": "2019-03-19",
         "time": "10:00 PM",
@@ -209,6 +214,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2019-50085",
         "case_id": "50085",
         "date": "2019-04-06",
         "time": "5:40 PM",
@@ -245,6 +251,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2019-50127",
         "case_id": "50127",
         "date": "2019-05-03",
         "time": "5:40 AM",
@@ -281,6 +288,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2019-50218",
         "case_id": "50218",
         "date": "2019-05-13",
         "time": "10:24 AM",
@@ -317,6 +325,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2019-50255",
         "case_id": "50255",
         "date": "2019-06-15",
         "time": "9:40 AM",
@@ -353,6 +362,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2019-50263",
         "case_id": "50263",
         "date": "2019-06-16",
         "time": "2:56 AM",
@@ -389,6 +399,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2019-50201",
         "case_id": "50201",
         "date": "2019-06-17",
         "time": "10:41 PM",
@@ -425,6 +436,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2019-50214",
         "case_id": "50214",
         "date": "2019-07-02",
         "time": "1:04 PM",
@@ -461,6 +473,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2019-50247",
         "case_id": "50247",
         "date": "2019-08-01",
         "time": "4:59 PM",
@@ -497,6 +510,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2019-50251",
         "case_id": "50251",
         "date": "2019-08-06",
         "time": "6:40 PM",
@@ -533,6 +547,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2019-50310",
         "case_id": "50310",
         "date": "2019-08-29",
         "time": "12:02 AM",
@@ -569,6 +584,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2019-50323",
         "case_id": "50323",
         "date": "2019-09-01",
         "time": "6:20 PM",
@@ -605,6 +621,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2019-50343",
         "case_id": "50343",
         "date": "2019-09-14",
         "time": "2:59 PM",
@@ -641,6 +658,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2019-50369",
         "case_id": "50369",
         "date": "2019-09-26",
         "time": "6:21 AM",
@@ -677,6 +695,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2019-50414",
         "case_id": "50414",
         "date": "2019-11-01",
         "time": "3:49 PM",
@@ -713,6 +732,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2019-50441",
         "case_id": "50441",
         "date": "2019-11-21",
         "time": "4:50 PM",
@@ -749,6 +769,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2020-50026",
         "case_id": "50026",
         "date": "2020-01-06",
         "time": "5:26 PM",
@@ -785,6 +806,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2020-50012",
         "case_id": "50012",
         "date": "2020-01-14",
         "time": "2:30 AM",
@@ -821,6 +843,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2020-50016",
         "case_id": "50016",
         "date": "2020-01-21",
         "time": "4:28 AM",
@@ -857,6 +880,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2020-50041",
         "case_id": "50041",
         "date": "2020-02-04",
         "time": "6:47 PM",
@@ -893,6 +917,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2020-50075",
         "case_id": "50075",
         "date": "2020-03-12",
         "time": "10:00 PM",
@@ -929,6 +954,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2020-50093",
         "case_id": "50093",
         "date": "2020-03-26",
         "time": "11:09 PM",
@@ -965,6 +991,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2020-50105",
         "case_id": "50105",
         "date": "2020-04-03",
         "time": "12:46 PM",
@@ -1001,6 +1028,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2020-50186",
         "case_id": "50186",
         "date": "2020-05-15",
         "time": "8:05 PM",
@@ -1037,6 +1065,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2020-50231",
         "case_id": "50231",
         "date": "2020-06-10",
         "time": "12:44 PM",
@@ -1073,6 +1102,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2020-50242",
         "case_id": "50242",
         "date": "2020-06-16",
         "time": "9:58 AM",
@@ -1109,6 +1139,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2020-50329",
         "case_id": "50329",
         "date": "2020-07-15",
         "time": "4:04 PM",
@@ -1145,6 +1176,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2020-50338",
         "case_id": "50338",
         "date": "2020-07-17",
         "time": "8:15 PM",
@@ -1181,6 +1213,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2020-50434",
         "case_id": "50434",
         "date": "2020-09-23",
         "time": "6:57 AM",
@@ -1217,6 +1250,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2020-50435",
         "case_id": "50435",
         "date": "2020-09-29",
         "time": "9:21 PM",
@@ -1253,6 +1287,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2020-50513",
         "case_id": "50513",
         "date": "2020-10-26",
         "time": "3:27 PM",
@@ -1289,6 +1324,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2020-50549",
         "case_id": "50549",
         "date": "2020-11-07",
         "time": "1:40 PM",
@@ -1325,6 +1361,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2020-50573",
         "case_id": "50573",
         "date": "2020-11-24",
         "time": "7:15 AM",
@@ -1361,6 +1398,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2020-50576",
         "case_id": "50576",
         "date": "2020-11-27",
         "time": "12:55 PM",
@@ -1397,6 +1435,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2021-50058",
         "case_id": "50058",
         "date": "2021-01-19",
         "time": "7:45 PM",
@@ -1433,6 +1472,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2021-50051",
         "case_id": "50051",
         "date": "2021-02-13",
         "time": "6:30 PM",
@@ -1469,6 +1509,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2021-50056",
         "case_id": "50056",
         "date": "2021-02-22",
         "time": "7:20 PM",
@@ -1505,6 +1546,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2021-50068",
         "case_id": "50068",
         "date": "2021-03-09",
         "time": "10:55 AM",
@@ -1541,6 +1583,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2021-50081",
         "case_id": "50081",
         "date": "2021-03-15",
         "time": "2:31 PM",
@@ -1577,6 +1620,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2021-50126",
         "case_id": "50126",
         "date": "2021-04-12",
         "time": "6:35 AM",
@@ -1613,6 +1657,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2021-50142",
         "case_id": "50142",
         "date": "2021-04-13",
         "time": "8:00 PM",
@@ -1649,6 +1694,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2021-50194",
         "case_id": "50194",
         "date": "2021-05-15",
         "time": "4:00 PM",
@@ -1685,6 +1731,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2021-50227",
         "case_id": "50227",
         "date": "2021-06-06",
         "time": "1:35 AM",
@@ -1721,6 +1768,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2021-50267",
         "case_id": "50267",
         "date": "2021-06-26",
         "time": "9:01 PM",
@@ -1757,6 +1805,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2021-50353",
         "case_id": "50353",
         "date": "2021-08-14",
         "time": "2:40 PM",
@@ -1793,6 +1842,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2021-50365",
         "case_id": "50365",
         "date": "2021-08-24",
         "time": "8:42 AM",
@@ -1829,6 +1879,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2021-50390",
         "case_id": "50390",
         "date": "2021-09-02",
         "time": "10:51 PM",
@@ -1865,6 +1916,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2021-50398",
         "case_id": "50398",
         "date": "2021-09-06",
         "time": "5:52 AM",
@@ -1901,6 +1953,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2021-50410",
         "case_id": "50410",
         "date": "2021-09-10",
         "time": "3:23 PM",
@@ -1937,6 +1990,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2021-50412",
         "case_id": "50412",
         "date": "2021-09-10",
         "time": "4:03 PM",
@@ -1973,6 +2027,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2021-50437",
         "case_id": "50437",
         "date": "2021-09-30",
         "time": "3:50 PM",
@@ -2009,6 +2064,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2021-50442",
         "case_id": "50442",
         "date": "2021-10-03",
         "time": "4:27 PM",
@@ -2045,6 +2101,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2021-50619",
         "case_id": "50619",
         "date": "2021-12-17",
         "time": "5:47 PM",
@@ -2081,6 +2138,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2021-50631",
         "case_id": "50631",
         "date": "2021-12-22",
         "time": "11:20 AM",
@@ -2117,6 +2175,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2022-50018",
         "case_id": "50018",
         "date": "2022-01-19",
         "time": "5:53 PM",
@@ -2153,6 +2212,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2022-50017",
         "case_id": "50017",
         "date": "2022-01-22",
         "time": "5:10 PM",
@@ -2189,6 +2249,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2022-50022",
         "case_id": "50022",
         "date": "2022-01-27",
         "time": "6:43 PM",
@@ -2225,6 +2286,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2022-50051",
         "case_id": "50051",
         "date": "2022-02-19",
         "time": "6:13 PM",
@@ -2261,6 +2323,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2022-50052",
         "case_id": "50052",
         "date": "2022-02-19",
         "time": "9:05 PM",
@@ -2297,6 +2360,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2022-50159",
         "case_id": "50159",
         "date": "2022-04-25",
         "time": "9:16 PM",
@@ -2333,6 +2397,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2022-50173",
         "case_id": "50173",
         "date": "2022-05-03",
         "time": "7:31 PM",
@@ -2369,6 +2434,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2022-50161",
         "case_id": "50161",
         "date": "2022-05-05",
         "time": "6:38 PM",
@@ -2405,6 +2471,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2022-50197",
         "case_id": "50197",
         "date": "2022-06-03",
         "time": "3:11 PM",
@@ -2441,6 +2508,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2022-50276",
         "case_id": "50276",
         "date": "2022-07-27",
         "time": "4:17 PM",
@@ -2477,6 +2545,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2022-50285",
         "case_id": "50285",
         "date": "2022-08-02",
         "time": "1:09 PM",
@@ -2513,6 +2582,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2022-50418",
         "case_id": "50418",
         "date": "2022-09-10",
         "time": "2:22 PM",
@@ -2549,6 +2619,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2022-50400",
         "case_id": "50400",
         "date": "2022-09-26",
         "time": "1:19 PM",
@@ -2585,6 +2656,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2022-50446",
         "case_id": "50446",
         "date": "2022-10-22",
         "time": "9:20 PM",
@@ -2621,6 +2693,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2022-50490",
         "case_id": "50490",
         "date": "2022-11-22",
         "time": "4:25 PM",
@@ -2657,6 +2730,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2022-50520",
         "case_id": "50520",
         "date": "2022-12-09",
         "time": "11:51 PM",
@@ -2693,6 +2767,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2022-50531",
         "case_id": "50531",
         "date": "2022-12-18",
         "time": "6:15 PM",
@@ -2729,6 +2804,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2023-50085",
         "case_id": "50085",
         "date": "2023-02-21",
         "time": "9:51 PM",
@@ -2765,6 +2841,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2023-50070",
         "case_id": "50070",
         "date": "2023-02-26",
         "time": "9:02 PM",
@@ -2801,6 +2878,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2023-50110",
         "case_id": "50110",
         "date": "2023-03-17",
         "time": "11:59 PM",
@@ -2837,6 +2915,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2023-50099",
         "case_id": "50099",
         "date": "2023-03-25",
         "time": "11:32 AM",
@@ -2873,6 +2952,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2023-50128",
         "case_id": "50128",
         "date": "2023-04-05",
         "time": "6:40 PM",
@@ -2909,6 +2989,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2023-50133",
         "case_id": "50133",
         "date": "2023-04-12",
         "time": "8:17 PM",
@@ -2945,6 +3026,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2023-50135",
         "case_id": "50135",
         "date": "2023-04-17",
         "time": "8:35 PM",
@@ -2981,6 +3063,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2023-50227",
         "case_id": "50227",
         "date": "2023-06-24",
         "time": "5:50 AM",
@@ -3017,6 +3100,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2023-50318",
         "case_id": "50318",
         "date": "2023-08-15",
         "time": "11:35 PM",
@@ -3053,6 +3137,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2023-50356",
         "case_id": "50356",
         "date": "2023-09-02",
         "time": "8:50 PM",
@@ -3089,6 +3174,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2023-50367",
         "case_id": "50367",
         "date": "2023-09-17",
         "time": "3:32 PM",
@@ -3125,6 +3211,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2023-50452",
         "case_id": "50452",
         "date": "2023-10-15",
         "time": "2:20 AM",
@@ -3161,6 +3248,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2023-50415",
         "case_id": "50415",
         "date": "2023-10-21",
         "time": "3:06 PM",
@@ -3197,6 +3285,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2023-50483",
         "case_id": "50483",
         "date": "2023-11-03",
         "time": "10:30 PM",
@@ -3233,6 +3322,7 @@
       },
       "properties": {
         "source": "NHTSA FARS",
+        "record_id": "2023-50516",
         "case_id": "50516",
         "date": "2023-12-15",
         "time": "10:05 AM",
@@ -3255,6 +3345,783 @@
         "relation_to_junction": "Intersection",
         "rural_urban": "Urban",
         "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.98235278,
+          34.53623333
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50008",
+        "case_id": "50008",
+        "date": "2024-01-14",
+        "time": "8:35 AM",
+        "street": "SR-5",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Other Principal Arterial",
+        "first_harmful_event": "Ditch",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.86314722,
+          34.54684444
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50038",
+        "case_id": "50038",
+        "date": "2024-02-12",
+        "time": "4:48 AM",
+        "street": "US-70",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Other Principal Arterial",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Front-to-Front",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.01865,
+          34.547625
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50052",
+        "case_id": "50052",
+        "date": "2024-02-26",
+        "time": "12:29 AM",
+        "street": "SR-7 / PARK AVE",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Other Principal Arterial",
+        "first_harmful_event": "Live Animal",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.12131944,
+          34.47471944
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50073",
+        "case_id": "50073",
+        "date": "2024-03-08",
+        "time": "7:28 PM",
+        "street": "US-70",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": true,
+        "light": "Dark - Not Lighted",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Other Principal Arterial",
+        "first_harmful_event": "Pedestrian",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.05536944,
+          34.50401389
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50083",
+        "case_id": "50083",
+        "date": "2024-03-21",
+        "time": "6:25 AM",
+        "street": "SR-7",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Lighted",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Other Principal Arterial",
+        "first_harmful_event": "Curb",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Intersection-Related",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.98551667,
+          34.47734167
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50098",
+        "case_id": "50098",
+        "date": "2024-03-31",
+        "time": "3:14 PM",
+        "street": "US-70",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Other Freeways and Expressways",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Front-to-Front",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.20073056,
+          34.44299444
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50097",
+        "case_id": "50097",
+        "date": "2024-04-03",
+        "time": "8:06 AM",
+        "street": "US-70",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Other Principal Arterial",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Front-to-Front",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.28643611,
+          34.42963056
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50122",
+        "case_id": "50122",
+        "date": "2024-04-14",
+        "time": "2:30 AM",
+        "street": "US-70",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Minor Arterial",
+        "first_harmful_event": "Embankment",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.09623611,
+          34.52956389
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50138",
+        "case_id": "50138",
+        "date": "2024-04-24",
+        "time": "8:40 PM",
+        "street": "CR-CEDAR GLADES RD",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "County",
+        "functional_system": "Local",
+        "first_harmful_event": "Ditch",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.00917222,
+          34.508225
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50214",
+        "case_id": "50214",
+        "date": "2024-05-31",
+        "time": "12:48 PM",
+        "street": "US-70/ACCESSXING",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Rain",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Other Freeways and Expressways",
+        "first_harmful_event": "Guardrail Face",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.05828889,
+          34.49226389
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50189",
+        "case_id": "50189",
+        "date": "2024-06-02",
+        "time": "9:00 PM",
+        "street": "SR-7",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": true,
+        "light": "Dark - Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Other Principal Arterial",
+        "first_harmful_event": "Pedestrian",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.15906111,
+          34.40822778
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50190",
+        "case_id": "50190",
+        "date": "2024-06-04",
+        "time": "4:58 AM",
+        "street": "CR-AMITY RD",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "County",
+        "functional_system": "Major Collector",
+        "first_harmful_event": "Tree (Standing Only)",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.16705556,
+          34.43033889
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50239",
+        "case_id": "50239",
+        "date": "2024-06-20",
+        "time": "6:10 PM",
+        "street": "CR-MARIONANDERSONRD",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "County",
+        "functional_system": "Major Collector",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Intersection",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.93552778,
+          34.60065278
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50241",
+        "case_id": "50241",
+        "date": "2024-06-28",
+        "time": "7:35 PM",
+        "street": "SR-5",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Minor Arterial",
+        "first_harmful_event": "Ditch",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.14950556,
+          34.50947222
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50236",
+        "case_id": "50236",
+        "date": "2024-06-29",
+        "time": "12:26 PM",
+        "street": "US-270",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 3,
+        "num_inj": 1,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Other Principal Arterial",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Intersection",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.99931667,
+          34.47081667
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50285",
+        "case_id": "50285",
+        "date": "2024-07-31",
+        "time": "7:02 AM",
+        "street": "US-270",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Other Principal Arterial",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Driveway Access Related",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.129225,
+          34.49703333
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50288",
+        "case_id": "50288",
+        "date": "2024-07-31",
+        "time": "8:53 AM",
+        "street": "CR-THORNTON FERRY RD",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "County",
+        "functional_system": "Major Collector",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Front-to-Front",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Rural",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.13979167,
+          34.46799722
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50325",
+        "case_id": "50325",
+        "date": "2024-08-18",
+        "time": "3:25 PM",
+        "street": "US-70",
+        "city": "NOT APPLICABLE",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Other Principal Arterial",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Intersection",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.01013889,
+          34.55526111
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50370",
+        "case_id": "50370",
+        "date": "2024-09-10",
+        "time": "9:00 PM",
+        "street": "SR-7",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "State Highway",
+        "functional_system": "Other Principal Arterial",
+        "first_harmful_event": "Curb",
+        "manner_of_collision": "The First Harmful Event was Not a Collision with a Motor Vehicle in Transport",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": true,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.04121111,
+          34.49876111
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50408",
+        "case_id": "50408",
+        "date": "2024-09-25",
+        "time": "2:29 PM",
+        "street": "US-270",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 0,
+        "is_ped": false,
+        "light": "Daylight",
+        "weather": "Cloudy",
+        "alcohol": false,
+        "intersection": true,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Other Principal Arterial",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Angle",
+        "relation_to_junction": "Intersection",
+        "rural_urban": "Urban",
+        "dark": false,
+        "wet": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.00556111,
+          34.46570556
+        ]
+      },
+      "properties": {
+        "source": "NHTSA FARS",
+        "record_id": "2024-50431",
+        "case_id": "50431",
+        "date": "2024-10-20",
+        "time": "4:17 AM",
+        "street": "US-270",
+        "city": "HOT SPRINGS",
+        "num_fatal": 1,
+        "num_inj": 3,
+        "is_ped": false,
+        "light": "Dark - Not Lighted",
+        "weather": "Clear",
+        "alcohol": false,
+        "intersection": false,
+        "year": 2024,
+        "county": "Garland County",
+        "state": "Arkansas",
+        "route_type": "U.S. Highway",
+        "functional_system": "Other Freeways and Expressways",
+        "first_harmful_event": "Motor Vehicle In-Transport",
+        "manner_of_collision": "Sideswipe - Same Direction",
+        "relation_to_junction": "Non-Junction",
+        "rural_urban": "Urban",
+        "dark": true,
         "wet": false
       }
     }

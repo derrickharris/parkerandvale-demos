@@ -12,14 +12,14 @@ from collections import defaultdict
 from pathlib import Path
 
 
-YEARS = range(2019, 2024)
+YEARS = range(2019, 2025)
 STATE_CODE = "5"  # Arkansas
 COUNTY_CODE = "51"  # Garland County
 BASE_URL = "https://static.nhtsa.gov/nhtsa/downloads/FARS/{year}/National/FARS{year}NationalCSV.zip"
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW_DIR = ROOT / "data" / "raw"
-OUT_PATH = ROOT / "data" / "fars_garland_county_2019_2023.geojson"
+OUT_PATH = ROOT / "data" / "fars_garland_county_2019_2024.geojson"
 
 
 def int_value(value: str | None, default: int = 0) -> int:
@@ -150,6 +150,7 @@ def build_feature(row: dict[str, str], person_context: dict[str, dict[str, int |
         "geometry": {"type": "Point", "coordinates": [lon, lat]},
         "properties": {
             "source": "NHTSA FARS",
+            "record_id": f"{year}-{case_id}",
             "case_id": case_id,
             "date": f"{year:04d}-{month:02d}-{day:02d}",
             "time": format_time(hour, minute),
