@@ -1,0 +1,11 @@
+{
+  "name": "Corpus Christi MPO TIP Tracker Demo",
+  "source": "TxDOT Projects FeatureServer",
+  "source_url": "https://services.arcgis.com/KTcxiTD9dsQw4r7Z/ArcGIS/rest/services/TxDOT_Projects/FeatureServer/0",
+  "project_tracker_url": "https://www.txdot.gov/projects/project-tracker.html",
+  "raw_where": "MPO_NM LIKE '%Corpus Christi%'",
+  "raw_fetched_at": "2026-06-25T17:22:22.042285+00:00",
+  "normalized_at": "2026-06-25T17:23:01.216561+00:00",
+  "record_count": 138,
+  "notes": "Public TxDOT project records normalized into Parker & Vale's dashboard schema. Review before using for official public reporting."
+}

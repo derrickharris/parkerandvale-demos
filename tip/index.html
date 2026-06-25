@@ -590,11 +590,11 @@
         <div class="section-label">Data Source</div>
         <div class="source-block">
           <p>
-            <strong>Demo source model:</strong> sample corridor data inspired by the public
+            <strong>Live-ish source model:</strong> this demo loads a normalized local GeoJSON file generated from the public
             <a href="https://www.txdot.gov/projects/project-tracker.html" target="_blank" rel="noopener">TxDOT Project Tracker</a>
-            and the public TxDOT Projects FeatureServer. TxDOT describes the project service as public, sourced from TxDOT Connect, and updated weekly.
+            / TxDOT Projects FeatureServer for the Corpus Christi MPO area. TxDOT describes the project service as public, sourced from TxDOT Connect, and updated weekly.
             <br><br>
-            <strong>Note:</strong> project records in this demo are curated sample records for sales and interface demonstration, not official TxDOT project commitments.
+            <strong>Note:</strong> the data is normalized for demonstration and should be reviewed before any official public reporting.
           </p>
         </div>
       </div>
@@ -616,7 +616,7 @@
         </svg>
       </button>
       <div>
-        <div class="topbar-title">TIP Project Tracker · Texas Sample Program</div>
+        <div class="topbar-title">TIP Project Tracker · Corpus Christi MPO</div>
         <div class="topbar-period">Category, phase, funding source, fiscal year, and cost</div>
       </div>
       <div class="topbar-demo-badge">Demo</div>
@@ -628,7 +628,7 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const PROJECTS = [
+const FALLBACK_PROJECTS = [
   {
     id: "TX-AUS-001",
     name: "I-35 Capital Express Central",
@@ -791,7 +791,9 @@ const PROJECTS = [
   }
 ];
 
-const PHASES = ["All", "Underway", "Four-Year", "Five-to-Ten", "Corridor Study"];
+let PROJECTS = FALLBACK_PROJECTS;
+
+const PHASES = ["All", "Underway", "Four-Year", "Five-to-Ten", "Corridor Study", "Planning"];
 const CATEGORIES = ["All", "Highway", "Bridge", "Safety", "Transit", "Bike/Ped", "Freight"];
 const categoryColors = {
   "Highway": "#3A7FC1",
@@ -826,8 +828,10 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
 }).addTo(map);
 
 function formatCost(value) {
-  if (value >= 1000) return `$${(value / 1000).toFixed(value % 1000 ? 1 : 0)}B`;
-  return `$${value}M`;
+  const amount = Number(value) || 0;
+  if (amount >= 1000) return `$${(amount / 1000).toFixed(amount % 1000 ? 1 : 0)}B`;
+  if (amount < 1 && amount > 0) return `$${amount.toFixed(2)}M`;
+  return `$${amount % 1 ? amount.toFixed(1) : amount}M`;
 }
 
 function projectStyle(project, selected = false) {
@@ -901,6 +905,7 @@ function setupFilters() {
 
   const districts = [...new Set(PROJECTS.map(p => p.district))].sort();
   const select = document.getElementById("district-filter");
+  select.innerHTML = `<option value="all">All districts</option>`;
   districts.forEach(district => {
     const option = document.createElement("option");
     option.value = district;
@@ -1023,8 +1028,39 @@ function toggleSidebar() {
   setTimeout(() => map.invalidateSize(), 220);
 }
 
-setupFilters();
-applyFilters();
+function projectFromFeature(feature) {
+  const props = feature.properties || {};
+  const geometry = props.geometry || (
+    feature.geometry && feature.geometry.type === "LineString"
+      ? feature.geometry.coordinates.map(([lng, lat]) => [lat, lng])
+      : []
+  );
+  return { ...props, geometry };
+}
+
+async function loadProjectData() {
+  try {
+    const response = await fetch("./data/projects.geojson", { cache: "no-store" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const geojson = await response.json();
+    const projects = (geojson.features || [])
+      .map(projectFromFeature)
+      .filter(project => Array.isArray(project.geometry) && project.geometry.length > 1);
+    if (!projects.length) throw new Error("No valid project geometries found");
+    PROJECTS = projects;
+  } catch (error) {
+    console.warn("Using embedded fallback TIP project data:", error);
+    PROJECTS = FALLBACK_PROJECTS;
+  }
+}
+
+async function initDashboard() {
+  await loadProjectData();
+  setupFilters();
+  applyFilters();
+}
+
+initDashboard();
 </script>
 </body>
 </html>
