@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ocala Marion TPO Transportation Improvement Program tracker demo built by Parker & Vale.">
+  <title>Ocala Marion TIP Tracker | Parker & Vale</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --blue: #3A7FC1;
+      --blue-light: #6AABDE;
+      --green: #2A9D5C;
+      --amber: #C97C2A;
+      --gold: #C9A84C;
+      --red: #C1281B;
+      --purple: #8B6FD6;
+      --ink: #0E1117;
+      --ink-2: #161C26;
+      --ink-3: #1E2733;
+      --slate: #2C3744;
+      --rule: rgba(255,255,255,0.07);
+      --rule-light: rgba(255,255,255,0.13);
+      --text-primary: #F0F2F5;
+      --text-secondary: #8A96A8;
+      --text-dim: #566070;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+      --sidebar-w: 380px;
+      --header-h: 56px;
+      --radius: 6px;
+      --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: var(--font-body); background: var(--ink); color: var(--text-primary); -webkit-font-smoothing: antialiased; }
+    button, input, select { font: inherit; }
+
+    #app { display: flex; height: 100vh; overflow: hidden; }
+
+    #sidebar {
+      width: var(--sidebar-w);
+      min-width: var(--sidebar-w);
+      height: 100%;
+      background: var(--ink-2);
+      border-right: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 1000;
+      transition:
+        width var(--transition),
+        min-width var(--transition),
+        transform var(--transition),
+        border-color var(--transition);
+    }
+
+    #sidebar.collapsed {
+      width: 0;
+      min-width: 0;
+      border-right-color: transparent;
+    }
+
+    .sidebar-brand {
+      padding: 20px 24px 18px;
+      border-bottom: 1px solid var(--rule);
+      flex-shrink: 0;
+    }
+
+    .brand-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .brand-name span { color: var(--blue-light); }
+
+    .brand-subtitle {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-top: 5px;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      line-height: 1.5;
+    }
+
+    .sidebar-body {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: var(--slate) transparent;
+    }
+    .sidebar-body::-webkit-scrollbar { width: 4px; }
+    .sidebar-body::-webkit-scrollbar-track { background: transparent; }
+    .sidebar-body::-webkit-scrollbar-thumb { background: var(--slate); border-radius: 2px; }
+
+    .sidebar-section {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .stat-card {
+      background: var(--ink-3);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+    }
+    .stat-card.full { grid-column: 1 / -1; }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 4px;
+      color: var(--blue-light);
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      line-height: 1.35;
+    }
+
+    .filter-group { margin-bottom: 14px; }
+    .filter-group:last-child { margin-bottom: 0; }
+
+    .filter-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-bottom: 7px;
+    }
+
+    .filter-label span {
+      font-family: var(--font-mono);
+      color: var(--text-primary);
+      font-size: 10px;
+    }
+
+    .select-input,
+    .search-input {
+      width: 100%;
+      padding: 9px 10px;
+      background: var(--ink-3);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      color: var(--text-primary);
+      outline: none;
+    }
+
+    .select-input:focus,
+    .search-input:focus { border-color: rgba(106,171,222,0.45); }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      padding: 6px 9px;
+      border: 1px solid var(--rule);
+      background: var(--ink-3);
+      color: var(--text-secondary);
+      border-radius: 100px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .chip.active {
+      border-color: rgba(106,171,222,0.5);
+      color: var(--text-primary);
+      background: rgba(58,127,193,0.18);
+    }
+
+    .phase-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .phase-row {
+      display: grid;
+      grid-template-columns: 92px 1fr 34px;
+      gap: 10px;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .phase-track {
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.05);
+      overflow: hidden;
+    }
+
+    .phase-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: var(--blue-light);
+    }
+
+    .phase-count {
+      font-family: var(--font-mono);
+      color: var(--text-dim);
+      text-align: right;
+    }
+
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .project-card {
+      background: var(--ink-3);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--blue-light);
+      border-radius: var(--radius);
+      padding: 12px 13px;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .project-card:hover,
+    .project-card.active {
+      border-color: var(--rule-light);
+      transform: translateY(-1px);
+    }
+
+    .project-kicker {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .project-title {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      padding: 3px 7px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 3px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--text-dim);
+    }
+
+    .source-block {
+      background: var(--ink-3);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+    }
+
+    .source-block p {
+      font-size: 11px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .source-block strong { color: var(--text-primary); font-weight: 600; }
+    .source-block a { color: var(--blue-light); }
+
+    .sidebar-cta {
+      padding: 20px 24px;
+      flex-shrink: 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: block;
+      width: 100%;
+      border-radius: var(--radius);
+      text-align: center;
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+
+    .btn-primary {
+      padding: 11px 16px;
+      background: var(--blue);
+      color: white;
+      border: none;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .btn-primary:hover { background: var(--blue-light); transform: translateY(-1px); }
+
+    .btn-secondary {
+      margin-top: 8px;
+      padding: 9px 16px;
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--rule);
+      font-size: 12px;
+    }
+    .btn-secondary:hover { border-color: var(--rule-light); color: var(--text-primary); }
+
+    #map-wrap { flex: 1; position: relative; overflow: hidden; }
+    #map { width: 100%; height: 100%; }
+
+    #topbar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: var(--header-h);
+      background: rgba(14,17,23,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 12px;
+      z-index: 800;
+    }
+
+    #sidebar-toggle {
+      width: 36px;
+      height: 36px;
+      background: var(--ink-3);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    #sidebar-toggle svg { stroke: var(--text-secondary); }
+
+    .topbar-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .topbar-period {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-left: 2px;
+    }
+
+    .topbar-demo-badge {
+      margin-left: auto;
+      padding: 4px 10px;
+      background: rgba(58,127,193,0.15);
+      border: 1px solid rgba(58,127,193,0.3);
+      border-radius: 100px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+    }
+
+    .topbar-link {
+      padding: 5px 11px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .topbar-link:hover { color: var(--text-primary); border-color: rgba(255,255,255,0.16); }
+
+    .leaflet-popup-content-wrapper {
+      background: var(--ink-2) !important;
+      border: 1px solid var(--rule-light) !important;
+      border-radius: var(--radius) !important;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+      padding: 0 !important;
+      min-width: 280px;
+      max-width: 340px;
+    }
+
+    .leaflet-popup-content {
+      margin: 0 !important;
+      font-family: var(--font-body) !important;
+      color: var(--text-primary) !important;
+    }
+    .leaflet-popup-tip-container { display: none; }
+    .leaflet-popup-close-button { color: var(--text-dim) !important; top: 10px !important; right: 10px !important; }
+
+    .popup-inner { overflow: hidden; border-radius: var(--radius); }
+    .popup-header {
+      padding: 12px 14px 10px;
+      border-bottom: 1px solid var(--rule);
+      background: rgba(58,127,193,0.15);
+    }
+
+    .popup-phase {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: 4px;
+    }
+
+    .popup-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.2;
+      padding-right: 18px;
+    }
+
+    .popup-body { padding: 11px 14px 13px; }
+    .popup-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 10px; }
+
+    .popup-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 4px 12px;
+      font-size: 12px;
+    }
+
+    .pg-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .pg-value { color: var(--text-secondary); }
+    .pg-value.highlight { color: var(--text-primary); font-weight: 600; }
+
+    .leaflet-control-zoom {
+      border: 1px solid var(--rule) !important;
+      border-radius: var(--radius) !important;
+      overflow: hidden;
+    }
+
+    .leaflet-control-zoom a {
+      background: var(--ink-2) !important;
+      color: var(--text-secondary) !important;
+      border-bottom: 1px solid var(--rule) !important;
+    }
+
+    .leaflet-control-attribution {
+      background: rgba(14,17,23,0.75) !important;
+      color: var(--text-dim) !important;
+      font-size: 9px !important;
+      backdrop-filter: blur(4px);
+    }
+    .leaflet-control-attribution a { color: var(--text-dim) !important; }
+
+    @media (max-width: 760px) {
+      #sidebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        z-index: 1100;
+        box-shadow: 4px 0 24px rgba(0,0,0,0.5);
+      }
+
+      #sidebar.collapsed {
+        width: var(--sidebar-w);
+        min-width: var(--sidebar-w);
+        transform: translateX(-100%);
+      }
+      #map-wrap { width: 100%; }
+      .topbar-period { display: none; }
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <aside id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-eyebrow">Program Management</div>
+      <div class="brand-name">Parker <span>&</span> Vale</div>
+      <div class="brand-subtitle">Ocala Marion TPO FY 2026-2030 TIP tracker built from normalized public ArcGIS project layers.</div>
+    </div>
+
+    <div class="sidebar-body">
+      <div class="sidebar-section">
+        <div class="section-label">Filtered Program Summary</div>
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="stat-projects">0</div>
+            <div class="stat-label">Projects shown</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-cost">$0</div>
+            <div class="stat-label">Programmed cost</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-construction">0</div>
+            <div class="stat-label">FY 26-30 funded</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-districts">0</div>
+            <div class="stat-label">Project types</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-label">Filters</div>
+        <div class="filter-group">
+          <div class="filter-label">Search <span id="result-count">0 shown</span></div>
+          <input class="search-input" id="search" type="search" placeholder="Project, route, type, project ID..." oninput="applyFilters()">
+        </div>
+        <div class="filter-group">
+          <div class="filter-label">Fiscal Year <span id="phase-label">All years</span></div>
+          <div class="chip-row" id="phase-chips"></div>
+        </div>
+        <div class="filter-group">
+          <div class="filter-label">Category <span id="category-label">All categories</span></div>
+          <div class="chip-row" id="category-chips"></div>
+        </div>
+        <div class="filter-group">
+          <div class="filter-label">Sponsor</div>
+          <select class="select-input" id="district-filter" onchange="applyFilters()">
+            <option value="all">All sponsors</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-label">Projects by Fiscal Year</div>
+        <div class="phase-bars" id="phase-bars"></div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-label">Project List</div>
+        <div class="project-list" id="project-list"></div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-label">Data Source</div>
+        <div class="source-block">
+          <p>
+            <strong>Live-ish source model:</strong> this demo loads a normalized local GeoJSON file generated from the public
+            <a href="https://marioncountyfl.maps.arcgis.com/apps/webappviewer/index.html?id=a1591413f8aa4cc7b2d78110c9b4e1a3" target="_blank" rel="noopener">Ocala Marion TPO FY 2026-2030 TIP Web Map</a>
+            and its public ArcGIS project layers. The public TPO app presents location-specific TIP projects with funding and total cost information.
+            <br><br>
+            <strong>Note:</strong> the data is normalized for demonstration and should be reviewed before any official public reporting.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-cta">
+      <a href="mailto:info@parkerandvale.com?subject=Ocala Marion TIP Tracker Inquiry" class="btn-primary">Request a TIP Tracker</a>
+      <a href="../" class="btn-secondary">View All Demos</a>
+    </div>
+  </aside>
+
+  <div id="map-wrap">
+    <div id="topbar">
+      <button id="sidebar-toggle" onclick="toggleSidebar()" title="Toggle sidebar" aria-label="Toggle sidebar">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round">
+          <line x1="2" y1="4" x2="14" y2="4"/>
+          <line x1="2" y1="8" x2="14" y2="8"/>
+          <line x1="2" y1="12" x2="14" y2="12"/>
+        </svg>
+      </button>
+      <div>
+        <div class="topbar-title">TIP Project Tracker · Ocala Marion TPO</div>
+        <div class="topbar-period">FY 2026-2030 projects, funding, cost, and location</div>
+      </div>
+      <div class="topbar-demo-badge">Demo</div>
+      <a href="../" class="topbar-link">All Demos</a>
+    </div>
+    <div id="map"></div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const FALLBACK_PROJECTS = [
+  {
+    "id": "4540451",
+    "name": "Marion County Airport Equipment",
+    "highway": "Local",
+    "county": "Marion",
+    "district": "Ocala Marion TPO",
+    "sponsor": "Ocala Marion TPO / FDOT District 5",
+    "category": "Aviation",
+    "phase": "FY 2028",
+    "funding": "FY 2026-2030 TIP",
+    "fiscalYear": "FY 2028",
+    "cost": 0.4,
+    "tipFunding": 0.4,
+    "status": "Programmed",
+    "description": "Airport equipment",
+    "geometryType": "Point",
+    "geometry": [
+      29.0644104760793,
+      -82.3694811650545
+    ],
+    "properties": {
+      "project_type": "Airport",
+      "length_miles": 0,
+      "prior_tip_funding": " $-   ",
+      "fy2026": " $-   ",
+      "fy2027": " $-   ",
+      "fy2028": "$400,000",
+      "fy2029": "$-",
+      "fy2030": "$-",
+      "future_funding": "$-",
+      "source_geometry_type": "point"
+    }
+  },
+  {
+    "id": "4540451",
+    "name": "Marion County Airport Hangar",
+    "highway": "Local",
+    "county": "Marion",
+    "district": "Ocala Marion TPO",
+    "sponsor": "Ocala Marion TPO / FDOT District 5",
+    "category": "Aviation",
+    "phase": "FY 2026",
+    "funding": "FY 2026-2030 TIP",
+    "fiscalYear": "FY 2026",
+    "cost": 1.9,
+    "tipFunding": 1.9,
+    "status": "Programmed",
+    "description": "Airport hangar",
+    "geometryType": "Point",
+    "geometry": [
+      29.0628063268429,
+      -82.3684355188772
+    ],
+    "properties": {
+      "project_type": "Airport",
+      "length_miles": 0,
+      "prior_tip_funding": " $-   ",
+      "fy2026": "$650,000 ",
+      "fy2027": "$1,250,000 ",
+      "fy2028": " $-   ",
+      "fy2029": "$-",
+      "fy2030": "$-",
+      "future_funding": "$-",
+      "source_geometry_type": "point"
+    }
+  },
+  {
+    "id": "4384171",
+    "name": "Marion County Airport Runway Improvements",
+    "highway": "Local",
+    "county": "Marion",
+    "district": "Ocala Marion TPO",
+    "sponsor": "Ocala Marion TPO / FDOT District 5",
+    "category": "Aviation",
+    "phase": "FY 2026",
+    "funding": "FY 2026-2030 TIP",
+    "fiscalYear": "FY 2026",
+    "cost": 0.438,
+    "tipFunding": 0.438,
+    "status": "Programmed",
+    "description": "Runway improvements",
+    "geometryType": "Point",
+    "geometry": [
+      29.0634829660132,
+      -82.3770996179773
+    ],
+    "properties": {
+      "project_type": "Airport",
+      "length_miles": 0,
+      "prior_tip_funding": " $-   ",
+      "fy2026": "$437,500 ",
+      "fy2027": " $-   ",
+      "fy2028": " $-   ",
+      "fy2029": " $-   ",
+      "fy2030": "$-",
+      "future_funding": "$-",
+      "source_geometry_type": "point"
+    }
+  },
+  {
+    "id": "4485751",
+    "name": "Ocala International Airport ARFF Building",
+    "highway": "Local",
+    "county": "Marion",
+    "district": "Ocala Marion TPO",
+    "sponsor": "Ocala Marion TPO / FDOT District 5",
+    "category": "Aviation",
+    "phase": "FY 2030",
+    "funding": "FY 2026-2030 TIP",
+    "fiscalYear": "FY 2030",
+    "cost": 1.0,
+    "tipFunding": 1.0,
+    "status": "Programmed",
+    "description": "Airport Rescue and Firefighting Building",
+    "geometryType": "Point",
+    "geometry": [
+      29.1674677669551,
+      -82.2218344745883
+    ],
+    "properties": {
+      "project_type": "Airport",
+      "length_miles": 0,
+      "prior_tip_funding": " $-   ",
+      "fy2026": " $-   ",
+      "fy2027": "$-",
+      "fy2028": "$-",
+      "fy2029": "$-",
+      "fy2030": "$1,000,000",
+      "future_funding": "$-",
+      "source_geometry_type": "point"
+    }
+  }
+];
+
+let PROJECTS = FALLBACK_PROJECTS;
+
+const PHASES = ["All", "FY 2026", "FY 2027", "FY 2028", "FY 2029", "FY 2030", "Future", "Prior", "Unfunded"];
+const CATEGORIES = ["All", "Roadway", "Safety", "Bike/Ped", "Transit", "Aviation", "Landscaping", "Interchange", "Weigh Station", "Other"];
+const categoryColors = {
+  "Roadway": "#3A7FC1",
+  "Interchange": "#8B6FD6",
+  "Safety": "#C1281B",
+  "Transit": "#2A9D8F",
+  "Bike/Ped": "#2A9D5C",
+  "Aviation": "#C9A84C",
+  "Landscaping": "#6B9D2A",
+  "Weigh Station": "#C97C2A",
+  "Other": "#6AABDE"
+};
+const phaseDash = {
+  "FY 2026": null,
+  "FY 2027": "10 5",
+  "FY 2028": "8 5",
+  "FY 2029": "5 5",
+  "FY 2030": "3 6",
+  "Future": "2 7",
+  "Prior": "1 6"
+};
+
+let activePhase = "All";
+let activeCategory = "All";
+let layers = new Map();
+let activeProjectId = null;
+
+const map = L.map('map', {
+  center: [29.19, -82.14],
+  zoom: 10,
+  zoomControl: false
+});
+
+L.control.zoom({ position: 'topright' }).addTo(map);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '© <a href="https://www.openstreetmap.org/copyright">OSM</a> © <a href="https://carto.com/">CARTO</a>',
+  maxZoom: 20
+}).addTo(map);
+
+function formatCost(value) {
+  const amount = Number(value) || 0;
+  if (amount >= 1000) return `$${(amount / 1000).toFixed(amount % 1000 ? 1 : 0)}B`;
+  if (amount < 1 && amount > 0) return `$${amount.toFixed(2)}M`;
+  return `$${amount % 1 ? amount.toFixed(1) : amount}M`;
+}
+
+function projectStyle(project, selected = false) {
+  return {
+    color: categoryColors[project.category] || "#6AABDE",
+    weight: selected ? 8 : Math.max(4, Math.min(8, Math.log10(project.cost + 10) * 2.5)),
+    opacity: selected ? 1 : 0.82,
+    lineCap: "round",
+    dashArray: phaseDash[project.phase]
+  };
+}
+
+function pointStyle(project, selected = false) {
+  return {
+    radius: selected ? 9 : 6,
+    fillColor: categoryColors[project.category] || "#6AABDE",
+    color: "rgba(255,255,255,0.35)",
+    weight: selected ? 2 : 1.25,
+    opacity: 1,
+    fillOpacity: selected ? 0.95 : 0.82
+  };
+}
+
+function buildPopup(project) {
+  return `
+    <div class="popup-inner">
+      <div class="popup-header">
+        <div class="popup-phase">${project.phase} · ${project.category}</div>
+        <div class="popup-title">${project.name}</div>
+      </div>
+      <div class="popup-body">
+        <div class="popup-desc">${project.description}</div>
+        <div class="popup-grid">
+          <div class="pg-label">Project ID</div><div class="pg-value highlight">${project.id}</div>
+          <div class="pg-label">Location</div><div class="pg-value">${project.highway} · ${project.county} County</div>
+          <div class="pg-label">Type</div><div class="pg-value">${project.properties?.project_type || project.category}</div>
+          <div class="pg-label">Funding</div><div class="pg-value">${project.funding}</div>
+          <div class="pg-label">Fiscal Year</div><div class="pg-value">${project.fiscalYear}</div>
+          <div class="pg-label">Cost</div><div class="pg-value highlight">${formatCost(project.cost)}</div>
+          <div class="pg-label">TIP Funding</div><div class="pg-value highlight">${formatCost(project.tipFunding || 0)}</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function addProjectLayer(project) {
+  const layer = project.geometryType === "Point"
+    ? L.circleMarker(project.geometry, pointStyle(project)).bindPopup(buildPopup(project))
+    : L.polyline(project.geometry, projectStyle(project)).bindPopup(buildPopup(project));
+  layer.on('click', () => selectProject(project.id, false));
+  layer.addTo(map);
+  layers.set(project.id, layer);
+}
+
+function drawProjects(projects) {
+  layers.forEach(layer => map.removeLayer(layer));
+  layers.clear();
+  projects.forEach(addProjectLayer);
+
+  if (projects.length) {
+    const group = L.featureGroup([...layers.values()]);
+    map.fitBounds(group.getBounds().pad(0.12));
+  }
+}
+
+function renderChips(containerId, values, activeValue, setter) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
+  values.forEach(value => {
+    const btn = document.createElement("button");
+    btn.className = `chip${value === activeValue ? " active" : ""}`;
+    btn.textContent = value;
+    btn.type = "button";
+    btn.onclick = () => {
+      setter(value);
+      applyFilters();
+    };
+    container.appendChild(btn);
+  });
+}
+
+function setupFilters() {
+  renderChips("phase-chips", PHASES, activePhase, value => activePhase = value);
+  renderChips("category-chips", CATEGORIES, activeCategory, value => activeCategory = value);
+
+  const districts = [...new Set(PROJECTS.map(p => p.sponsor || p.district))].sort();
+  const select = document.getElementById("district-filter");
+  select.innerHTML = `<option value="all">All sponsors</option>`;
+  districts.forEach(district => {
+    const option = document.createElement("option");
+    option.value = district;
+    option.textContent = district;
+    select.appendChild(option);
+  });
+}
+
+function getFilteredProjects() {
+  const search = document.getElementById("search").value.trim().toLowerCase();
+  const district = document.getElementById("district-filter").value;
+  return PROJECTS.filter(project => {
+    const haystack = [
+      project.id,
+      project.name,
+      project.highway,
+      project.county,
+      project.district,
+      project.sponsor,
+      project.category,
+      project.phase,
+      project.funding,
+      project.properties?.project_type
+    ].join(" ").toLowerCase();
+
+    if (activePhase !== "All" && project.phase !== activePhase) return false;
+    if (activeCategory !== "All" && project.category !== activeCategory) return false;
+    if (district !== "all" && (project.sponsor || project.district) !== district) return false;
+    if (search && !haystack.includes(search)) return false;
+    return true;
+  });
+}
+
+function updateStats(projects) {
+  const cost = projects.reduce((sum, p) => sum + p.cost, 0);
+  const funded = projects.filter(p => (p.tipFunding || 0) > 0).length;
+  const projectTypes = new Set(projects.map(p => p.properties?.project_type || p.category)).size;
+  document.getElementById("stat-projects").textContent = projects.length;
+  document.getElementById("stat-cost").textContent = formatCost(cost);
+  document.getElementById("stat-construction").textContent = funded;
+  document.getElementById("stat-districts").textContent = projectTypes;
+  document.getElementById("result-count").textContent = `${projects.length} shown`;
+  document.getElementById("phase-label").textContent = activePhase === "All" ? "All years" : activePhase;
+  document.getElementById("category-label").textContent = activeCategory === "All" ? "All categories" : activeCategory;
+}
+
+function renderPhaseBars(projects) {
+  const container = document.getElementById("phase-bars");
+  const phases = PHASES.filter(p => p !== "All");
+  const max = Math.max(1, ...phases.map(phase => projects.filter(p => p.phase === phase).length));
+  container.innerHTML = phases.map(phase => {
+    const count = projects.filter(project => project.phase === phase).length;
+    const width = Math.max(4, (count / max) * 100);
+    return `
+      <div class="phase-row">
+        <div>${phase}</div>
+        <div class="phase-track"><div class="phase-fill" style="width:${width}%; background:${phaseColor(phase)}"></div></div>
+        <div class="phase-count">${count}</div>
+      </div>`;
+  }).join("");
+}
+
+function phaseColor(phase) {
+  if (phase === "FY 2026") return "var(--green)";
+  if (phase === "FY 2027") return "var(--blue-light)";
+  if (phase === "FY 2028") return "var(--purple)";
+  if (phase === "FY 2029") return "var(--gold)";
+  return "var(--amber)";
+}
+
+function renderProjectList(projects) {
+  const container = document.getElementById("project-list");
+  if (!projects.length) {
+    container.innerHTML = `<div class="source-block"><p>No projects match the selected filters.</p></div>`;
+    return;
+  }
+
+  container.innerHTML = projects.map(project => `
+    <div class="project-card${project.id === activeProjectId ? " active" : ""}" data-project-id="${project.id}" style="border-left-color:${categoryColors[project.category]}">
+      <div class="project-kicker"><span>${project.id}</span><span>${formatCost(project.cost)}</span></div>
+      <div class="project-title">${project.name}</div>
+      <div class="project-meta">
+        <span class="tag">${project.phase}</span>
+        <span class="tag">${project.category}</span>
+        <span class="tag">${project.geometryType === "Point" ? "Point" : "Corridor"}</span>
+      </div>
+    </div>`).join("");
+
+  container.querySelectorAll(".project-card").forEach(card => {
+    card.addEventListener("click", () => selectProject(card.dataset.projectId, true));
+  });
+}
+
+function selectProject(id, zoomTo) {
+  activeProjectId = id;
+  layers.forEach((layer, projectId) => {
+    const project = PROJECTS.find(p => p.id === projectId);
+    layer.setStyle(project.geometryType === "Point" ? pointStyle(project, projectId === id) : projectStyle(project, projectId === id));
+  });
+
+  const layer = layers.get(id);
+  if (layer) {
+    if (zoomTo) {
+      if (layer.getBounds) map.fitBounds(layer.getBounds().pad(0.35));
+      else map.setView(layer.getLatLng(), 13);
+    }
+    layer.openPopup();
+  }
+
+  renderProjectList(getFilteredProjects());
+}
+
+function applyFilters() {
+  renderChips("phase-chips", PHASES, activePhase, value => activePhase = value);
+  renderChips("category-chips", CATEGORIES, activeCategory, value => activeCategory = value);
+  activeProjectId = null;
+  const projects = getFilteredProjects();
+  drawProjects(projects);
+  updateStats(projects);
+  renderPhaseBars(projects);
+  renderProjectList(projects);
+}
+
+function toggleSidebar() {
+  document.getElementById("sidebar").classList.toggle("collapsed");
+  setTimeout(() => map.invalidateSize(), 220);
+}
+
+function projectFromFeature(feature) {
+  const props = feature.properties || {};
+  let geometry = props.geometry;
+  if (!geometry && feature.geometry?.type === "LineString") {
+    geometry = feature.geometry.coordinates.map(([lng, lat]) => [lat, lng]);
+  }
+  if (!geometry && feature.geometry?.type === "Point") {
+    const [lng, lat] = feature.geometry.coordinates;
+    geometry = [lat, lng];
+  }
+  return { ...props, geometry };
+}
+
+async function loadProjectData() {
+  try {
+    const response = await fetch("./data/projects.geojson", { cache: "no-store" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const geojson = await response.json();
+    const projects = (geojson.features || [])
+      .map(projectFromFeature)
+      .filter(project => Array.isArray(project.geometry) && (project.geometryType === "Point" ? project.geometry.length === 2 : project.geometry.length > 1));
+    if (!projects.length) throw new Error("No valid project geometries found");
+    PROJECTS = projects;
+  } catch (error) {
+    console.warn("Using embedded fallback TIP project data:", error);
+    PROJECTS = FALLBACK_PROJECTS;
+  }
+}
+
+async function initDashboard() {
+  await loadProjectData();
+  setupFilters();
+  applyFilters();
+}
+
+initDashboard();
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "Ocala Marion TPO TIP Tracker Demo",
+  "source": "Ocala Marion TPO FY 2026-2030 TIP Web Map",
+  "source_url": "https://marioncountyfl.maps.arcgis.com/apps/webappviewer/index.html?id=a1591413f8aa4cc7b2d78110c9b4e1a3",
+  "tip_url": "https://ocalamariontpo.org/en/tip",
+  "normalized_at": "2026-06-25T17:57:57.302727+00:00",
+  "record_count": 45,
+  "line_project_count": 29,
+  "point_project_count": 16,
+  "notes": "Public Ocala Marion TPO TIP project layers normalized into Parker & Vale's dashboard schema. Review before using for official public reporting."
+}
