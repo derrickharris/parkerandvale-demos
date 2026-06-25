@@ -80,11 +80,17 @@
       flex-direction: column;
       overflow: hidden;
       z-index: 1000;
-      transition: transform var(--transition);
+      transition:
+        width var(--transition),
+        min-width var(--transition),
+        transform var(--transition),
+        border-color var(--transition);
     }
 
     #sidebar.collapsed {
-      transform: translateX(calc(-1 * var(--sidebar-w)));
+      width: 0;
+      min-width: 0;
+      border-right-color: transparent;
     }
 
     /* brand header */
@@ -743,6 +749,8 @@
       }
 
       #sidebar.collapsed {
+        width: var(--sidebar-w);
+        min-width: var(--sidebar-w);
         transform: translateX(-100%);
       }
 

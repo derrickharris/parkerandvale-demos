@@ -53,10 +53,18 @@
       flex-direction: column;
       overflow: hidden;
       z-index: 1000;
-      transition: transform var(--transition);
+      transition:
+        width var(--transition),
+        min-width var(--transition),
+        transform var(--transition),
+        border-color var(--transition);
     }
 
-    #sidebar.collapsed { transform: translateX(calc(-1 * var(--sidebar-w))); }
+    #sidebar.collapsed {
+      width: 0;
+      min-width: 0;
+      border-right-color: transparent;
+    }
 
     .sidebar-brand {
       padding: 20px 24px 18px;
@@ -516,7 +524,11 @@
         box-shadow: 4px 0 24px rgba(0,0,0,0.5);
       }
 
-      #sidebar.collapsed { transform: translateX(-100%); }
+      #sidebar.collapsed {
+        width: var(--sidebar-w);
+        min-width: var(--sidebar-w);
+        transform: translateX(-100%);
+      }
       #map-wrap { width: 100%; }
       .topbar-period { display: none; }
     }
