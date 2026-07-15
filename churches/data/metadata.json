@@ -1,0 +1,26 @@
+{
+  "title": "Hot Springs Church Map",
+  "population": 37930,
+  "population_source": "U.S. Census 2020 \u2014 Hot Springs city",
+  "area_sq_mi": 35.14,
+  "area_source": "U.S. Census \u2014 Hot Springs city land area",
+  "osm_count": 33,
+  "assessor_parcel_count": 135,
+  "assessor_included_count": 70,
+  "assessor_campus_merges": 48,
+  "sos_count": 0,
+  "manual_count": 13,
+  "override_exclusions": 67,
+  "assessor_candidate_count": 185,
+  "verified_count": 48,
+  "church_count": 101,
+  "normalized_at": "2026-07-15T03:45:01.552843+00:00",
+  "last_updated": "2026-07-15",
+  "sources": [
+    "OpenStreetMap Overpass API",
+    "Arkansas GIS Office Planning_Cadastre",
+    "Arkansas Secretary of State (optional)",
+    "Manual enrichment.csv"
+  ],
+  "notes": "OSM is the mapped seed. Assessor-only parcels are campus-collapsed (within 400m with similar names) before inclusion. Field-review exclusions live in data/raw/overrides.csv. Add manual churches in enrichment.csv with name, lat, lon. Optional SOS nonprofits live in data/raw/sos_churches.json."
+}

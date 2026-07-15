@@ -1,0 +1,8 @@
+{
+  "fetched_at": "2026-07-07T14:31:23.383181+00:00",
+  "source": "Arkansas Secretary of State nonprofit export (optional)",
+  "source_url": "https://www.sos.arkansas.gov/business-commercial-services-bcs/",
+  "organization_count": 0,
+  "organizations": [],
+  "notes": "No SOS export found. Drop a CSV at data/raw/sos_nonprofits_export.csv from the Arkansas SOS bulk/custom list service, then re-run this script."
+}

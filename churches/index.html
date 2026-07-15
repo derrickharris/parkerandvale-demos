@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive map of Christian churches in Hot Springs, Arkansas — Parker & Vale civic data demo.">
+  <title>Hot Springs Church Map | Parker & Vale</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #A8832E;
+      --gold-light: #C9A84C;
+      --green: #1F7A48;
+      --blue: #2B6CA8;
+      --blue-light: #4A8FC4;
+      --red: #B32218;
+      --purple: #6F58B8;
+      --amber: #B06B1E;
+      --ink: #F4F1EA;
+      --ink-2: #FFFFFF;
+      --ink-3: #EBE6DB;
+      --slate: #C9C2B4;
+      --rule: rgba(32, 38, 48, 0.1);
+      --rule-light: rgba(32, 38, 48, 0.18);
+      --text-primary: #1C2430;
+      --text-secondary: #5A6574;
+      --text-dim: #8A93A0;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+      --sidebar-w: 400px;
+      --radius: 6px;
+      --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+      --shadow: 0 8px 28px rgba(28, 36, 48, 0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: var(--font-body); background: var(--ink); color: var(--text-primary); -webkit-font-smoothing: antialiased; }
+    button, input, select { font: inherit; }
+
+    #app { display: flex; height: 100vh; overflow: hidden; }
+
+    #sidebar {
+      width: var(--sidebar-w);
+      min-width: var(--sidebar-w);
+      height: 100%;
+      background: var(--ink-2);
+      border-right: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 1000;
+      transition: width var(--transition), min-width var(--transition), transform var(--transition);
+      box-shadow: 4px 0 24px rgba(28, 36, 48, 0.06);
+    }
+
+    #sidebar.collapsed { width: 0; min-width: 0; border-right-color: transparent; box-shadow: none; }
+
+    .sidebar-brand { padding: 20px 24px 18px; border-bottom: 1px solid var(--rule); flex-shrink: 0; }
+    .brand-eyebrow { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px; }
+    .brand-name { font-family: var(--font-display); font-size: 18px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+    .brand-name span { color: var(--gold); }
+    .brand-subtitle { font-size: 11px; color: var(--text-secondary); margin-top: 5px; font-weight: 300; line-height: 1.5; }
+
+    .sidebar-body { flex: 1; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--slate) transparent; }
+    .sidebar-section { padding: 18px 24px; border-bottom: 1px solid var(--rule); }
+    .section-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+    .section-label-row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 12px; }
+    .section-label-row .section-label { margin-bottom: 0; }
+    .section-hint { font-size: 11px; color: var(--text-secondary); }
+
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .stat-card { background: var(--ink); border: 1px solid var(--rule); border-radius: var(--radius); padding: 12px 14px; }
+    .stat-value { font-family: var(--font-display); font-size: 25px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px; color: var(--gold); }
+    .stat-label { font-size: 11px; color: var(--text-secondary); line-height: 1.35; }
+
+    .filter-group { margin-bottom: 14px; }
+    .filter-group:last-child { margin-bottom: 0; }
+    .filter-label { display: flex; justify-content: space-between; gap: 10px; font-size: 11px; color: var(--text-secondary); margin-bottom: 7px; }
+    .filter-label span { font-family: var(--font-mono); color: var(--text-primary); font-size: 10px; }
+
+    .search-input, .select-input {
+      width: 100%;
+      padding: 9px 10px;
+      background: var(--ink);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      color: var(--text-primary);
+      outline: none;
+    }
+    .search-input:focus, .select-input:focus { border-color: rgba(168,131,46,0.55); background: #fff; }
+
+    .chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      padding: 6px 9px;
+      border: 1px solid var(--rule);
+      background: var(--ink);
+      color: var(--text-secondary);
+      border-radius: 100px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .chip.active { border-color: rgba(168,131,46,0.55); color: var(--text-primary); background: rgba(201,168,76,0.22); }
+
+    .denom-bars { display: flex; flex-direction: column; gap: 9px; }
+    .denom-row { display: grid; grid-template-columns: 108px 1fr 34px; gap: 10px; align-items: center; font-size: 11px; color: var(--text-secondary); }
+    .denom-track { height: 6px; border-radius: 3px; background: rgba(28,36,48,0.08); overflow: hidden; }
+    .denom-fill { height: 100%; border-radius: 3px; background: var(--gold-light); }
+    .denom-count { font-family: var(--font-mono); color: var(--text-dim); text-align: right; }
+
+    .church-list { display: flex; flex-direction: column; gap: 8px; max-height: 420px; overflow-y: auto; }
+    .church-card {
+      background: var(--ink);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .church-card:hover, .church-card.active { border-color: var(--rule-light); background: #fff; box-shadow: var(--shadow); }
+    .church-kicker { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 5px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); }
+    .church-title { font-size: 13px; font-weight: 700; line-height: 1.25; margin-bottom: 6px; }
+    .church-meta { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { padding: 3px 7px; background: rgba(28,36,48,0.04); border: 1px solid var(--rule); border-radius: 3px; font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); }
+   
+
+    .source-block { background: var(--ink); border: 1px solid var(--rule); border-radius: var(--radius); padding: 12px 14px; }
+    .source-block p { font-size: 11px; color: var(--text-secondary); line-height: 1.6; }
+    .source-block strong { color: var(--text-primary); font-weight: 600; }
+    .source-block a, .source-block code { color: var(--gold); }
+
+    .sidebar-cta { padding: 16px 24px 20px; border-top: 1px solid var(--rule); display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+    .btn-primary, .btn-secondary, .btn-ghost {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 10px 14px;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      transition: all var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--gold); color: #fff; }
+    .btn-primary:hover { background: var(--gold-light); color: var(--text-primary); }
+    .btn-secondary { background: transparent; border: 1px solid var(--rule); color: var(--text-secondary); }
+    .btn-secondary:hover { color: var(--text-primary); border-color: var(--rule-light); background: var(--ink); }
+
+    #map-wrap { flex: 1; position: relative; display: flex; flex-direction: column; min-width: 0; }
+    #topbar {
+      height: 56px;
+      background: rgba(255,255,255,0.94);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 18px;
+      z-index: 500;
+      backdrop-filter: blur(8px);
+    }
+    #sidebar-toggle {
+      width: 34px; height: 34px;
+      border: 1px solid var(--rule);
+      background: var(--ink);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      color: var(--text-secondary);
+    }
+    .topbar-title { font-family: var(--font-display); font-size: 14px; font-weight: 700; }
+    .topbar-period { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; }
+    .topbar-demo-badge {
+      margin-left: auto;
+      padding: 4px 10px;
+      background: rgba(201,168,76,0.18);
+      border: 1px solid rgba(201,168,76,0.4);
+      border-radius: 100px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .topbar-link { font-size: 11px; color: var(--text-secondary); text-decoration: none; }
+    .topbar-link:hover { color: var(--text-primary); }
+    #map { flex: 1; min-height: 0; background: #dfe6ee; }
+
+    .leaflet-popup-content-wrapper {
+      background: #fff !important;
+      border: 1px solid var(--rule-light) !important;
+      border-radius: var(--radius) !important;
+      box-shadow: var(--shadow) !important;
+      padding: 0 !important;
+      min-width: 250px;
+      max-width: 320px;
+    }
+    .leaflet-popup-content { margin: 0 !important; color: var(--text-primary) !important; }
+    .leaflet-popup-tip-container { display: none; }
+    .popup-inner { overflow: hidden; border-radius: var(--radius); }
+    .popup-header { padding: 12px 14px 10px; border-bottom: 1px solid var(--rule); }
+    .popup-denom { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+    .popup-title { font-family: var(--font-display); font-size: 14px; font-weight: 700; line-height: 1.2; }
+    .popup-photo { width: 100%; max-height: 140px; object-fit: cover; display: block; border-bottom: 1px solid var(--rule); }
+    .popup-body { padding: 10px 14px 12px; }
+    .popup-grid { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 12px; }
+    .pg-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); }
+    .pg-value { color: var(--text-secondary); }
+    .pg-value.highlight { color: var(--text-primary); font-weight: 600; }
+    .popup-footer { padding: 8px 14px; border-top: 1px solid var(--rule); font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); }
+
+    .marker-cluster-small, .marker-cluster-medium, .marker-cluster-large { background: rgba(168,131,46,0.22) !important; }
+    .marker-cluster-small div, .marker-cluster-medium div, .marker-cluster-large div {
+      background: rgba(168,131,46,0.85) !important;
+      color: #fff !important;
+      font-family: var(--font-display) !important;
+      font-weight: 700 !important;
+    }
+
+    .leaflet-control-zoom { border: 1px solid var(--rule) !important; border-radius: var(--radius) !important; overflow: hidden; }
+    .leaflet-control-zoom a { background: #fff !important; color: var(--text-secondary) !important; border-bottom: 1px solid var(--rule) !important; }
+    .leaflet-control-attribution { background: rgba(255,255,255,0.8) !important; color: var(--text-dim) !important; font-size: 9px !important; }
+
+    @media (max-width: 760px) {
+      #sidebar { position: absolute; top: 0; left: 0; height: 100%; z-index: 1100; box-shadow: 4px 0 24px rgba(0,0,0,0.18); }
+      #sidebar.collapsed { width: var(--sidebar-w); min-width: var(--sidebar-w); transform: translateX(-100%); }
+      #map-wrap { width: 100%; }
+      .topbar-period { display: none; }
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <aside id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-eyebrow">Civic Data · Garland County</div>
+      <div class="brand-name">Hot Springs <span>Church Map</span></div>
+      <div class="brand-subtitle">Every mapped Christian congregation inside Hot Springs city limits — with denomination filters, per-capita stats, and a documentary fieldwork tracker.</div>
+    </div>
+
+    <div class="sidebar-body">
+      <div class="sidebar-section">
+        <div class="section-label">Filtered Summary</div>
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="stat-churches">0</div>
+            <div class="stat-label">Churches shown</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-per-capita">0</div>
+            <div class="stat-label">Per 1,000 residents</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-density">0</div>
+            <div class="stat-label">Per square mile</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-denominations">0</div>
+            <div class="stat-label">Denominations</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-documented">0</div>
+            <div class="stat-label">Documented (filmed)</div>
+          </div>
+        </div>
+      </div>
+<div class="sidebar-section">
+        <div class="section-label">Filters</div>
+        <div class="filter-group">
+          <div class="filter-label">Search <span id="result-count">0 shown</span></div>
+          <input class="search-input" id="search" type="search" placeholder="Church name or street..." oninput="applyFilters()">
+        </div>
+        <div class="filter-group">
+          <div class="filter-label">Denomination <span id="denom-label">All</span></div>
+          <div class="chip-row" id="denom-chips"></div>
+        </div>
+        <div class="filter-group">
+          <div class="filter-label">Shot Status <span id="shot-label">All</span></div>
+          <div class="chip-row" id="shot-chips"></div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-label">By Denomination</div>
+        <div class="denom-bars" id="denom-bars"></div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-label-row">
+          <div class="section-label">Church List</div>
+        </div>
+        <div class="church-list" id="church-list"></div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-label">Data Sources</div>
+        <div class="source-block">
+          <p>
+            <strong>Seed inventory:</strong> OpenStreetMap plus campus-collapsed Garland County assessor parcels.
+            <br><br>
+            <strong>Cross-reference:</strong> Garland County assessor parcel centroids from the Arkansas GIS Office, fuzzy-matched to OSM records.
+            <br><br>
+            <strong>Population baseline:</strong> <span id="population-note">37,930 residents (U.S. Census 2020)</span>.
+            <br><br>
+            <strong>Documentary tracking:</strong> shot status and photos are loaded from the verified church dataset.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-cta">
+      <a href="mailto:info@parkerandvale.com?subject=Hot Springs Church Map Inquiry" class="btn-primary">Request a Custom Map</a>
+      <a href="../" class="btn-secondary">View All Demos</a>
+    </div>
+  </aside>
+
+  <div id="map-wrap">
+    <div id="topbar">
+      <button id="sidebar-toggle" onclick="toggleSidebar()" title="Toggle sidebar" aria-label="Toggle sidebar">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round" stroke="currentColor">
+          <line x1="2" y1="4" x2="14" y2="4"/><line x1="2" y1="8" x2="14" y2="8"/><line x1="2" y1="12" x2="14" y2="12"/>
+        </svg>
+      </button>
+      <div>
+        <div class="topbar-title">Hot Springs Church Map</div>
+        <div class="topbar-period">Hot Springs city limits</div>
+      </div>
+      <div class="topbar-demo-badge">Demo</div>
+      <a href="../" class="topbar-link">All Demos</a>
+    </div>
+    <div id="map"></div>
+  </div>
+</div>
+
+<script src="./data/churches_data.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script>
+let POPULATION = 37930;
+let CITY_AREA_SQ_MI = 35.14;
+const SHOT_STATUSES = ["All", "pending", "filmed", "skipped"];
+const DENOM_COLORS = {
+  Baptist: "#A8832E",
+  Methodist: "#2B6CA8",
+  Catholic: "#B32218",
+  Pentecostal: "#6F58B8",
+  Lutheran: "#1F7A48",
+  Presbyterian: "#B06B1E",
+  Episcopal: "#4A8FC4",
+  "Church of Christ": "#C9A84C",
+  Nondenominational: "#2E9B62",
+  Orthodox: "#7A63C4",
+  Adventist: "#C24A3A",
+  Christian: "#5A6574",
+  Protestant: "#6B7788",
+  Other: "#8A93A0",
+  Unknown: "#8A93A0",
+};
+
+let CHURCHES = [];
+let METADATA = {};
+let activeDenominations = new Set();
+let activeShotStatus = "All";
+let activeChurchId = null;
+const layers = new Map();
+
+const map = L.map("map", { zoomControl: false, attributionControl: true }).setView([34.5037, -93.0552], 13);
+L.control.zoom({ position: "bottomright" }).addTo(map);
+L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+  attribution: '&copy; OpenStreetMap &copy; CARTO',
+  subdomains: "abcd",
+  maxZoom: 19,
+}).addTo(map);
+
+const clusterGroup = L.markerClusterGroup({
+  maxClusterRadius: 42,
+  spiderfyOnMaxZoom: true,
+  showCoverageOnHover: false,
+});
+map.addLayer(clusterGroup);
+
+const FALLBACK_CHURCHES = [];
+
+function churchesFromEmbed() {
+  if (!window.CHURCHES_EMBED?.features?.length) return null;
+  return window.CHURCHES_EMBED.features
+    .map(churchFromFeature)
+    .filter(church => Number.isFinite(church.lat) && Number.isFinite(church.lon));
+}
+
+function applyMetadata(meta) {
+  if (!meta) return;
+  METADATA = meta;
+  if (meta.population) POPULATION = meta.population;
+  if (meta.population) {
+    document.getElementById("population-note").textContent =
+      `${meta.population.toLocaleString()} residents (${meta.population_source || "Census"})`;
+  }
+  if (meta.area_sq_mi) CITY_AREA_SQ_MI = meta.area_sq_mi;
+}
+
+function churchFromFeature(feature) {
+  const props = feature.properties || {};
+  const [lon, lat] = feature.geometry?.coordinates || [props.lon, props.lat];
+  return { ...props, lat, lon, _base_shot_status: props.shot_status || "pending" };
+}
+
+function denomColor(denomination) {
+  return DENOM_COLORS[denomination] || DENOM_COLORS.Unknown;
+}
+
+function formatPerCapita(count) {
+  return (count / POPULATION * 1000).toFixed(1);
+}
+
+function buildPopup(church) {
+  if (!church) return "";
+  const photo = church.photo_url
+    ? `<img class="popup-photo" src="${church.photo_url}" alt="${church.name} exterior">`
+    : "";
+  const notes = (church.notes || "").trim() || "—";
+  const status = church.shot_status || "pending";
+  return `
+    <div class="popup-inner">
+      ${photo}
+      <div class="popup-header">
+        <div class="popup-denom">${church.denomination}</div>
+        <div class="popup-title">${church.name}</div>
+      </div>
+      <div class="popup-body">
+        <div class="popup-grid">
+          <div class="pg-label">Address</div><div class="pg-value highlight">${church.address || "—"}</div>
+          <div class="pg-label">Shot Status</div><div class="pg-value">${status}</div>
+          <div class="pg-label">Notes</div><div class="pg-value">${notes}</div>
+        </div>
+      </div>
+      <div class="popup-footer">${church.church_id}</div>
+    </div>`;
+}
+
+function makeMarker(church) {
+  const color = denomColor(church.denomination);
+  const filmed = (church.shot_status || "pending") === "filmed";
+  const icon = L.divIcon({
+    className: "",
+    html: `<div style="width:14px;height:14px;border-radius:50%;background:${color};border:2px solid ${filmed ? "#1F7A48" : "rgba(255,255,255,0.95)"};box-shadow:0 1px 4px rgba(0,0,0,0.25);"></div>`,
+    iconSize: [14, 14],
+    iconAnchor: [7, 7],
+  });
+  const marker = L.marker([church.lat, church.lon], { icon });
+  marker.bindPopup(buildPopup(church), { maxWidth: 320 });
+  marker.on("click", () => selectChurch(church.church_id, false));
+  return marker;
+}
+
+function drawChurches(churches, preserveView = false) {
+  const previousCenter = map.getCenter();
+  const previousZoom = map.getZoom();
+  clusterGroup.clearLayers();
+  layers.clear();
+  churches.forEach(church => {
+    const marker = makeMarker(church);
+    clusterGroup.addLayer(marker);
+    layers.set(church.church_id, marker);
+  });
+  if (!preserveView && churches.length) {
+    const group = L.featureGroup([...layers.values()]);
+    if (churches.length > 1) {
+      map.fitBounds(group.getBounds().pad(0.12));
+    } else {
+      map.setView([churches[0].lat, churches[0].lon], 15);
+    }
+  } else if (preserveView) {
+    map.setView(previousCenter, previousZoom, { animate: false });
+  }
+}
+
+function renderDenomChips() {
+  const denominations = ["All", ...new Set(CHURCHES.map(c => c.denomination).filter(Boolean))].sort((a, b) => {
+    if (a === "All") return -1;
+    if (b === "All") return 1;
+    return a.localeCompare(b);
+  });
+  const container = document.getElementById("denom-chips");
+  container.innerHTML = "";
+  denominations.forEach(denom => {
+    const btn = document.createElement("button");
+    const isAll = denom === "All";
+    const active = isAll ? activeDenominations.size === 0 : activeDenominations.has(denom);
+    btn.className = `chip${active ? " active" : ""}`;
+    btn.type = "button";
+    btn.textContent = denom;
+    btn.onclick = () => {
+      if (isAll) {
+        activeDenominations.clear();
+      } else if (activeDenominations.has(denom)) {
+        activeDenominations.delete(denom);
+      } else {
+        activeDenominations.add(denom);
+      }
+      applyFilters();
+    };
+    container.appendChild(btn);
+  });
+}
+
+function renderShotChips() {
+  const container = document.getElementById("shot-chips");
+  container.innerHTML = "";
+  SHOT_STATUSES.forEach(status => {
+    const btn = document.createElement("button");
+    btn.className = `chip${status === activeShotStatus ? " active" : ""}`;
+    btn.type = "button";
+    btn.textContent = status;
+    btn.onclick = () => {
+      activeShotStatus = status;
+      applyFilters();
+    };
+    container.appendChild(btn);
+  });
+}
+
+function getFilteredChurches() {
+  const search = document.getElementById("search").value.trim().toLowerCase();
+  return CHURCHES.filter(church => {
+    if (activeDenominations.size && !activeDenominations.has(church.denomination)) return false;
+    if (activeShotStatus !== "All" && (church.shot_status || "pending") !== activeShotStatus) return false;
+    const haystack = [church.name, church.address, church.denomination, church.church_id].join(" ").toLowerCase();
+    if (search && !haystack.includes(search)) return false;
+    return true;
+  });
+}
+
+function updateStats(churches) {
+  const denominations = new Set(churches.map(c => c.denomination)).size;
+  const documented = churches.filter(c => (c.shot_status || "pending") === "filmed").length;
+  document.getElementById("stat-churches").textContent = churches.length;
+  document.getElementById("stat-per-capita").textContent = formatPerCapita(churches.length);
+  document.getElementById("stat-density").textContent = (churches.length / CITY_AREA_SQ_MI).toFixed(1);
+  document.getElementById("stat-denominations").textContent = denominations;
+  document.getElementById("stat-documented").textContent = documented;
+  document.getElementById("result-count").textContent = `${churches.length} shown`;
+  document.getElementById("denom-label").textContent = activeDenominations.size
+    ? [...activeDenominations].join(", ")
+    : "All";
+  document.getElementById("shot-label").textContent = activeShotStatus;
+}
+
+function renderDenomBars(churches) {
+  const container = document.getElementById("denom-bars");
+  const counts = {};
+  churches.forEach(church => {
+    counts[church.denomination] = (counts[church.denomination] || 0) + 1;
+  });
+  const rows = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  const max = Math.max(1, ...rows.map(([, count]) => count));
+  container.innerHTML = rows.length
+    ? rows.map(([denom, count]) => {
+        const width = Math.max(4, (count / max) * 100);
+        return `
+          <div class="denom-row">
+            <div>${denom}</div>
+            <div class="denom-track"><div class="denom-fill" style="width:${width}%;background:${denomColor(denom)}"></div></div>
+            <div class="denom-count">${count}</div>
+          </div>`;
+      }).join("")
+    : `<div class="source-block"><p>No churches match the selected filters.</p></div>`;
+}
+
+function renderChurchList(churches) {
+  const container = document.getElementById("church-list");
+  if (!churches.length) {
+    container.innerHTML = `<div class="source-block"><p>No churches match the selected filters.</p></div>`;
+    return;
+  }
+  container.innerHTML = churches.map(church => {
+    const status = church.shot_status || "pending";
+    return `
+    <div class="church-card${church.church_id === activeChurchId ? " active" : ""}" data-church-id="${church.church_id}" style="border-left-color:${denomColor(church.denomination)}">
+      <div>
+        <div class="church-kicker"><span>${church.church_id}</span><span>${status}</span></div>
+        <div class="church-title">${church.name}</div>
+        <div class="church-meta">
+          <span class="tag">${church.denomination}</span>
+          <span class="tag">${status}</span>
+          ${church.year_founded ? `<span class="tag">Est. ${church.year_founded}</span>` : ""}
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+
+  container.querySelectorAll(".church-card").forEach(card => {
+    card.addEventListener("click", () => selectChurch(card.dataset.churchId, true));
+  });
+}
+
+function selectChurch(id, zoomTo) {
+  activeChurchId = id;
+  const marker = layers.get(id);
+  if (marker) {
+    if (zoomTo) map.setView(marker.getLatLng(), Math.max(map.getZoom(), 16));
+    marker.openPopup();
+  }
+  renderChurchList(getFilteredChurches());
+  const card = document.querySelector(`.church-card[data-church-id="${id}"]`);
+  if (card) card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function applyFilters(resetView = true) {
+  renderDenomChips();
+  renderShotChips();
+  if (resetView) activeChurchId = null;
+  const churches = getFilteredChurches();
+  drawChurches(churches, !resetView);
+  updateStats(churches);
+  renderDenomBars(churches);
+  renderChurchList(churches);
+}
+
+function toggleSidebar() {
+  document.getElementById("sidebar").classList.toggle("collapsed");
+  setTimeout(() => map.invalidateSize(), 220);
+}
+
+async function loadChurchData() {
+  const embedded = churchesFromEmbed();
+  if (embedded?.length) {
+    CHURCHES = embedded;
+    applyMetadata(window.CHURCH_METADATA_EMBED);
+  }
+
+  try {
+    const [geoResponse, metaResponse] = await Promise.all([
+      fetch("./data/churches.geojson", { cache: "no-store" }),
+      fetch("./data/metadata.json", { cache: "no-store" }),
+    ]);
+    if (geoResponse.ok) {
+      const geojson = await geoResponse.json();
+      const churches = (geojson.features || [])
+        .map(churchFromFeature)
+        .filter(church => Number.isFinite(church.lat) && Number.isFinite(church.lon));
+      if (churches.length) CHURCHES = churches;
+    }
+    if (metaResponse.ok) applyMetadata(await metaResponse.json());
+  } catch (error) {
+    if (!CHURCHES.length) {
+      console.warn("No embedded or fetched church data available:", error);
+      CHURCHES = FALLBACK_CHURCHES;
+    }
+  }
+
+  if (!CHURCHES.length) {
+    throw new Error("No church data found. Run scripts/normalize_churches.py first.");
+  }
+}
+
+async function initDashboard() {
+  await loadChurchData();
+  applyFilters();
+}
+
+initDashboard();
+</script>
+</body>
+</html>

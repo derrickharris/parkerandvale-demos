@@ -1,0 +1,78 @@
+church_id,osm_id,assessor_objectid,name,denomination,denomination_raw,year_founded,address,lat,lon,shot_status,photo_url,notes
+,,,Roanoke Baptist Church,Baptist,,,236 Whittington Ave,34.517164175100454,-93.05923785378658,pending,,Twin campus with 313 Whittington Ave
+,,1594867,Roanoke Baptist Church,Baptist,,,313 Whittington Ave,,,filmed,./media/RoanokeBaptist.JPG,Twin campus with 236 Whittington Ave; Marked filmed in dashboard; Photo linked from media/
+,359012619,1611431,Mount Tabor Baptist Church,Baptist,,,116 Mt Tabor Road,,,filmed,,Field verified address; Marked filmed in dashboard
+,,1610699,First Evangelical Lutheran Church,Lutheran,,,105 Village Road,,,filmed,,Field verified; Bella Rosa is same campus; Marked filmed in dashboard
+,359023372,,Central Baptist Church,,,,,,,filmed,./media/CentralBaptistChurch.JPG,Exterior filmed July 2026; Photo linked from media/
+,1028763911,,Saint Mary of the Springs Catholic Church,,,,,,,filmed,./media/SaintMarySprings.JPG,Exterior filmed July 2026; Photo linked from media/
+,,1609938,FIRST PRESBYTERIAN CHURCH,,,,,,,filmed,./media/FirstPresbyterianChurch.JPG,Exterior filmed July 2026; Photo linked from media/
+,1117807950,1604871,First United Methodist Church,,,,,,,filmed,./media/FirstUnitedMethodist.JPG,Marked filmed in dashboard; Photo linked from media/
+,358997043,1609900,Saint Lukes Episcopal Church,,,,,,,filmed,./media/StLukesEpiscopal.JPG,Marked filmed in dashboard; Photo linked from media/
+,359023475,1604057,,,,,,,,filmed,,Marked filmed in dashboard
+,359023429,1604513,First Pentecostal Church,,,,,,,filmed,./media/FirstPentecostalChurch.JPG,Marked filmed in dashboard; Photo linked from media/
+,359023443,1595186,New Walters Memorial AME Zion Church,Methodist,,,205 Silver Street,,,filmed,./media/NewWaltersAfricanMethodistEpiscopal.JPG,Field rename from Mount Zion AME; Marked filmed in dashboard; Photo linked from media/
+,359023468,1597339,,,,,,,,filmed,,Marked filmed in dashboard
+,,1602639,,,,,,,,filmed,,Marked filmed in dashboard
+,,1604481,NEW FAITH CHRISTIAN MINISTRIES &,,,,,,,filmed,./media/NewFaithChristianMinistries.JPG,Marked filmed in dashboard; Photo linked from media/
+,,1596726,COTTRELL CHAPEL CHRISTIAN,,,,,,,filmed,./media/CottrellChapel.JPG,Marked filmed in dashboard; Photo linked from media/
+,,1594885,GRAND AVENUE BAPTIST CHURCH,,,,,,,filmed,./media/GrandAveBaptist.JPG,Marked filmed in dashboard; Photo linked from media/
+,,1603976,NEW TESTAMENT BAPTIST CHURCH,,,,,,,filmed,./media/NewTestamentBaptist.JPG,Marked filmed in dashboard; Photo linked from media/
+,359023474,,Gospel Mission,Methodist,,,,,,filmed,./media/GospelMission.JPG,Field rename from Tigert Memorial; Marked filmed in dashboard; Photo linked from media/
+,9322036354,,United Universal Congregation,,,,1701 Spring Street,34.511509,-93.027256,filmed,./media/UnitarianUniversalistChurch.JPG,Field verified address; Marked filmed in dashboard; Photo linked from media/
+,1029175618,,Immanuel Christian Fellowship,,,,,,,filmed,./media/ImmanuelChristianFellowship.JPG,Marked filmed in dashboard; Photo linked from media/
+,1029175617,,City Life Church of Hot Springs,,,,,,,filmed,./media/CityLifeChurch.JPG,Marked filmed in dashboard; Photo linked from media/
+,359023446,1608627,Oaklawn United Methodist Church,,,,,,,filmed,./media/OaklawnUnitedMethodist.JPG,Marked filmed in dashboard; Photo linked from media/
+,5862064627,1609090,,,,,,,,filmed,,Marked filmed in dashboard
+,359023384,,,,,,,,,filmed,,Marked filmed in dashboard
+,359023405,1598364,FIRST BAPTIST CHURCH OF HOT,,,,,,,filmed,./media/FirstBaptistChurch.JPG,Marked filmed in dashboard; Photo linked from media/
+,359023411,1608625,,,,,,,,filmed,,Marked filmed in dashboard
+,,1602974,FAITH UNITED METHODIST CHURCH,,,,,,,filmed,./media/FaithUnitedMethodistChurch.JPG,Marked filmed in dashboard; Photo linked from media/
+,,1600970,,,,,,,,filmed,,Marked filmed in dashboard
+,,1611507,,,,,,,,filmed,,Marked filmed in dashboard
+,,1598006,The Potters Ministry - Everlasting Gospel,Pentecostal,,,712 Leonard Street,,,filmed,,Field rename from Pentecostal Light House; Marked filmed in dashboard
+,952737847,,,,,,,,,filmed,,Marked filmed in dashboard
+,,1595958,,,,,,,,filmed,,Marked filmed in dashboard
+,,1605662,,,,,,,,filmed,,Marked filmed in dashboard
+,,1606617,WESTMINISTER PRESBY CHURCH,,,,,,,filmed,./media/WestministerPresbyterianChurch.JPG,Marked filmed in dashboard; Photo linked from media/
+,,1601807,,,,,,,,filmed,,Marked filmed in dashboard
+,,1601440,Rock Hill Church,Nondenominational,,,871 Whittington Ave,,,filmed,./media/RockHillChurch.JPG,Field rename from Lakeshore Drive Christian Church; Marked filmed in dashboard; Photo linked from media/
+,,1611714,Living Word Worship Center,Pentecostal,,,2341 Park Avenue,,,filmed,./media/LivingWordWorshipCenter.JPG,Field rename from First Pentecostal Church of God; Marked filmed in dashboard; Photo linked from media/
+,,1596835,St Mark Baptist Church,Baptist,,,542 Crescent Avenue,34.504855,-93.039852,pending,,Field verified address
+,,1595171,Greater St. Paul Baptist Church,Baptist,,,497 Crescent Avenue,34.503618,-93.038129,pending,,Field verified address
+,,1602956,Church of Christ,Church of Christ,,,948 Airport Road,34.4795402,-93.1078131,,,Field verified address
+,,1597713,Saint Paul AME Church,Methodist,,,332 Garland Avenue,34.4999143,-93.0618419,,,Single campus at 332 Garland Ave
+,,1596015,Unity Church of God in Christ,Pentecostal,,,200 Gardner Street,34.4965400,-93.0804810,,,Field verified address
+,,1601789,,Nondenominational,,,,,,,,Field: nondenominational
+,1028762116,1605490,Saint John Catholic Church,Catholic,,,589 West Grand Avenue,,,filmed,./media/StJohnsCatholic.JPG,Twin campus with St. John Catholic on W Grand Ave; Twin campus with Saint John Catholic at 589 West Grand Ave; Photo linked from media/
+,,1602773,Alcoholics Anonymous Hot Springs,Nondenominational,,,411 Sellers Street,,,,,Field rename
+,925907363,,Resurrection Anglican Church,Anglican,,,504 Trivista Left Street,,,,,Field rename from Christ Anglican Church
+,,,Holy Ghost Headquarters,Nondenominational,,,1878 Hobson Avenue,34.4985093,-93.0837546,filmed,,Field verified; filmed
+,,,Highland Street Revival,Nondenominational,,,499 Highland Street,34.4847190,-93.0502690,pending,,Field verified addition
+,,1609923,St Phillips Church of Christ,Church of Christ,,,237 Walnut Street,,,,,Field: Church of Christ (not Pentecostal)
+,358970460,,East Side Missionary Baptist Church,Baptist,,,,,,,,Field rename
+,,1606305,St Thomas Chapel Baptist Church,Baptist,,,398 Grove Street,34.5075700,-93.0448080,,,Field verified address
+,,1611866,Faith Assembly of God,Pentecostal,,,121 Yerger Street,,,,,Field rename from Jesus Is The King Church
+,,1597316,Iglesia Ministerio Evangelists International,Nondenominational,,,600 Cones Road,,,,,Field rename from Souls Harbor
+,359023463,,Saint Marys Greek Orthodox Church,Orthodox,,,509 Morrison Avenue,34.4952495,-93.0564708,,,Field verified address
+,815485041,,Hope Presbyterian Church,Presbyterian,,,836 Shady Grove Road,,,,,Field rename from Hope Church
+,,,The Ark of Praise,Nondenominational,,,308 Butterfield Street,34.5155303,-93.0367550,pending,,Field verified addition
+,,,Faith in Action,Nondenominational,,,1640 East Grand Avenue,34.5188716,-93.0226799,filmed,./media/FaithInActionChurch.JPG,Field verified addition; Photo linked from media/
+,,,Heritage Baptist Church,Baptist,,,308 Janette Street,34.5164239,-93.0228641,filmed,./media/HeritageBaptist.JPG,Field verified addition; Photo linked from media/
+,,,Grand Chapel Missionary Baptist,Baptist,,,115 Howard Street,34.5158498,-93.0198046,filmed,./media/GraceChapelMissionaryBaptist-2.JPG,Field verified addition; Photo linked from media/
+,,,Lake Valley Community Church,Nondenominational,,,910 Shady Grove Road,34.4654885,-93.0300234,pending,,Field verified addition
+,,,Hillcrest Chapel,Nondenominational,,,20 Malvern Avenue,34.4983401,-93.0408361,pending,,Field verified addition
+,,,The Church of Jesus Christ of Latter-Day Saints,Latter-day Saints,,,2765 Malvern Avenue,34.4703161,-93.0066396,pending,,Field verified addition
+,,1609899,,,,,,,,filmed,,Marked filmed in dashboard
+,359023461,,,,,,,,,filmed,,Marked filmed in dashboard
+,,1603626,,,,,,,,filmed,,Marked filmed in dashboard
+,359023449,,,,,,,,,filmed,,Marked filmed in dashboard
+,,1600508,,,,,,,,filmed,,Marked filmed in dashboard
+,,,New Beginning Christian Ministries,Nondenominational,,,323 East Grand Avenue,34.5051948,-93.0457850,filmed,./media/NewBeginningChristianMinistries.JPG,Field verified addition; Photo linked from media/
+,359023440,1596541,Haven United Methodist Church,Methodist,,,107 Burroughs Street,34.4900059,-93.0772443,,,Field rename from Highland Presbyterian; Haven UMC campus
+,,1645860,Haven United Methodist Community Garden,Methodist,,,655 Park Avenue,,,,,Field rename; community garden campus
+,,,Three Angles Ministries,Nondenominational,,,211 Wynn Street,34.4908374,-93.0828794,pending,,Field verified addition
+,,,New Life Apostolic,Nondenominational,,,635 4th Street,34.4961151,-93.0653143,pending,,Field verified addition
+,,1595852,Gospel Light Baptist Church,Baptist,,,600 Garland Avenue,34.50017252004522,-93.06569466924233,filmed,./media/GospelLightParkPlaceBaptist.JPG,Pin snapped to 600 Garland Ave parcel centroid; Photo linked from media/
+,,1595879,Gospel Light Baptist Church,Baptist,,,600 Garland Avenue,34.50017252004522,-93.06569466924233,,,Pin snapped to 600 Garland Ave parcel centroid
+,,1608575,Gospel Light Baptist Church,Baptist,,,600 Garland Avenue,34.50017252004522,-93.06569466924233,,,Pin snapped to 600 Garland Ave parcel centroid
+,359023439,1609124,,,,,,,,filmed,./media/GrandAveMethodist.JPG,Photo linked from media/

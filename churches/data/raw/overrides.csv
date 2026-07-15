@@ -1,0 +1,68 @@
+action,osm_id,assessor_objectid,match_name,match_address,notes
+exclude,,1647442,HOUSE OF ISRAEL,411 MARKET,Non-Christian place of worship
+exclude,,1600643,,1005 EMORY,Not a church campus
+exclude,,1610178,OAKLAWN MISSIONARY,,Keep Oaklawn Baptist only
+exclude,,1608604,ROANOKE MISSIONARY,,Assessor name; field verified as Roanoke Baptist campus
+exclude,358997038,,PARK PLACE,,Wrong OSM location; same as Gospel Light elsewhere
+exclude,359023450,,,,Duplicate OSM pin; assessor Whittington parcels are canonical
+exclude,,1606360,ROANOKE BAPTIST,302 GARDEN,Not a Roanoke worship site per field review
+exclude,624818376,1608657,,3804 CENTRAL,Invalid/unconfirmed location
+exclude,,1603186,YOUNG MEN'S CHRISTIAN,,
+exclude,,1608108,YOUNG MEN'S CHRISTIAN,,
+exclude,,1603017,CATHOLIC CEMETERY,405 GREENWOOD,Cemetery not a place of worship
+exclude,,1600634,SANSBURY,109 HALLMARK,Not a church per field review
+exclude,,1609579,SANSBURY,JACKSON,Not a church per field review
+exclude,,1607285,BACKSIDE CHAPEL,SCULLY,Not a church per field review
+exclude,,1611432,MT TABOR COMMUNITY,,Keep Mount Tabor Baptist at 116 Mt Tabor Road
+exclude,358979486,,ROSE OF SHARON,,Field review removal
+exclude,358981733,,OLD COUNTRY,,Field review removal
+exclude,359023442,,KINGDOM HALL,,Field review removal
+exclude,1150242601,,,,Unnamed Jehovah's Witness hall
+exclude,,1601909,GIESE IAN,316 HERMLEE,Not a church per field review
+exclude,,1610742,CHURCH SHELBY,220 WILLOWBEND,Not a church per field review
+exclude,,1593699,FIRST LUTHERAN,101 BELLA ROSA,Same church as Village Road campus
+exclude,,1602036,CHRISTIAN SAMANTHA,1010 LAKESHORE,Not a church per field review
+exclude,,1607690,LAKESHORE HEIGHTS,LAKESHORE DR,Duplicate campus; keep Lakeshore & Chappel Hill
+exclude,358972719,,HILLCREST CHAPEL,,No location / field review removal
+exclude,,1591484,INTERNATIONAL CHURCH PLANTERS,LAKELAND,Field review removal
+exclude,,1608437,CHAPEL MARK,204 HERMLEE,Field review removal
+exclude,,1608571,CHURCH OF JEHOVAH APOSTOLIC,PLEASANT,Field review removal
+exclude,359023460,,SAINT MARY BAPTIST,,Replaced by Greater St. Paul Baptist at 497 Crescent
+exclude,,1609899,SAINT LUKE,SPRING,Field review removal
+exclude,,1602804,FIRST UNITED METHODIST,QUAPAW,Field review removal
+exclude,359023418,,FIRST CHURCH OF GOD,,Field review removal
+exclude,359023377,,CHURCH OF CHRIST,,Unnamed OSM pin; field review removal
+exclude,,1595434,ROMAN CATHOLIC DIOCESE,541 W GRAND,Field review removal
+exclude,359023467,,SECOND BAPTIST,,Field review removal
+exclude,,1595982,FIRST CHURCH OF THE NAZARENE,HOBSON,Field review removal
+exclude,,1602958,RICHARD ST CHURCH OF CHRIST,948 AIRPORT,Duplicate of Church of Christ at Airport Road
+exclude,,1601177,OAKLAWN UNITED METHODIST,110 OXFORD,Field review removal
+exclude,,1610946,LAKEPOINTE LUTHERAN,,Field review removal
+exclude,,1600590,FIRST ASSEMBLY OF GOD,3542 CENTRAL,Field review removal
+exclude,359023465,,SAINT PAUL AFRICAN METHODIST,,Keep Saint Paul AME at 332 Garland only
+exclude,,1600591,FIRST ASSEMBLY OF GOD,3542 CENTRAL,Field review removal
+exclude,359023472,,,,Field review removal - The Gospel Temple
+exclude,359023461,,,,Field review removal - Saint Marys Episcopal
+exclude,,1609921,,,,Field review removal - Church of Christ Walnut
+exclude,,1597246,,,,Field review removal - Roanoke Walnut campus parcel
+exclude,,1594985,,,,Field review removal - Church of Christ Portland
+exclude,,1608635,,,,Field review removal - Church of God in Christ Grove
+exclude,,1596829,,,,Field review removal - Logal Congregation
+exclude,,1604005,,,,Field review removal - Lakepointe Grove
+exclude,359023380,1640832,,,Field review removal - Church of Christ Grove
+exclude,359023402,,,,Field review removal - East Side Pentecostal
+exclude,,1596763,,,,Field review removal - Saint Marks Baptist Portland
+exclude,,1595297,,,,Field review removal - Eureka Missionary Baptist
+exclude,,1598605,,,,Field review removal - First Primitive Baptist
+exclude,,1608894,,,,Field review removal - Gethsemane Missionary Baptist
+exclude,,1643930,,,,Field review removal - Champion Christian College Belding
+exclude,,1596328,,,,Field review removal - First Primitive Baptist Hammond campus
+exclude,,1608572,,,,Field review removal - Gethsemane Blake campus
+exclude,,1597655,,,,Field review removal - Eureka Missionary Gaines campus
+exclude,,1602677,,,,Field review removal - Roanoke Walnut campus
+exclude,,1602678,,,,Field review removal - Roanoke Walnut campus
+exclude,,1602679,,,,Field review removal - Roanoke Walnut campus
+exclude,,,ROANOKE BAPTIST,WALNUT,Field review removal - non-worship Walnut parcels
+exclude,359023414,,,,Field review removal - First Church of Christ Scientist
+exclude,,1598370,,,,Field review removal - Roman Catholic Diocese School St
+exclude,,1607753,,,,Field review removal - Parish Claude Dylan
