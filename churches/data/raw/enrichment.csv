@@ -64,7 +64,7 @@ church_id,osm_id,assessor_objectid,name,denomination,denomination_raw,year_found
 ,,,The Church of Jesus Christ of Latter-Day Saints,Latter-day Saints,,,2765 Malvern Avenue,34.4703161,-93.0066396,pending,,Field verified addition
 ,,1609899,,,,,,,,filmed,,Marked filmed in dashboard
 ,359023461,,,,,,,,,filmed,,Marked filmed in dashboard
-,,1603626,,,,,,,,filmed,,Marked filmed in dashboard
+,,1603626,Gospel Light Baptist Church,,,,,,,filmed,./media/GospelLightBaptistChurchMagnoliaHolly.JPG,Marked filmed in dashboard; Photo at Magnolia & Holly campus
 ,359023449,,,,,,,,,filmed,,Marked filmed in dashboard
 ,,1600508,,,,,,,,filmed,,Marked filmed in dashboard
 ,,,New Beginning Christian Ministries,Nondenominational,,,323 East Grand Avenue,34.5051948,-93.0457850,filmed,./media/NewBeginningChristianMinistries.JPG,Field verified addition; Photo linked from media/
@@ -72,7 +72,7 @@ church_id,osm_id,assessor_objectid,name,denomination,denomination_raw,year_found
 ,,1645860,Haven United Methodist Community Garden,Methodist,,,655 Park Avenue,,,,,Field rename; community garden campus
 ,,,Three Angles Ministries,Nondenominational,,,211 Wynn Street,34.4908374,-93.0828794,pending,,Field verified addition
 ,,,New Life Apostolic,Nondenominational,,,635 4th Street,34.4961151,-93.0653143,pending,,Field verified addition
-,,1595852,Gospel Light Baptist Church,Baptist,,,600 Garland Avenue,34.50017252004522,-93.06569466924233,filmed,./media/GospelLightParkPlaceBaptist.JPG,Pin snapped to 600 Garland Ave parcel centroid; Photo linked from media/
+,,1595852,Gospel Light Baptist Church,Baptist,,,600 Garland Avenue,34.50017252004522,-93.06569466924233,filmed,,Pin snapped to 600 Garland Ave parcel centroid
 ,,1595879,Gospel Light Baptist Church,Baptist,,,600 Garland Avenue,34.50017252004522,-93.06569466924233,,,Pin snapped to 600 Garland Ave parcel centroid
 ,,1608575,Gospel Light Baptist Church,Baptist,,,600 Garland Avenue,34.50017252004522,-93.06569466924233,,,Pin snapped to 600 Garland Ave parcel centroid
 ,359023439,1609124,,,,,,,,filmed,./media/GrandAveMethodist.JPG,Photo linked from media/

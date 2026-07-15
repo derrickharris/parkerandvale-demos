@@ -1104,8 +1104,8 @@
         "needs_verification": false,
         "parcel_count": 12,
         "shot_status": "filmed",
-        "photo_url": "./media/GospelLightParkPlaceBaptist.JPG",
-        "notes": "Pin snapped to 600 Garland Ave parcel centroid; Photo linked from media/"
+        "photo_url": null,
+        "notes": "Pin snapped to 600 Garland Ave parcel centroid"
       }
     },
     {
@@ -1123,7 +1123,7 @@
         "osm_type": null,
         "assessor_objectid": 1603626,
         "parcelid": "400-28600-003-000E",
-        "name": "GOSPEL LIGHT BAPTIST CHURCH INC",
+        "name": "Gospel Light Baptist Church",
         "denomination": "Baptist",
         "denomination_raw": "",
         "year_founded": null,
@@ -1140,8 +1140,8 @@
         "needs_verification": false,
         "parcel_count": 3,
         "shot_status": "filmed",
-        "photo_url": null,
-        "notes": "Marked filmed in dashboard"
+        "photo_url": "./media/GospelLightBaptistChurchMagnoliaHolly.JPG",
+        "notes": "Marked filmed in dashboard; Photo at Magnolia & Holly campus"
       }
     },
     {
