@@ -4,54 +4,60 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Custom interactive HTML maps and dashboards built, hosted, and maintained by Parker & Vale for nonprofits, local governments, regional agencies, and small businesses.">
-  <title>Interactive Demos — Parker & Vale</title>
+  <title>Live Maps — Parker & Vale</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
   <style>
     /* ── Design tokens ─────────────────────────────────────── */
     :root {
-      --ink:        #080C10;
-      --ink2:       #0E1520;
-      --ink3:       #151F2E;
-      --slate:      #1E2D40;
-      --slate2:     #253550;
+      --ink:        #f5f4f1;
+      --ink2:       #ffffff;
+      --ink3:       #efeee9;
+      --slate:      #e8e6e0;
+      --slate2:     #e3e1db;
 
-      --gold:       #C9A84C;
-      --gold-bright:#E8C060;
-      --gold-dim:   rgba(201,168,76,0.12);
-      --gold-rule:  rgba(201,168,76,0.22);
+      --gold:       #a8872f;
+      --gold-bright:#b8953a;
+      --gold-dim:   rgba(168,135,47,0.08);
+      --gold-rule:  rgba(168,135,47,0.22);
 
       --red:        #C1281B;
-      --red-dim:    rgba(193,40,27,0.12);
+      --red-dim:    rgba(193,40,27,0.10);
       --teal:       #2A9D8F;
-      --teal-dim:   rgba(42,157,143,0.12);
-      --blue:       #3A7FC1;
-      --blue-dim:   rgba(58,127,193,0.12);
+      --teal-dim:   rgba(42,157,143,0.10);
+      --blue:       #3d6fa8;
+      --blue-dim:   rgba(61,111,168,0.10);
       --amber:      #C97C2A;
-      --amber-dim:  rgba(201,124,42,0.12);
-      --green:      #2A9D5C;
-      --green-dim:  rgba(42,157,92,0.12);
+      --amber-dim:  rgba(201,124,42,0.10);
+      --green:      #3f7d5a;
+      --green-dim:  rgba(63,125,90,0.10);
 
-      --txt:        #E2E8F0;
-      --txt2:       #7A8899;
-      --txt3:       #3D4F63;
+      --txt:        #1c1b19;
+      --txt2:       #5a5750;
+      --txt3:       #8a867c;
+      --on-gold:    #1c1b19;
 
-      --fw: 'Syne', sans-serif;
-      --fb: 'DM Sans', sans-serif;
-      --fm: 'DM Mono', monospace;
+      --fw: 'IBM Plex Sans', sans-serif;
+      --fb: 'IBM Plex Sans', sans-serif;
+      --fm: 'IBM Plex Mono', monospace;
 
       --ease: cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; color-scheme: light; }
 
     body {
       font-family: var(--fb);
-      background: var(--ink);
+      background-color: var(--ink);
+      background-image:
+        linear-gradient(rgba(168, 135, 47, 0.14) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(168, 135, 47, 0.14) 1px, transparent 1px);
+      background-size: 48px 48px;
+      background-attachment: fixed;
       color: var(--txt);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
@@ -65,20 +71,13 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 0;
-      opacity: 0.4;
+      opacity: 0.28;
+      mix-blend-mode: multiply;
     }
 
     /* ── Grid background ───────────────────────────────────── */
     body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
-      background-size: 48px 48px;
-      pointer-events: none;
-      z-index: 0;
+      display: none;
     }
 
     /* ── Nav ───────────────────────────────────────────────── */
@@ -86,10 +85,10 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       height: 58px;
-      background: rgba(8,12,16,0.85);
+      background: rgba(245, 244, 241, 0.92);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(201,168,76,0.1);
+      border-bottom: 1px solid var(--gold-rule);
       display: flex;
       align-items: center;
       padding: 0 40px;
@@ -99,7 +98,7 @@
     .nav-brand {
       font-family: var(--fw);
       font-size: 16px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: -0.02em;
       color: var(--txt);
       text-decoration: none;
@@ -110,7 +109,7 @@
     .nav-sep {
       width: 1px;
       height: 18px;
-      background: rgba(255,255,255,0.08);
+      background: var(--slate);
       margin: 0 16px;
     }
 
@@ -151,7 +150,7 @@
       transition: all 150ms var(--ease);
     }
     .nav-cta:hover {
-      background: rgba(201,168,76,0.2);
+      background: rgba(168,135,47,0.14);
       color: var(--gold-bright);
     }
 
@@ -186,7 +185,7 @@
       width: 5px; height: 5px;
       border-radius: 50%;
       background: var(--gold);
-      box-shadow: 0 0 6px var(--gold);
+      box-shadow: none;
       animation: pulse 2s ease infinite;
     }
 
@@ -198,7 +197,7 @@
     h1 {
       font-family: var(--fw);
       font-size: clamp(36px, 6vw, 62px);
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1.02;
       margin-bottom: 24px;
@@ -237,7 +236,7 @@
     .btn-primary {
       padding: 12px 24px;
       background: var(--gold);
-      color: var(--ink);
+      color: var(--on-gold);
       border: none;
       border-radius: 4px;
       font-family: var(--fw);
@@ -251,14 +250,14 @@
     .btn-primary:hover {
       background: var(--gold-bright);
       transform: translateY(-1px);
-      box-shadow: 0 4px 20px rgba(201,168,76,0.3);
+      box-shadow: 0 4px 18px rgba(168,135,47,0.24);
     }
 
     .btn-ghost {
       padding: 11px 24px;
       background: transparent;
       color: var(--txt2);
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(28,27,25,0.08);
       border-radius: 4px;
       font-family: var(--fw);
       font-size: 13px;
@@ -268,7 +267,7 @@
       transition: all 180ms var(--ease);
     }
     .btn-ghost:hover {
-      border-color: rgba(255,255,255,0.2);
+      border-color: var(--gold-rule);
       color: var(--txt);
     }
 
@@ -281,7 +280,7 @@
       padding: 0 40px;
       display: flex;
       gap: 0;
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid rgba(28,27,25,0.06);
       border-radius: 6px;
       overflow: hidden;
       animation: fadeup 0.5s 0.26s ease both;
@@ -290,14 +289,14 @@
     .stat-item {
       flex: 1;
       padding: 20px 24px;
-      border-right: 1px solid rgba(255,255,255,0.06);
+      border-right: 1px solid rgba(28,27,25,0.06);
     }
     .stat-item:last-child { border-right: none; }
 
     .stat-val {
       font-family: var(--fw);
       font-size: 26px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: -0.02em;
       color: var(--gold);
       line-height: 1;
@@ -348,8 +347,9 @@
     }
 
     .demo-card {
+      border: 1px solid rgba(28,27,25,0.08);
       background: var(--ink2);
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid rgba(28,27,25,0.06);
       border-radius: 6px;
       overflow: hidden;
       text-decoration: none;
@@ -360,7 +360,7 @@
     }
 
     .demo-card:hover {
-      border-color: rgba(255,255,255,0.12);
+      border-color: rgba(28,27,25,0.1);
       transform: translateY(-3px);
       box-shadow: 0 12px 40px rgba(0,0,0,0.4);
     }
@@ -479,7 +479,7 @@
 
     .tag {
       padding: 3px 8px;
-      background: rgba(255,255,255,0.04);
+      background: rgba(28,27,25,0.04);
       border: 1px solid rgba(255,255,255,0.07);
       border-radius: 3px;
       font-family: var(--fm);
@@ -514,7 +514,7 @@
     }
 
     .demo-card:hover .card-arrow {
-      border-color: rgba(255,255,255,0.2);
+      border-color: var(--gold-rule);
       background: rgba(255,255,255,0.05);
     }
 
@@ -549,7 +549,7 @@
     .step-num {
       font-family: var(--fw);
       font-size: 32px;
-      font-weight: 800;
+      font-weight: 700;
       color: rgba(201,168,76,0.12);
       letter-spacing: -0.04em;
       line-height: 1;
@@ -578,7 +578,7 @@
 
     .service-card {
       background: var(--ink2);
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid rgba(28,27,25,0.06);
       border-radius: 6px;
       padding: 22px 20px;
     }
@@ -586,7 +586,7 @@
     .service-price {
       font-family: var(--fw);
       font-size: 22px;
-      font-weight: 800;
+      font-weight: 700;
       color: var(--gold);
       letter-spacing: -0.02em;
       margin-bottom: 3px;
@@ -683,7 +683,7 @@
     .cta-heading {
       font-family: var(--fw);
       font-size: 26px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: -0.02em;
       line-height: 1.1;
       margin-bottom: 12px;
@@ -719,7 +719,7 @@
     .footer-brand {
       font-family: var(--fw);
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: -0.02em;
     }
     .footer-brand span { color: var(--gold); }
@@ -753,7 +753,7 @@
       .nav-right .nav-link { display: none; }
       .hero { padding: 110px 20px 60px; }
       .stats-bar { flex-direction: column; padding: 0 20px; }
-      .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(28,27,25,0.06); }
       .stat-item:last-child { border-bottom: none; }
       section { padding: 0 20px 60px; }
       .demo-grid { grid-template-columns: 1fr; }
@@ -772,7 +772,7 @@
   <nav>
     <a href="https://parkerandvale.com" class="nav-brand">Parker <span>&</span> Vale</a>
     <div class="nav-sep"></div>
-    <div class="nav-section">Interactive Demos</div>
+    <div class="nav-section">Live Maps</div>
     <div class="nav-right">
       <a href="https://parkerandvale.com" class="nav-link">Main Site</a>
       <a href="https://parkerandvale.com/services" class="nav-link">Services</a>
@@ -817,10 +817,10 @@
     </div>
   </div>
 
-  <!-- Demos -->
+  <!-- Live Maps -->
   <section id="demos">
     <div class="section-header reveal">
-      <div class="section-label">Interactive Demos</div>
+      <div class="section-label">Live Maps</div>
       <div class="section-rule"></div>
     </div>
 
@@ -830,13 +830,13 @@
       <a href="./safety/index.html" class="demo-card red reveal">
         <div class="card-preview">
           <svg class="preview-canvas" viewBox="0 0 420 160" preserveAspectRatio="xMidYMid slice">
-            <rect width="420" height="160" fill="#0E1520"/>
-            <line x1="0" y1="80" x2="420" y2="80" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-            <line x1="210" y1="0" x2="210" y2="160" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <rect width="420" height="160" fill="#efeee9"/>
+            <line x1="0" y1="80" x2="420" y2="80" stroke="rgba(28,27,25,0.04)" stroke-width="1"/>
+            <line x1="210" y1="0" x2="210" y2="160" stroke="rgba(28,27,25,0.04)" stroke-width="1"/>
             <!-- Road hints -->
             <line x1="60" y1="20" x2="360" y2="140" stroke="rgba(255,255,255,0.05)" stroke-width="1.5"/>
             <line x1="20" y1="100" x2="400" y2="60" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-            <line x1="180" y1="0" x2="180" y2="160" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <line x1="180" y1="0" x2="180" y2="160" stroke="rgba(28,27,25,0.04)" stroke-width="1"/>
             <!-- Coverage halos -->
             <circle cx="200" cy="85" r="30" fill="rgba(193,40,27,0.06)" stroke="none"/>
             <circle cx="280" cy="60" r="22" fill="rgba(193,40,27,0.06)" stroke="none"/>
@@ -852,11 +852,11 @@
             <circle cx="200" cy="85" r="16" fill="rgba(193,40,27,0.15)"/>
             <!-- Callout line -->
             <line x1="207" y1="79" x2="260" y2="40" stroke="rgba(193,40,27,0.5)" stroke-width="1" stroke-dasharray="3,2"/>
-            <rect x="248" y="26" width="96" height="28" rx="3" fill="#131920" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+            <rect x="248" y="26" width="96" height="28" rx="3" fill="#131920" stroke="rgba(28,27,25,0.1)" stroke-width="1"/>
             <text x="255" y="38" font-family="'DM Mono',monospace" font-size="7" fill="#C14040" letter-spacing="0.06em">FATAL CRASH</text>
-            <text x="255" y="48" font-family="'DM Sans',sans-serif" font-size="8" fill="#8A96A8">Central Ave · 2022</text>
+            <text x="255" y="48" font-family="'IBM Plex Sans',sans-serif" font-size="8" fill="#8a867c">Central Ave · 2022</text>
           </svg>
-          <div class="card-status status-live">● Live Demo</div>
+          <div class="card-status status-live">● Live Map</div>
         </div>
         <div class="card-body">
           <div class="card-type">Safety Analysis</div>
@@ -883,10 +883,10 @@
       <a href="./tip/index.html" class="demo-card blue reveal">
         <div class="card-preview">
           <svg class="preview-canvas" viewBox="0 0 420 160" preserveAspectRatio="xMidYMid slice">
-            <rect width="420" height="160" fill="#0E1520"/>
-            <line x1="0" y1="80" x2="420" y2="80" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <rect width="420" height="160" fill="#efeee9"/>
+            <line x1="0" y1="80" x2="420" y2="80" stroke="rgba(28,27,25,0.04)" stroke-width="1"/>
             <!-- Phase timeline bar -->
-            <rect x="30" y="115" width="360" height="12" rx="2" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+            <rect x="30" y="115" width="360" height="12" rx="2" fill="rgba(255,255,255,0.03)" stroke="rgba(28,27,25,0.06)" stroke-width="1"/>
             <rect x="30" y="115" width="100" height="12" rx="2" fill="rgba(42,157,92,0.5)"/>
             <rect x="132" y="115" width="75" height="12" fill="rgba(58,127,193,0.5)"/>
             <rect x="209" y="115" width="60" height="12" fill="rgba(232,184,75,0.4)"/>
@@ -902,14 +902,14 @@
             <line x1="250" y1="85" x2="380" y2="90" stroke="rgba(201,124,42,0.5)" stroke-width="2.5" stroke-linecap="round"/>
             <line x1="40"  y1="65" x2="70"  y2="75" stroke="rgba(42,157,92,0.55)" stroke-width="2.5" stroke-linecap="round"/>
             <!-- Popup -->
-            <rect x="190" y="20" width="140" height="38" rx="3" fill="#131920" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+            <rect x="190" y="20" width="140" height="38" rx="3" fill="#131920" stroke="rgba(28,27,25,0.1)" stroke-width="1"/>
             <circle cx="200" cy="34" r="3" fill="rgba(42,157,92,0.9)"/>
             <text x="207" y="31" font-family="'DM Mono',monospace" font-size="7" fill="#4ACA82" letter-spacing="0.05em">CONSTRUCTION</text>
-            <text x="207" y="42" font-family="'DM Sans',sans-serif" font-size="8" fill="#8A96A8">US-70 Widening · $4.2M</text>
+            <text x="207" y="42" font-family="'IBM Plex Sans',sans-serif" font-size="8" fill="#8a867c">US-70 Widening · $4.2M</text>
             <text x="207" y="52" font-family="'DM Mono',monospace" font-size="7" fill="#3D4F63">STBG · FY 2024</text>
             <line x1="195" y1="55" x2="150" y2="60" stroke="rgba(42,157,92,0.4)" stroke-width="1" stroke-dasharray="3,2"/>
           </svg>
-          <div class="card-status status-live">● Live Demo</div>
+          <div class="card-status status-live">● Live Map</div>
         </div>
         <div class="card-body">
           <div class="card-type">Program Management</div>
@@ -937,9 +937,9 @@
       <a href="./ocala-tip/index.html" class="demo-card green reveal">
         <div class="card-preview">
           <svg class="preview-canvas" viewBox="0 0 420 160" preserveAspectRatio="xMidYMid slice">
-            <rect width="420" height="160" fill="#0E1520"/>
-            <line x1="0" y1="80" x2="420" y2="80" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-            <line x1="210" y1="0" x2="210" y2="160" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <rect width="420" height="160" fill="#efeee9"/>
+            <line x1="0" y1="80" x2="420" y2="80" stroke="rgba(28,27,25,0.04)" stroke-width="1"/>
+            <line x1="210" y1="0" x2="210" y2="160" stroke="rgba(28,27,25,0.04)" stroke-width="1"/>
             <!-- Marion County boundary hint -->
             <path d="M75 28 L180 18 L295 42 L350 95 L310 135 L175 145 L62 118 Z" fill="rgba(42,157,92,0.06)" stroke="rgba(42,157,92,0.22)" stroke-width="1.5" stroke-dasharray="5,4"/>
             <!-- TIP corridors -->
@@ -950,15 +950,15 @@
             <!-- Point projects -->
             <circle cx="150" cy="80" r="5" fill="#2A9D5C" stroke="rgba(42,157,92,0.4)" stroke-width="1.5"/>
             <circle cx="240" cy="72" r="5" fill="#3A7FC1" stroke="rgba(58,127,193,0.4)" stroke-width="1.5"/>
-            <circle cx="318" cy="52" r="5" fill="#C9A84C" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+            <circle cx="318" cy="52" r="5" fill="#a8872f" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
             <!-- Popup -->
-            <rect x="198" y="24" width="150" height="42" rx="3" fill="#131920" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+            <rect x="198" y="24" width="150" height="42" rx="3" fill="#131920" stroke="rgba(28,27,25,0.1)" stroke-width="1"/>
             <text x="207" y="38" font-family="'DM Mono',monospace" font-size="7" fill="#2A9D5C" letter-spacing="0.05em">FY 2026-2030 TIP</text>
-            <text x="207" y="49" font-family="'DM Sans',sans-serif" font-size="8" fill="#8A96A8">45 mapped projects · Marion Co.</text>
+            <text x="207" y="49" font-family="'IBM Plex Sans',sans-serif" font-size="8" fill="#8a867c">45 mapped projects · Marion Co.</text>
             <text x="207" y="59" font-family="'DM Mono',monospace" font-size="7" fill="#3D4F63">Source: Ocala Marion TPO</text>
             <line x1="210" y1="66" x2="178" y2="80" stroke="rgba(42,157,92,0.4)" stroke-width="1" stroke-dasharray="3,2"/>
           </svg>
-          <div class="card-status status-live">● Live Demo</div>
+          <div class="card-status status-live">● Live Map</div>
         </div>
         <div class="card-body">
           <div class="card-type">Client Reference</div>
@@ -985,29 +985,29 @@
       <a href="./churches/index.html" class="demo-card gold reveal">
         <div class="card-preview">
           <svg class="preview-canvas" viewBox="0 0 420 160" preserveAspectRatio="xMidYMid slice">
-            <rect width="420" height="160" fill="#0E1520"/>
-            <line x1="0" y1="80" x2="420" y2="80" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-            <line x1="210" y1="0" x2="210" y2="160" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <rect width="420" height="160" fill="#efeee9"/>
+            <line x1="0" y1="80" x2="420" y2="80" stroke="rgba(28,27,25,0.04)" stroke-width="1"/>
+            <line x1="210" y1="0" x2="210" y2="160" stroke="rgba(28,27,25,0.04)" stroke-width="1"/>
             <!-- Hot Springs cluster -->
             <circle cx="205" cy="82" r="34" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.2)" stroke-width="1.5"/>
-            <circle cx="175" cy="70" r="6" fill="#C9A84C" stroke="rgba(232,192,96,0.4)" stroke-width="1.5"/>
+            <circle cx="175" cy="70" r="6" fill="#a8872f" stroke="rgba(232,192,96,0.4)" stroke-width="1.5"/>
             <circle cx="220" cy="62" r="5" fill="#3A7FC1" stroke="rgba(106,171,222,0.4)" stroke-width="1.5"/>
             <circle cx="240" cy="88" r="5" fill="#C1281B" stroke="rgba(193,40,27,0.4)" stroke-width="1.5"/>
             <circle cx="190" cy="95" r="5" fill="#8B6FD6" stroke="rgba(139,111,214,0.4)" stroke-width="1.5"/>
-            <circle cx="228" cy="102" r="4" fill="#C9A84C"/>
+            <circle cx="228" cy="102" r="4" fill="#a8872f"/>
             <circle cx="160" cy="88" r="4" fill="#2A9D8F"/>
-            <circle cx="255" cy="72" r="4" fill="#C9A84C"/>
+            <circle cx="255" cy="72" r="4" fill="#a8872f"/>
             <!-- Cluster badge -->
             <circle cx="205" cy="82" r="18" fill="rgba(201,168,76,0.15)"/>
-            <text x="205" y="86" font-family="'Syne',sans-serif" font-size="11" font-weight="800" fill="#E8C060" text-anchor="middle">101</text>
+            <text x="205" y="86" font-family="'IBM Plex Sans',sans-serif" font-size="11" font-weight="700" fill="#a8872f" text-anchor="middle">101</text>
             <!-- Popup -->
-            <rect x="248" y="24" width="148" height="48" rx="3" fill="#131920" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-            <text x="258" y="40" font-family="'DM Mono',monospace" font-size="7" fill="#E8C060" letter-spacing="0.05em">HOT SPRINGS, AR</text>
-            <text x="258" y="52" font-family="'DM Sans',sans-serif" font-size="8" fill="#8A96A8">101 churches · 2.7 per 1,000</text>
+            <rect x="248" y="24" width="148" height="48" rx="3" fill="#131920" stroke="rgba(28,27,25,0.1)" stroke-width="1"/>
+            <text x="258" y="40" font-family="'DM Mono',monospace" font-size="7" fill="#a8872f" letter-spacing="0.05em">HOT SPRINGS, AR</text>
+            <text x="258" y="52" font-family="'IBM Plex Sans',sans-serif" font-size="8" fill="#8a867c">101 churches · 2.7 per 1,000</text>
             <text x="258" y="64" font-family="'DM Mono',monospace" font-size="7" fill="#3D4F63">OSM + assessor cross-ref</text>
             <line x1="245" y1="55" x2="228" y2="72" stroke="rgba(201,168,76,0.4)" stroke-width="1" stroke-dasharray="3,2"/>
           </svg>
-          <div class="card-status status-live">● Live Demo</div>
+          <div class="card-status status-live">● Live Map</div>
         </div>
         <div class="card-body">
           <div class="card-type">Civic Data · Documentary</div>
@@ -1034,27 +1034,27 @@
       <article class="demo-card gold reveal disabled" aria-disabled="true">
         <div class="card-preview">
           <svg class="preview-canvas" viewBox="0 0 420 160" preserveAspectRatio="xMidYMid slice">
-            <rect width="420" height="160" fill="#0E1520"/>
-            <line x1="0" y1="80" x2="420" y2="80" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-            <line x1="210" y1="0" x2="210" y2="160" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <rect width="420" height="160" fill="#efeee9"/>
+            <line x1="0" y1="80" x2="420" y2="80" stroke="rgba(28,27,25,0.04)" stroke-width="1"/>
+            <line x1="210" y1="0" x2="210" y2="160" stroke="rgba(28,27,25,0.04)" stroke-width="1"/>
             <!-- Dashboard panels -->
             <rect x="28" y="24" width="112" height="52" rx="4" fill="rgba(201,168,76,0.09)" stroke="rgba(201,168,76,0.22)" stroke-width="1"/>
             <rect x="156" y="24" width="96" height="52" rx="4" fill="rgba(58,127,193,0.09)" stroke="rgba(58,127,193,0.18)" stroke-width="1"/>
             <rect x="268" y="24" width="124" height="52" rx="4" fill="rgba(42,157,92,0.08)" stroke="rgba(42,157,92,0.18)" stroke-width="1"/>
-            <text x="42" y="48" font-family="'Syne',sans-serif" font-size="22" font-weight="800" fill="#C9A84C">42</text>
-            <text x="42" y="62" font-family="'DM Mono',monospace" font-size="7" fill="#8A96A8" letter-spacing="0.05em">ACTIVE ITEMS</text>
+            <text x="42" y="48" font-family="'IBM Plex Sans',sans-serif" font-size="22" font-weight="700" fill="#a8872f">42</text>
+            <text x="42" y="62" font-family="'DM Mono',monospace" font-size="7" fill="#8a867c" letter-spacing="0.05em">ACTIVE ITEMS</text>
             <path d="M174 62 L190 44 L204 52 L224 36" fill="none" stroke="#3A7FC1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
             <rect x="288" y="39" width="72" height="6" rx="3" fill="rgba(42,157,92,0.75)"/>
             <rect x="288" y="53" width="48" height="6" rx="3" fill="rgba(42,157,92,0.45)"/>
             <!-- Webhook/data flow -->
-            <rect x="44" y="104" width="76" height="26" rx="3" fill="#131920" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-            <text x="56" y="120" font-family="'DM Mono',monospace" font-size="8" fill="#8A96A8">SHEET</text>
+            <rect x="44" y="104" width="76" height="26" rx="3" fill="#131920" stroke="rgba(28,27,25,0.1)" stroke-width="1"/>
+            <text x="56" y="120" font-family="'DM Mono',monospace" font-size="8" fill="#8a867c">SHEET</text>
             <line x1="124" y1="117" x2="182" y2="117" stroke="rgba(201,168,76,0.5)" stroke-width="1.5" stroke-dasharray="4,3"/>
             <rect x="186" y="104" width="82" height="26" rx="3" fill="#131920" stroke="rgba(201,168,76,0.22)" stroke-width="1"/>
-            <text x="202" y="120" font-family="'DM Mono',monospace" font-size="8" fill="#C9A84C">WEBHOOK</text>
+            <text x="202" y="120" font-family="'DM Mono',monospace" font-size="8" fill="#a8872f">WEBHOOK</text>
             <line x1="272" y1="117" x2="330" y2="117" stroke="rgba(201,168,76,0.5)" stroke-width="1.5" stroke-dasharray="4,3"/>
-            <rect x="334" y="104" width="52" height="26" rx="3" fill="#131920" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-            <text x="345" y="120" font-family="'DM Mono',monospace" font-size="8" fill="#8A96A8">LIVE</text>
+            <rect x="334" y="104" width="52" height="26" rx="3" fill="#131920" stroke="rgba(28,27,25,0.1)" stroke-width="1"/>
+            <text x="345" y="120" font-family="'DM Mono',monospace" font-size="8" fill="#8a867c">LIVE</text>
           </svg>
           <div class="card-status status-soon">◎ Custom Fit</div>
         </div>
