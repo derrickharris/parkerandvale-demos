@@ -25,7 +25,7 @@ Get coordinates from Google Maps (right-click → copy coordinates) or your phon
 
 ## Update an existing church
 
-Use its `church_id` (from the map popup), `osm_id`, or `assessor_objectid` (most stable across rebuilds):
+Prefer `osm_id` or `assessor_objectid` (most stable across rebuilds). `church_id` values (`hs-0001`…) are geographic — numbered northwest → south — and can shift when the list changes:
 
 ```csv
 church_id,osm_id,assessor_objectid,name,denomination,denomination_raw,year_founded,address,lat,lon,shot_status,photo_url,notes

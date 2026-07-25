@@ -505,16 +505,44 @@ def make_osm_records(payload: dict[str, Any]) -> list[dict[str, Any]]:
     return records
 
 
+# Assessor \bCHRISTIAN\b matches often hit personal names ("FREEMAN, CHRISTIAN").
+INSTITUTIONAL_NAME_PATTERN = re.compile(
+    r"\b(CHURCH|CHAPEL|MINISTRY|MINISTRIES|FELLOWSHIP|TEMPLE|CONGREGATION|"
+    r"PARISH|CATHEDRAL|COLLEGE|DIOCESE|ASSOC|ASSOCIATION|BAPTIST|METHODIST|"
+    r"CATHOLIC|PENTECOSTAL|LUTHERAN|PRESBYTERIAN|EPISCOPAL|NAZARENE|"
+    r"TABERNACLE|MISSION|ASSEMBLY|SYNAGOGUE)\b",
+    re.IGNORECASE,
+)
+PERSON_CHRISTIAN_PATTERN = re.compile(
+    r"(^CHRISTIAN,\s*[A-Z])|"
+    r"(^[^,]+,\s*.*\bCHRISTIAN\b)",
+    re.IGNORECASE,
+)
+
+
+def is_person_name_christian(owner: str) -> bool:
+    text = (owner or "").strip()
+    if not text or not re.search(r"\bCHRISTIAN\b", text, re.IGNORECASE):
+        return False
+    if INSTITUTIONAL_NAME_PATTERN.search(text):
+        return False
+    return bool(PERSON_CHRISTIAN_PATTERN.search(text))
+
+
 def make_assessor_records(payload: dict[str, Any]) -> list[dict[str, Any]]:
     records = []
     for item in payload.get("candidates", []):
+        name = item.get("name", "Unnamed Parcel")
+        owner = item.get("ownername") or name
+        if is_person_name_christian(owner) or is_person_name_christian(name):
+            continue
         records.append({
             "source_kind": "assessor",
             "osm_id": None,
             "osm_type": None,
             "assessor_objectid": item.get("assessor_objectid"),
             "parcelid": item.get("parcelid", ""),
-            "name": item.get("name", "Unnamed Parcel"),
+            "name": name,
             "denomination_raw": "",
             "address": item.get("address", ""),
             "addr_city": item.get("adrcity", ""),
@@ -686,9 +714,18 @@ def compute_confidence(record: dict[str, Any]) -> tuple[str, list[str], bool]:
     return confidence, sources, confidence != "high"
 
 
+def geo_sort_key(record: dict[str, Any]) -> tuple[float, float, str]:
+    """NW → south numbering: north first, then west → east, then name."""
+    return (
+        -float(record["lat"]),
+        float(record["lon"]),
+        normalize_key(record.get("name", "")),
+    )
+
+
 def finalize_records(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
     finalized = []
-    for idx, record in enumerate(sorted(records, key=lambda r: normalize_key(r.get("name", ""))), start=1):
+    for idx, record in enumerate(sorted(records, key=geo_sort_key), start=1):
         church_id = f"hs-{idx:04d}"
         denomination = record.get("denomination") or standardize_denomination(
             record.get("denomination_raw", ""),
@@ -859,6 +896,8 @@ def main() -> None:
         "notes": (
             "OSM is the mapped seed. Assessor-only parcels are campus-collapsed "
             f"(within {int(CAMPUS_NETWORK_M)}m with similar names) before inclusion. "
+            "church_id values (hs-####) are geographic: northwest → south "
+            "(sort by -lat, then lon). "
             "Field-review exclusions live in data/raw/overrides.csv. "
             "Add manual churches in enrichment.csv with name, lat, lon. "
             "Optional SOS nonprofits live in data/raw/sos_churches.json."

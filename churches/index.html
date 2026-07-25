@@ -541,7 +541,7 @@ function getFilteredChurches() {
     const haystack = [church.name, church.address, church.denomination, church.church_id].join(" ").toLowerCase();
     if (search && !haystack.includes(search)) return false;
     return true;
-  });
+  }).sort((a, b) => String(a.church_id).localeCompare(String(b.church_id)));
 }
 
 function updateStats(churches) {

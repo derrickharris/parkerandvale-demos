@@ -24,6 +24,31 @@ CHURCH_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
+# Assessor often lists people as "LAST, FIRST". Matching \bCHRISTIAN\b alone
+# catches surnames/given names that are not congregations.
+INSTITUTIONAL_PATTERN = re.compile(
+    r"\b(CHURCH|CHAPEL|MINISTRY|MINISTRIES|FELLOWSHIP|TEMPLE|CONGREGATION|"
+    r"PARISH|CATHEDRAL|COLLEGE|DIOCESE|ASSOC|ASSOCIATION|BAPTIST|METHODIST|"
+    r"CATHOLIC|PENTECOSTAL|LUTHERAN|PRESBYTERIAN|EPISCOPAL|NAZARENE|"
+    r"TABERNACLE|MISSION|ASSEMBLY|SYNAGOGUE)\b",
+    re.IGNORECASE,
+)
+PERSON_CHRISTIAN_PATTERN = re.compile(
+    r"(^CHRISTIAN,\s*[A-Z])|"  # surname Christian: "CHRISTIAN, SAMANTHA"
+    r"(^[^,]+,\s*.*\bCHRISTIAN\b)",  # given/middle: "FREEMAN, CHRISTIAN"
+    re.IGNORECASE,
+)
+
+
+def is_person_name_christian(owner: str) -> bool:
+    """True when CHRISTIAN looks like a personal name, not an institution."""
+    text = (owner or "").strip()
+    if not text or not re.search(r"\bCHRISTIAN\b", text, re.IGNORECASE):
+        return False
+    if INSTITUTIONAL_PATTERN.search(text):
+        return False
+    return bool(PERSON_CHRISTIAN_PATTERN.search(text))
+
 
 def build_where_clause() -> str:
     owner_checks = " OR ".join(
@@ -88,6 +113,8 @@ def parse_feature(feature: dict) -> dict | None:
     legal = attrs.get("parcellgl") or ""
     haystack = f"{owner} {legal}"
     if not CHURCH_PATTERN.search(haystack):
+        return None
+    if is_person_name_christian(owner):
         return None
 
     geometry = feature.get("geometry") or {}
