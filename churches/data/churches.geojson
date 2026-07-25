@@ -2647,12 +2647,47 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -93.0780101,
+          34.4888025
+        ]
+      },
+      "properties": {
+        "church_id": "hs-0075",
+        "osm_id": null,
+        "osm_type": null,
+        "assessor_objectid": null,
+        "parcelid": "",
+        "name": "Faith Point Ministries",
+        "denomination": "Nondenominational",
+        "denomination_raw": "",
+        "year_founded": null,
+        "address": "700 Richard Street",
+        "addr_city": "Hot Springs",
+        "website": "",
+        "phone": "",
+        "wikidata": "",
+        "confidence": "low",
+        "sources": [
+          "manual"
+        ],
+        "needs_verification": true,
+        "parcel_count": 1,
+        "shot_status": "pending",
+        "photo_url": null,
+        "notes": "Field verified addition; parcel centroid at 700 Richard St"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -93.06005805598211,
           34.48804818682049
         ]
       },
       "properties": {
-        "church_id": "hs-0075",
+        "church_id": "hs-0076",
         "osm_id": 359023405,
         "osm_type": "node",
         "assessor_objectid": 1598364,
@@ -2689,7 +2724,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0076",
+        "church_id": "hs-0077",
         "osm_id": 359023384,
         "osm_type": "node",
         "assessor_objectid": null,
@@ -2725,7 +2760,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0077",
+        "church_id": "hs-0078",
         "osm_id": null,
         "osm_type": null,
         "assessor_objectid": 1602757,
@@ -2760,7 +2795,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0078",
+        "church_id": "hs-0079",
         "osm_id": null,
         "osm_type": null,
         "assessor_objectid": null,
@@ -2795,7 +2830,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0079",
+        "church_id": "hs-0080",
         "osm_id": null,
         "osm_type": null,
         "assessor_objectid": 1602885,
@@ -2830,7 +2865,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0080",
+        "church_id": "hs-0081",
         "osm_id": 5862064627,
         "osm_type": "node",
         "assessor_objectid": 1609090,
@@ -2867,7 +2902,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0081",
+        "church_id": "hs-0082",
         "osm_id": 359023446,
         "osm_type": "node",
         "assessor_objectid": 1608627,
@@ -2904,7 +2939,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0082",
+        "church_id": "hs-0083",
         "osm_id": null,
         "osm_type": null,
         "assessor_objectid": 1602773,
@@ -2939,7 +2974,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0083",
+        "church_id": "hs-0084",
         "osm_id": null,
         "osm_type": null,
         "assessor_objectid": 1598006,
@@ -2975,7 +3010,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0084",
+        "church_id": "hs-0085",
         "osm_id": null,
         "osm_type": null,
         "assessor_objectid": 1602956,
@@ -3010,7 +3045,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0085",
+        "church_id": "hs-0086",
         "osm_id": null,
         "osm_type": null,
         "assessor_objectid": 1611507,
@@ -3046,7 +3081,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0086",
+        "church_id": "hs-0087",
         "osm_id": null,
         "osm_type": null,
         "assessor_objectid": 1600508,
@@ -3082,7 +3117,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0087",
+        "church_id": "hs-0088",
         "osm_id": 952737847,
         "osm_type": "way",
         "assessor_objectid": null,
@@ -3118,7 +3153,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0088",
+        "church_id": "hs-0089",
         "osm_id": null,
         "osm_type": null,
         "assessor_objectid": 1600970,
@@ -3154,7 +3189,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0089",
+        "church_id": "hs-0090",
         "osm_id": 358974154,
         "osm_type": "node",
         "assessor_objectid": 1602911,
@@ -3190,7 +3225,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0090",
+        "church_id": "hs-0091",
         "osm_id": null,
         "osm_type": null,
         "assessor_objectid": null,
@@ -3225,7 +3260,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0091",
+        "church_id": "hs-0092",
         "osm_id": null,
         "osm_type": null,
         "assessor_objectid": 1600586,
@@ -3260,7 +3295,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0092",
+        "church_id": "hs-0093",
         "osm_id": null,
         "osm_type": null,
         "assessor_objectid": 1600599,
@@ -3295,7 +3330,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0093",
+        "church_id": "hs-0094",
         "osm_id": 815485041,
         "osm_type": "way",
         "assessor_objectid": null,
@@ -3330,7 +3365,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0094",
+        "church_id": "hs-0095",
         "osm_id": null,
         "osm_type": null,
         "assessor_objectid": 1610699,
@@ -3366,7 +3401,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0095",
+        "church_id": "hs-0096",
         "osm_id": null,
         "osm_type": null,
         "assessor_objectid": 1602974,
@@ -3402,7 +3437,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0096",
+        "church_id": "hs-0097",
         "osm_id": null,
         "osm_type": null,
         "assessor_objectid": 1603986,
@@ -3437,7 +3472,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0097",
+        "church_id": "hs-0098",
         "osm_id": null,
         "osm_type": null,
         "assessor_objectid": null,
@@ -3472,7 +3507,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0098",
+        "church_id": "hs-0099",
         "osm_id": null,
         "osm_type": null,
         "assessor_objectid": 1601789,
@@ -3507,7 +3542,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0099",
+        "church_id": "hs-0100",
         "osm_id": null,
         "osm_type": null,
         "assessor_objectid": 1606617,
@@ -3543,7 +3578,7 @@
         ]
       },
       "properties": {
-        "church_id": "hs-0100",
+        "church_id": "hs-0101",
         "osm_id": null,
         "osm_type": null,
         "assessor_objectid": 1601807,
