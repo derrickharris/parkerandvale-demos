@@ -60,9 +60,32 @@
       box-shadow: 4px 0 24px rgba(28, 36, 48, 0.06);
     }
 
-    #sidebar.collapsed { width: 0; min-width: 0; border-right-color: transparent; box-shadow: none; }
+    #sidebar.collapsed { width: 0; min-width: 0; border-right-color: transparent; box-shadow: none; overflow: hidden; }
 
-    .sidebar-brand { padding: 20px 24px 18px; border-bottom: 1px solid var(--rule); flex-shrink: 0; }
+    .sidebar-brand {
+      padding: 20px 24px 18px;
+      border-bottom: 1px solid var(--rule);
+      flex-shrink: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .sidebar-brand-copy { min-width: 0; flex: 1; }
+    .sidebar-close {
+      display: none;
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--rule);
+      background: var(--ink);
+      border-radius: var(--radius);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-secondary);
+    }
+    .sidebar-close:hover { color: var(--text-primary); background: #fff; }
     .brand-eyebrow { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px; }
     .brand-name { font-family: var(--font-display); font-size: 18px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
     .brand-name span { color: var(--gold); }
@@ -173,13 +196,38 @@
       backdrop-filter: blur(8px);
     }
     #sidebar-toggle {
-      width: 34px; height: 34px;
+      min-width: 34px;
+      height: 34px;
+      padding: 0 10px;
       border: 1px solid var(--rule);
       background: var(--ink);
       border-radius: var(--radius);
-      display: flex; align-items: center; justify-content: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       cursor: pointer;
       color: var(--text-secondary);
+      flex-shrink: 0;
+    }
+    #sidebar-toggle:hover { color: var(--text-primary); background: #fff; }
+    #sidebar-toggle .toggle-label {
+      display: none;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    #sidebar-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 36, 48, 0.45);
+      z-index: 1050;
+      border: none;
+      padding: 0;
+      cursor: pointer;
     }
     .topbar-title { font-family: var(--font-display); font-size: 14px; font-weight: 700; }
     .topbar-period { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; }
@@ -235,20 +283,47 @@
     .leaflet-control-attribution { background: rgba(255,255,255,0.8) !important; color: var(--text-dim) !important; font-size: 9px !important; }
 
     @media (max-width: 760px) {
-      #sidebar { position: absolute; top: 0; left: 0; height: 100%; z-index: 1100; box-shadow: 4px 0 24px rgba(0,0,0,0.18); }
-      #sidebar.collapsed { width: var(--sidebar-w); min-width: var(--sidebar-w); transform: translateX(-100%); }
+      #sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: min(100vw, var(--sidebar-w));
+        min-width: min(100vw, var(--sidebar-w));
+        height: 100%;
+        z-index: 1100;
+        box-shadow: 4px 0 24px rgba(0,0,0,0.18);
+        transform: translateX(0);
+      }
+      #sidebar.collapsed {
+        width: min(100vw, var(--sidebar-w));
+        min-width: min(100vw, var(--sidebar-w));
+        transform: translateX(-105%);
+        pointer-events: none;
+      }
+      #sidebar-backdrop.visible { display: block; }
+      .sidebar-close { display: inline-flex; }
+      #sidebar-toggle .toggle-label { display: inline; }
       #map-wrap { width: 100%; }
       .topbar-period { display: none; }
+      .topbar-demo-badge { display: none; }
     }
   </style>
 </head>
 <body>
 <div id="app">
-  <aside id="sidebar">
+  <button id="sidebar-backdrop" type="button" aria-label="Close panel" onclick="setSidebarOpen(false)"></button>
+  <aside id="sidebar" class="collapsed" aria-label="Church filters and list">
     <div class="sidebar-brand">
-      <div class="brand-eyebrow">Civic Data · Garland County</div>
-      <div class="brand-name">Hot Springs <span>Church Map</span></div>
-      <div class="brand-subtitle">Every mapped Christian congregation inside Hot Springs city limits — with denomination filters, per-capita stats, and a documentary fieldwork tracker.</div>
+      <div class="sidebar-brand-copy">
+        <div class="brand-eyebrow">Civic Data · Garland County</div>
+        <div class="brand-name">Hot Springs <span>Church Map</span></div>
+        <div class="brand-subtitle">Every mapped Christian congregation inside Hot Springs city limits — with denomination filters, per-capita stats, and a documentary fieldwork tracker.</div>
+      </div>
+      <button class="sidebar-close" type="button" onclick="setSidebarOpen(false)" title="Close panel" aria-label="Close panel">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/>
+        </svg>
+      </button>
     </div>
 
     <div class="sidebar-body">
@@ -329,10 +404,11 @@
 
   <div id="map-wrap">
     <div id="topbar">
-      <button id="sidebar-toggle" onclick="toggleSidebar()" title="Toggle sidebar" aria-label="Toggle sidebar">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round" stroke="currentColor">
+      <button id="sidebar-toggle" type="button" onclick="toggleSidebar()" title="Toggle list panel" aria-label="Toggle list panel" aria-controls="sidebar" aria-expanded="false">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round" stroke="currentColor" aria-hidden="true">
           <line x1="2" y1="4" x2="14" y2="4"/><line x1="2" y1="8" x2="14" y2="8"/><line x1="2" y1="12" x2="14" y2="12"/>
         </svg>
+        <span class="toggle-label" id="sidebar-toggle-label">List</span>
       </button>
       <div>
         <div class="topbar-title">Hot Springs Church Map</div>
@@ -617,6 +693,7 @@ function selectChurch(id, zoomTo) {
   renderChurchList(getFilteredChurches());
   const card = document.querySelector(`.church-card[data-church-id="${id}"]`);
   if (card) card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  if (zoomTo && isMobileLayout()) setSidebarOpen(false);
 }
 
 function applyFilters(resetView = true) {
@@ -630,9 +707,30 @@ function applyFilters(resetView = true) {
   renderChurchList(churches);
 }
 
-function toggleSidebar() {
-  document.getElementById("sidebar").classList.toggle("collapsed");
+function isMobileLayout() {
+  return window.matchMedia("(max-width: 760px)").matches;
+}
+
+function syncSidebarChrome(open) {
+  const toggle = document.getElementById("sidebar-toggle");
+  const label = document.getElementById("sidebar-toggle-label");
+  const backdrop = document.getElementById("sidebar-backdrop");
+  if (toggle) toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  if (label) label.textContent = open ? "Map" : "List";
+  if (backdrop) backdrop.classList.toggle("visible", open && isMobileLayout());
+  document.body.style.overflow = open && isMobileLayout() ? "hidden" : "";
+}
+
+function setSidebarOpen(open) {
+  const sidebar = document.getElementById("sidebar");
+  sidebar.classList.toggle("collapsed", !open);
+  syncSidebarChrome(open);
   setTimeout(() => map.invalidateSize(), 220);
+}
+
+function toggleSidebar() {
+  const open = document.getElementById("sidebar").classList.contains("collapsed");
+  setSidebarOpen(open);
 }
 
 async function loadChurchData() {
@@ -669,8 +767,14 @@ async function loadChurchData() {
 
 async function initDashboard() {
   await loadChurchData();
+  setSidebarOpen(!isMobileLayout());
   applyFilters();
 }
+
+window.matchMedia("(max-width: 760px)").addEventListener("change", (event) => {
+  if (event.matches) setSidebarOpen(false);
+  else setSidebarOpen(true);
+});
 
 initDashboard();
 </script>
