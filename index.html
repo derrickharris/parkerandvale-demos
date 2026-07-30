@@ -9,54 +9,39 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared/theme.css">
+  <script>
+    (() => {
+      const stored = localStorage.getItem('pv-theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = stored === 'light' || stored === 'dark' ? stored : prefersDark ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
 
   <style>
-    /* ── Design tokens ─────────────────────────────────────── */
+    /* ── Hub-specific tokens (brand tokens live in shared/theme.css) ── */
     :root {
-      --ink:        #e2e4df;
-      --ink2:       #f1f2ee;
-      --ink3:       #d8dbd4;
-      --slate:      #d8dbd4;
-      --slate2:     #cfd3cb;
-
-      --gold:       #3d5c45;  /* moss — aligned with parkervale.com */
-      --gold-bright:#4a6e54;
-      --gold-dim:   rgba(61,92,69,0.10);
-      --gold-rule:  rgba(61,92,69,0.22);
-
-      --red:        #C1281B;
+      --gold-rule:  var(--line-strong);
       --red-dim:    rgba(193,40,27,0.10);
-      --teal:       #2A9D8F;
       --teal-dim:   rgba(42,157,143,0.10);
-      --blue:       #3d6fa8;
       --blue-dim:   rgba(61,111,168,0.10);
-      --amber:      #C97C2A;
       --amber-dim:  rgba(201,124,42,0.10);
-      --green:      #3f7d5a;
       --green-dim:  rgba(63,125,90,0.10);
-
-      --txt:        #1a211c;
-      --txt2:       #4a5248;
-      --txt3:       #6e776f;
-      --on-gold:    #f3f4f0;
-
-      --fw: 'Fraunces', 'Times New Roman', serif;
-      --fb: 'Source Sans 3', 'Segoe UI', sans-serif;
-      --fm: 'DM Mono', 'Courier New', monospace;
-
-      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --blue:       #3d6fa8;
+      --green:      #3f7d5a;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; color-scheme: light; }
+    html { scroll-behavior: smooth; color-scheme: light dark; }
 
     body {
       font-family: var(--fb);
       background-color: var(--ink);
       background-image:
-        linear-gradient(rgba(61, 92, 69, 0.14) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(61, 92, 69, 0.14) 1px, transparent 1px);
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
       background-size: 48px 48px;
       background-attachment: fixed;
       color: var(--txt);
@@ -76,6 +61,10 @@
       mix-blend-mode: multiply;
     }
 
+    [data-theme="dark"] body::before {
+      mix-blend-mode: soft-light;
+    }
+
     /* ── Grid background ───────────────────────────────────── */
     body::after {
       display: none;
@@ -86,7 +75,7 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       height: 58px;
-      background: rgba(226, 228, 223, 0.92);
+      background: var(--header-bg);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--gold-rule);
@@ -129,6 +118,13 @@
       gap: 24px;
     }
 
+    nav .theme-toggle {
+      color: var(--txt2);
+    }
+    nav .theme-toggle:hover {
+      color: var(--txt);
+    }
+
     .nav-link {
       font-size: 12px;
       color: var(--txt2);
@@ -151,7 +147,7 @@
       transition: all 150ms var(--ease);
     }
     .nav-cta:hover {
-      background: rgba(61,92,69,0.14);
+      background: var(--accent-soft);
       color: var(--gold-bright);
     }
 
@@ -251,14 +247,14 @@
     .btn-primary:hover {
       background: var(--gold-bright);
       transform: translateY(-1px);
-      box-shadow: 0 4px 18px rgba(168,135,47,0.24);
+      box-shadow: 0 4px 18px var(--accent-soft);
     }
 
     .btn-ghost {
       padding: 11px 24px;
       background: transparent;
       color: var(--txt2);
-      border: 1px solid rgba(28,27,25,0.08);
+      border: 1px solid var(--rule);
       border-radius: 4px;
       font-family: var(--fw);
       font-size: 13px;
@@ -281,7 +277,7 @@
       padding: 0 40px;
       display: flex;
       gap: 0;
-      border: 1px solid rgba(28,27,25,0.06);
+      border: 1px solid var(--rule);
       border-radius: 6px;
       overflow: hidden;
       animation: fadeup 0.5s 0.26s ease both;
@@ -290,7 +286,7 @@
     .stat-item {
       flex: 1;
       padding: 20px 24px;
-      border-right: 1px solid rgba(28,27,25,0.06);
+      border-right: 1px solid var(--rule);
     }
     .stat-item:last-child { border-right: none; }
 
@@ -337,7 +333,7 @@
     .section-rule {
       flex: 1;
       height: 1px;
-      background: rgba(255,255,255,0.05);
+      background: var(--accent-soft);
     }
 
     /* ── Demo cards ────────────────────────────────────────── */
@@ -348,9 +344,9 @@
     }
 
     .demo-card {
-      border: 1px solid rgba(28,27,25,0.08);
+      border: 1px solid var(--rule);
       background: var(--ink2);
-      border: 1px solid rgba(28,27,25,0.06);
+      border: 1px solid var(--rule);
       border-radius: 6px;
       overflow: hidden;
       text-decoration: none;
@@ -361,9 +357,9 @@
     }
 
     .demo-card:hover {
-      border-color: rgba(28,27,25,0.1);
+      border-color: var(--rule-light);
       transform: translateY(-3px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+      box-shadow: var(--shadow-soft);
     }
 
     .demo-card.disabled {
@@ -480,8 +476,8 @@
 
     .tag {
       padding: 3px 8px;
-      background: rgba(28,27,25,0.04);
-      border: 1px solid rgba(255,255,255,0.07);
+      background: var(--accent-soft);
+      border: 1px solid var(--rule);
       border-radius: 3px;
       font-family: var(--fm);
       font-size: 9px;
@@ -494,7 +490,7 @@
       align-items: center;
       justify-content: space-between;
       padding-top: 14px;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      border-top: 1px solid var(--rule);
     }
 
     .card-data-source {
@@ -507,7 +503,7 @@
     .card-arrow {
       width: 28px; height: 28px;
       border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid var(--rule);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -516,7 +512,7 @@
 
     .demo-card:hover .card-arrow {
       border-color: var(--gold-rule);
-      background: rgba(255,255,255,0.05);
+      background: var(--accent-soft);
     }
 
     .demo-card.disabled .card-arrow {
@@ -535,8 +531,8 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.05);
+      background: var(--accent-soft);
+      border: 1px solid var(--rule);
       border-radius: 6px;
       overflow: hidden;
     }
@@ -579,7 +575,7 @@
 
     .service-card {
       background: var(--ink2);
-      border: 1px solid rgba(28,27,25,0.06);
+      border: 1px solid var(--rule);
       border-radius: 6px;
       padding: 22px 20px;
     }
@@ -666,7 +662,7 @@
       top: -40px; right: -40px;
       width: 200px; height: 200px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(61,92,69,0.10) 0%, transparent 70%);
+      background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -708,7 +704,7 @@
     footer {
       position: relative;
       z-index: 1;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      border-top: 1px solid var(--rule);
       padding: 28px 40px;
       display: flex;
       align-items: center;
@@ -754,7 +750,7 @@
       .nav-right .nav-link { display: none; }
       .hero { padding: 110px 20px 60px; }
       .stats-bar { flex-direction: column; padding: 0 20px; }
-      .stat-item { border-right: none; border-bottom: 1px solid rgba(28,27,25,0.06); }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--rule); }
       .stat-item:last-child { border-bottom: none; }
       section { padding: 0 20px 60px; }
       .demo-grid { grid-template-columns: 1fr; }
@@ -775,6 +771,7 @@
     <div class="nav-sep"></div>
     <div class="nav-section">Live Maps</div>
     <div class="nav-right">
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">Theme</button>
       <a href="https://parkerandvale.com" class="nav-link">Main Site</a>
       <a href="https://parkerandvale.com/services" class="nav-link">Services</a>
       <a href="mailto:info@parkerandvale.com" class="nav-cta">Contact Us</a>
@@ -1181,6 +1178,7 @@
     <div class="footer-note">Transportation Planning · Infrastructure Storytelling · Hot Springs, AR</div>
   </footer>
 
+  <script src="shared/theme.js"></script>
   <script>
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');

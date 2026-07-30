@@ -1,0 +1,139 @@
+/* Parker & Vale demos — shared theme (aligned with parkervale.com) */
+
+:root {
+  color-scheme: light dark;
+
+  --bg: #e2e4df;
+  --bg-elevated: #f1f2ee;
+  --bg-deep: #1a211c;
+  --ink-brand: #1a211c;
+  --text: #1a211c;
+  --text-muted: #4a5248;
+  --text-faint: #6e776f;
+  --line: rgba(26, 33, 28, 0.12);
+  --line-strong: rgba(26, 33, 28, 0.22);
+  --accent: #3d5c45;
+  --accent-soft: rgba(61, 92, 69, 0.12);
+  --field: #7a6248;
+  --on-dark: #e2e4df;
+  --on-dark-muted: rgba(226, 228, 223, 0.72);
+  --grid: rgba(61, 92, 69, 0.07);
+  --noise: 0.18;
+  --header-bg: rgba(226, 228, 223, 0.9);
+  --shadow-soft: 0 18px 50px rgba(26, 33, 28, 0.08);
+  --wrap: 1120px;
+  --wrap-narrow: 720px;
+  --font-display: "Fraunces", "Times New Roman", serif;
+  --font-body: "Source Sans 3", "Segoe UI", sans-serif;
+  --font-sans: "Source Sans 3", "Segoe UI", sans-serif;
+  --font-mono: "DM Mono", "Courier New", monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Demo aliases (dashboard chrome) */
+  --ink: var(--bg);
+  --ink-2: var(--bg-elevated);
+  --ink-3: #d8dbd4;
+  --slate: #cfd3cb;
+  --text-primary: var(--text);
+  --text-secondary: var(--text-muted);
+  --text-dim: var(--text-faint);
+  --rule: var(--line);
+  --rule-light: var(--line-strong);
+  --gold: var(--accent);
+  --gold-light: #4a6e54;
+  --gold-bright: #4a6e54;
+  --gold-dim: var(--accent-soft);
+  --on-gold: #f3f4f0;
+  --surface: #ffffff;
+  --surface-muted: rgba(255, 255, 255, 0.94);
+  --map-bg: #dfe6ee;
+  --shadow: 0 8px 28px rgba(26, 33, 28, 0.12);
+  --radius: 6px;
+  --transition: 200ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Hub aliases */
+  --ink2: var(--bg-elevated);
+  --ink3: var(--ink-3);
+  --slate2: #cfd3cb;
+  --txt: var(--text);
+  --txt2: var(--text-muted);
+  --txt3: var(--text-faint);
+  --fw: var(--font-display);
+  --fb: var(--font-body);
+  --fm: var(--font-mono);
+
+  /* Semantic / data accents (stable across themes) */
+  --blue: #2b6ca8;
+  --blue-light: #4a8fc4;
+  --green: #1f7a48;
+  --red: #b32218;
+  --red-light: #e8453a;
+  --purple: #6f58b8;
+  --amber: #b06b1e;
+  --teal: #2a9d8f;
+}
+
+[data-theme="dark"] {
+  --bg: #141916;
+  --bg-elevated: #1a211c;
+  --bg-deep: #0e1210;
+  --ink-brand: #e2e4df;
+  --text: #d8dbd4;
+  --text-muted: #a3aba4;
+  --text-faint: #7a847c;
+  --line: rgba(226, 228, 223, 0.1);
+  --line-strong: rgba(226, 228, 223, 0.2);
+  --accent: #8faf97;
+  --accent-soft: rgba(143, 175, 151, 0.14);
+  --field: #c4a882;
+  --on-dark: #e2e4df;
+  --on-dark-muted: rgba(226, 228, 223, 0.7);
+  --grid: rgba(143, 175, 151, 0.05);
+  --noise: 0.14;
+  --header-bg: rgba(20, 25, 22, 0.9);
+  --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.35);
+
+  --ink: var(--bg);
+  --ink-2: var(--bg-elevated);
+  --ink-3: #242b26;
+  --ink2: var(--bg-elevated);
+  --ink3: var(--ink-3);
+  --slate: #2c3530;
+  --slate2: #2c3530;
+  --gold-light: #a8c4ae;
+  --gold-bright: #a8c4ae;
+  --gold-dim: var(--accent-soft);
+  --on-gold: #141916;
+  --surface: #1a211c;
+  --surface-muted: rgba(26, 33, 28, 0.94);
+  --map-bg: #1a211c;
+  --shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+
+.theme-toggle {
+  appearance: none;
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: var(--radius);
+  color: inherit;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.65rem;
+  opacity: 0.85;
+  line-height: 1;
+}
+
+.theme-toggle:hover {
+  opacity: 1;
+}
+
+.topbar-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}

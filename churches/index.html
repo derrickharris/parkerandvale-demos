@@ -10,35 +10,19 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,800&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/theme.css">
+  <script>
+    (() => {
+      const stored = localStorage.getItem('pv-theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = stored === 'light' || stored === 'dark' ? stored : prefersDark ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
 
   <style>
-    :root {
-      --gold: #A8832E;
-      --gold-light: #C9A84C;
-      --green: #1F7A48;
-      --blue: #2B6CA8;
-      --blue-light: #4A8FC4;
-      --red: #B32218;
-      --purple: #6F58B8;
-      --amber: #B06B1E;
-      --ink: #F4F1EA;
-      --ink-2: #FFFFFF;
-      --ink-3: #EBE6DB;
-      --slate: #C9C2B4;
-      --rule: rgba(32, 38, 48, 0.1);
-      --rule-light: rgba(32, 38, 48, 0.18);
-      --text-primary: #1C2430;
-      --text-secondary: #5A6574;
-      --text-dim: #8A93A0;
-      --font-display: 'Syne', sans-serif;
-      --font-body: 'DM Sans', sans-serif;
-      --font-mono: 'DM Mono', monospace;
-      --sidebar-w: 400px;
-      --radius: 6px;
-      --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-      --shadow: 0 8px 28px rgba(28, 36, 48, 0.12);
-    }
+    :root { --sidebar-w: 400px; }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; font-family: var(--font-body); background: var(--ink); color: var(--text-primary); -webkit-font-smoothing: antialiased; }
@@ -57,7 +41,7 @@
       overflow: hidden;
       z-index: 1000;
       transition: width var(--transition), min-width var(--transition), transform var(--transition);
-      box-shadow: 4px 0 24px rgba(28, 36, 48, 0.06);
+      box-shadow: 4px 0 24px rgba(26, 33, 28, 0.06);
     }
 
     #sidebar.collapsed { width: 0; min-width: 0; border-right-color: transparent; box-shadow: none; overflow: hidden; }
@@ -85,9 +69,9 @@
       cursor: pointer;
       color: var(--text-secondary);
     }
-    .sidebar-close:hover { color: var(--text-primary); background: #fff; }
+    .sidebar-close:hover { color: var(--text-primary); background: var(--surface); }
     .brand-eyebrow { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px; }
-    .brand-name { font-family: var(--font-display); font-size: 18px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+    .brand-name { font-family: var(--font-display); font-size: 18px; font-weight: 700; letter-spacing: -0.02em; line-height: 1; }
     .brand-name span { color: var(--gold); }
     .brand-subtitle { font-size: 11px; color: var(--text-secondary); margin-top: 5px; font-weight: 300; line-height: 1.5; }
 
@@ -100,7 +84,7 @@
 
     .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .stat-card { background: var(--ink); border: 1px solid var(--rule); border-radius: var(--radius); padding: 12px 14px; }
-    .stat-value { font-family: var(--font-display); font-size: 25px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px; color: var(--gold); }
+    .stat-value { font-family: var(--font-display); font-size: 25px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px; color: var(--gold); }
     .stat-label { font-size: 11px; color: var(--text-secondary); line-height: 1.35; }
 
     .filter-group { margin-bottom: 14px; }
@@ -117,7 +101,7 @@
       color: var(--text-primary);
       outline: none;
     }
-    .search-input:focus, .select-input:focus { border-color: rgba(168,131,46,0.55); background: #fff; }
+    .search-input:focus, .select-input:focus { border-color: var(--accent); background: var(--surface); }
 
     .chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
     .chip {
@@ -133,11 +117,11 @@
       cursor: pointer;
       transition: all var(--transition);
     }
-    .chip.active { border-color: rgba(168,131,46,0.55); color: var(--text-primary); background: rgba(201,168,76,0.22); }
+    .chip.active { border-color: var(--accent); color: var(--text-primary); background: var(--accent-soft); }
 
     .denom-bars { display: flex; flex-direction: column; gap: 9px; }
     .denom-row { display: grid; grid-template-columns: 108px 1fr 34px; gap: 10px; align-items: center; font-size: 11px; color: var(--text-secondary); }
-    .denom-track { height: 6px; border-radius: 3px; background: rgba(28,36,48,0.08); overflow: hidden; }
+    .denom-track { height: 6px; border-radius: 3px; background: var(--accent-soft); overflow: hidden; }
     .denom-fill { height: 100%; border-radius: 3px; background: var(--gold-light); }
     .denom-count { font-family: var(--font-mono); color: var(--text-dim); text-align: right; }
 
@@ -151,11 +135,11 @@
       cursor: pointer;
       transition: all var(--transition);
     }
-    .church-card:hover, .church-card.active { border-color: var(--rule-light); background: #fff; box-shadow: var(--shadow); }
+    .church-card:hover, .church-card.active { border-color: var(--rule-light); background: var(--surface); box-shadow: var(--shadow); }
     .church-kicker { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 5px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); }
     .church-title { font-size: 13px; font-weight: 700; line-height: 1.25; margin-bottom: 6px; }
     .church-meta { display: flex; flex-wrap: wrap; gap: 6px; }
-    .tag { padding: 3px 7px; background: rgba(28,36,48,0.04); border: 1px solid var(--rule); border-radius: 3px; font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); }
+    .tag { padding: 3px 7px; background: var(--accent-soft); border: 1px solid var(--rule); border-radius: 3px; font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); }
    
 
     .source-block { background: var(--ink); border: 1px solid var(--rule); border-radius: var(--radius); padding: 12px 14px; }
@@ -178,15 +162,15 @@
       border: none;
       cursor: pointer;
     }
-    .btn-primary { background: var(--gold); color: #fff; }
-    .btn-primary:hover { background: var(--gold-light); color: var(--text-primary); }
+    .btn-primary { background: var(--gold); color: var(--on-gold); }
+    .btn-primary:hover { background: var(--gold-light); color: var(--on-gold); }
     .btn-secondary { background: transparent; border: 1px solid var(--rule); color: var(--text-secondary); }
     .btn-secondary:hover { color: var(--text-primary); border-color: var(--rule-light); background: var(--ink); }
 
     #map-wrap { flex: 1; position: relative; display: flex; flex-direction: column; min-width: 0; }
     #topbar {
       height: 56px;
-      background: rgba(255,255,255,0.94);
+      background: var(--surface-muted);
       border-bottom: 1px solid var(--rule);
       display: flex;
       align-items: center;
@@ -194,6 +178,7 @@
       padding: 0 18px;
       z-index: 500;
       backdrop-filter: blur(8px);
+      color: var(--text-primary);
     }
     #sidebar-toggle {
       min-width: 34px;
@@ -210,7 +195,7 @@
       color: var(--text-secondary);
       flex-shrink: 0;
     }
-    #sidebar-toggle:hover { color: var(--text-primary); background: #fff; }
+    #sidebar-toggle:hover { color: var(--text-primary); background: var(--surface); }
     #sidebar-toggle .toggle-label {
       display: none;
       font-family: var(--font-mono);
@@ -232,10 +217,9 @@
     .topbar-title { font-family: var(--font-display); font-size: 14px; font-weight: 700; }
     .topbar-period { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; }
     .topbar-demo-badge {
-      margin-left: auto;
       padding: 4px 10px;
-      background: rgba(201,168,76,0.18);
-      border: 1px solid rgba(201,168,76,0.4);
+      background: var(--accent-soft);
+      border: 1px solid var(--accent);
       border-radius: 100px;
       font-family: var(--font-mono);
       font-size: 9px;
@@ -245,10 +229,10 @@
     }
     .topbar-link { font-size: 11px; color: var(--text-secondary); text-decoration: none; }
     .topbar-link:hover { color: var(--text-primary); }
-    #map { flex: 1; min-height: 0; background: #dfe6ee; }
+    #map { flex: 1; min-height: 0; background: var(--map-bg); }
 
     .leaflet-popup-content-wrapper {
-      background: #fff !important;
+      background: var(--surface) !important;
       border: 1px solid var(--rule-light) !important;
       border-radius: var(--radius) !important;
       box-shadow: var(--shadow) !important;
@@ -270,17 +254,17 @@
     .pg-value.highlight { color: var(--text-primary); font-weight: 600; }
     .popup-footer { padding: 8px 14px; border-top: 1px solid var(--rule); font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); }
 
-    .marker-cluster-small, .marker-cluster-medium, .marker-cluster-large { background: rgba(168,131,46,0.22) !important; }
+    .marker-cluster-small, .marker-cluster-medium, .marker-cluster-large { background: var(--accent-soft) !important; }
     .marker-cluster-small div, .marker-cluster-medium div, .marker-cluster-large div {
-      background: rgba(168,131,46,0.85) !important;
-      color: #fff !important;
+      background: var(--accent) !important;
+      color: var(--on-gold) !important;
       font-family: var(--font-display) !important;
       font-weight: 700 !important;
     }
 
     .leaflet-control-zoom { border: 1px solid var(--rule) !important; border-radius: var(--radius) !important; overflow: hidden; }
-    .leaflet-control-zoom a { background: #fff !important; color: var(--text-secondary) !important; border-bottom: 1px solid var(--rule) !important; }
-    .leaflet-control-attribution { background: rgba(255,255,255,0.8) !important; color: var(--text-dim) !important; font-size: 9px !important; }
+    .leaflet-control-zoom a { background: var(--surface) !important; color: var(--text-secondary) !important; border-bottom: 1px solid var(--rule) !important; }
+    .leaflet-control-attribution { background: var(--surface-muted) !important; color: var(--text-dim) !important; font-size: 9px !important; }
 
     @media (max-width: 760px) {
       #sidebar {
@@ -414,8 +398,11 @@
         <div class="topbar-title">Hot Springs Church Map</div>
         <div class="topbar-period">Hot Springs city limits</div>
       </div>
-      <div class="topbar-demo-badge">Demo</div>
-      <a href="../" class="topbar-link">All Demos</a>
+      <div class="topbar-actions">
+        <div class="topbar-demo-badge">Demo</div>
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">Theme</button>
+        <a href="../" class="topbar-link">All Demos</a>
+      </div>
     </div>
     <div id="map"></div>
   </div>
@@ -424,19 +411,20 @@
 <script src="./data/churches_data.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script src="../shared/theme.js"></script>
 <script>
 let POPULATION = 37930;
 let CITY_AREA_SQ_MI = 35.14;
 const SHOT_STATUSES = ["All", "pending", "filmed", "skipped"];
 const DENOM_COLORS = {
-  Baptist: "#A8832E",
+  Baptist: "#3d5c45",
   Methodist: "#2B6CA8",
   Catholic: "#B32218",
   Pentecostal: "#6F58B8",
   Lutheran: "#1F7A48",
   Presbyterian: "#B06B1E",
   Episcopal: "#4A8FC4",
-  "Church of Christ": "#C9A84C",
+  "Church of Christ": "#7a6248",
   Nondenominational: "#2E9B62",
   Orthodox: "#7A63C4",
   Adventist: "#C24A3A",
@@ -455,11 +443,29 @@ const layers = new Map();
 
 const map = L.map("map", { zoomControl: false, attributionControl: true }).setView([34.5037, -93.0552], 13);
 L.control.zoom({ position: "bottomright" }).addTo(map);
-L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
-  attribution: '&copy; OpenStreetMap &copy; CARTO',
-  subdomains: "abcd",
-  maxZoom: 19,
-}).addTo(map);
+
+const basemaps = {
+  light: L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+    attribution: '&copy; OpenStreetMap &copy; CARTO',
+    subdomains: "abcd",
+    maxZoom: 19,
+  }),
+  dark: L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+    attribution: '&copy; OpenStreetMap &copy; CARTO',
+    subdomains: "abcd",
+    maxZoom: 19,
+  }),
+};
+let activeBasemap = null;
+function syncBasemap(theme) {
+  const next = theme === "dark" ? basemaps.dark : basemaps.light;
+  if (activeBasemap === next) return;
+  if (activeBasemap) map.removeLayer(activeBasemap);
+  activeBasemap = next;
+  activeBasemap.addTo(map);
+}
+syncBasemap(document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light");
+window.addEventListener("pv-theme-change", (e) => syncBasemap(e.detail.theme));
 
 const clusterGroup = L.markerClusterGroup({
   maxClusterRadius: 42,

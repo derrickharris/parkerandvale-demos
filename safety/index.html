@@ -15,41 +15,31 @@
   <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css">
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,800&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/theme.css">
+  <script>
+    (() => {
+      const stored = localStorage.getItem('pv-theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = stored === 'light' || stored === 'dark' ? stored : prefersDark ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
 
   <style>
     /* ============================================================
        DESIGN SYSTEM
-       Tone: Government-grade authority with editorial precision.
-       Dark sidebar, clean map canvas, data-forward typography.
-       Accent: ARDOT safety red cut with slate infrastructure grey.
+       Shared Parker & Vale sage/moss chrome + severity accents.
     ============================================================ */
     :root {
+      /* Severity / data accents */
       --red:        #C1281B;
       --red-light:  #E8453A;
       --amber:      #E89B1B;
       --green:      #2D9E6B;
       --blue-dim:   #4A7FA5;
-
-      --ink:        #0E1117;
-      --ink-2:      #161C26;
-      --ink-3:      #1E2733;
-      --slate:      #2C3744;
-      --rule:       rgba(255,255,255,0.07);
-      --rule-light: rgba(255,255,255,0.13);
-
-      --text-primary:   #F0F2F5;
-      --text-secondary: #8A96A8;
-      --text-dim:       #566070;
-
-      --font-display: 'Syne', sans-serif;
-      --font-body:    'DM Sans', sans-serif;
-      --font-mono:    'DM Mono', monospace;
-
       --sidebar-w: 340px;
       --header-h:  56px;
-      --radius:    6px;
-      --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -112,14 +102,14 @@
     .brand-name {
       font-family: var(--font-display);
       font-size: 18px;
-      font-weight: 800;
+      font-weight: 700;
       color: var(--text-primary);
       letter-spacing: -0.02em;
       line-height: 1;
     }
 
     .brand-name span {
-      color: var(--red-light);
+      color: var(--accent);
     }
 
     .brand-subtitle {
@@ -166,7 +156,7 @@
     }
 
     .stat-card {
-      background: var(--ink-3);
+      background: var(--ink);
       border: 1px solid var(--rule);
       border-radius: var(--radius);
       padding: 12px 14px;
@@ -222,7 +212,7 @@
       user-select: none;
     }
 
-    .legend-item:hover { background: var(--ink-3); }
+    .legend-item:hover { background: var(--ink); }
 
     .legend-item.inactive { opacity: 0.4; }
 
@@ -356,7 +346,7 @@
     .basemap-btn {
       flex: 1;
       padding: 7px 10px;
-      background: var(--ink-3);
+      background: var(--ink);
       border: 1px solid var(--rule);
       border-radius: var(--radius);
       font-family: var(--font-mono);
@@ -369,11 +359,11 @@
     }
 
     .basemap-btn:hover { border-color: var(--rule-light); color: var(--text-primary); }
-    .basemap-btn.active { background: var(--slate); border-color: var(--blue-dim); color: var(--text-primary); }
+    .basemap-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--text-primary); }
 
     /* ── Data Source ──────────────────────────────────────────── */
     .source-block {
-      background: var(--ink-3);
+      background: var(--ink);
       border: 1px solid var(--rule);
       border-radius: var(--radius);
       padding: 12px 14px;
@@ -415,8 +405,8 @@
       display: block;
       width: 100%;
       padding: 11px 16px;
-      background: var(--red);
-      color: white;
+      background: var(--accent);
+      color: var(--on-gold);
       border: none;
       border-radius: var(--radius);
       font-family: var(--font-display);
@@ -430,7 +420,7 @@
     }
 
     .btn-primary:hover {
-      background: var(--red-light);
+      background: var(--gold-light);
       transform: translateY(-1px);
     }
 
@@ -473,7 +463,7 @@
       position: absolute;
       top: 0; left: 0; right: 0;
       height: var(--header-h);
-      background: rgba(14,17,23,0.88);
+      background: var(--surface-muted);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--rule);
@@ -482,11 +472,12 @@
       padding: 0 16px;
       gap: 12px;
       z-index: 800;
+      color: var(--text-primary);
     }
 
     #sidebar-toggle {
       width: 36px; height: 36px;
-      background: var(--ink-3);
+      background: var(--ink);
       border: 1px solid var(--rule);
       border-radius: var(--radius);
       cursor: pointer;
@@ -519,24 +510,38 @@
     }
 
     .topbar-demo-badge {
-      margin-left: auto;
       padding: 4px 10px;
-      background: rgba(232,155,27,0.15);
-      border: 1px solid rgba(232,155,27,0.3);
+      background: var(--accent-soft);
+      border: 1px solid var(--accent);
       border-radius: 100px;
       font-family: var(--font-mono);
       font-size: 9px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--amber);
+      color: var(--accent);
     }
+    .topbar-link {
+      padding: 5px 11px;
+      background: var(--ink);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all var(--transition);
+    }
+    .topbar-link:hover { color: var(--text-primary); border-color: var(--rule-light); }
 
     /* ── Leaflet popup overrides ──────────────────────────────── */
     .leaflet-popup-content-wrapper {
-      background: var(--ink-2) !important;
+      background: var(--surface) !important;
       border: 1px solid var(--rule-light) !important;
       border-radius: var(--radius) !important;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+      box-shadow: var(--shadow) !important;
       padding: 0 !important;
       min-width: 240px;
       max-width: 300px;
@@ -660,7 +665,7 @@
     }
 
     .leaflet-control-zoom a {
-      background: var(--ink-2) !important;
+      background: var(--surface) !important;
       color: var(--text-secondary) !important;
       border-bottom: 1px solid var(--rule) !important;
       width: 32px !important;
@@ -676,7 +681,7 @@
     }
 
     .leaflet-control-attribution {
-      background: rgba(14,17,23,0.75) !important;
+      background: var(--surface-muted) !important;
       color: var(--text-dim) !important;
       font-size: 9px !important;
       backdrop-filter: blur(4px);
@@ -721,7 +726,7 @@
     .loader-bar {
       width: 200px;
       height: 2px;
-      background: var(--ink-3);
+      background: var(--ink);
       border-radius: 1px;
       overflow: hidden;
     }
@@ -895,8 +900,8 @@
       <div class="sidebar-section">
         <div class="section-label">Basemap</div>
         <div class="basemap-row">
-          <button class="basemap-btn" onclick="setBasemap('light', this)">Light</button>
-          <button class="basemap-btn active" onclick="setBasemap('dark', this)">Dark</button>
+          <button class="basemap-btn active" onclick="setBasemap('light', this)">Light</button>
+          <button class="basemap-btn" onclick="setBasemap('dark', this)">Dark</button>
           <button class="basemap-btn" onclick="setBasemap('satellite', this)">Satellite</button>
         </div>
       </div>
@@ -941,20 +946,11 @@
         <div class="topbar-title">Hot Springs Metro Area · Crash Safety Analysis</div>
         <div class="topbar-period">Garland County, AR · 2019–2024</div>
       </div>
-      <div class="topbar-demo-badge">Demo</div>
-      <a href="../" style="
-        margin-left:10px;padding:5px 11px;
-        background:rgba(255,255,255,0.04);
-        border:1px solid rgba(255,255,255,0.08);
-        border-radius:4px;
-        font-family:'DM Mono',monospace;font-size:9px;
-        letter-spacing:0.1em;text-transform:uppercase;
-        color:var(--text-secondary);text-decoration:none;
-        transition:all 180ms;white-space:nowrap;
-      " onmouseover="this.style.color='#F0F2F5';this.style.borderColor='rgba(255,255,255,0.16)'"
-         onmouseout="this.style.color='';this.style.borderColor=''">
-        ← All Demos
-      </a>
+      <div class="topbar-actions">
+        <div class="topbar-demo-badge">Demo</div>
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">Theme</button>
+        <a href="../" class="topbar-link">All Demos</a>
+      </div>
     </div>
     <div id="map"></div>
   </div>
@@ -965,6 +961,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script src="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js"></script>
+<script src="../shared/theme.js"></script>
 
 <script>
 // ================================================================
@@ -1009,17 +1006,34 @@ const basemaps = {
   })
 };
 
-let activeBasemap = basemaps.dark;
+let activeBasemapKey = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+let activeBasemap = basemaps[activeBasemapKey];
 activeBasemap.addTo(map);
+let userBasemapOverride = false;
 
-function setBasemap(type, btn) {
+function setBasemap(type, btn, fromTheme) {
+  if (!fromTheme) userBasemapOverride = type === 'satellite';
   map.removeLayer(activeBasemap);
+  activeBasemapKey = type;
   activeBasemap = basemaps[type];
   activeBasemap.addTo(map);
   activeBasemap.bringToBack();
   document.querySelectorAll('.basemap-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+  const target = btn || document.querySelector(`.basemap-btn[onclick*="'${type}'"]`);
+  if (target) target.classList.add('active');
 }
+
+// Default UI theme drives light/dark basemap unless satellite is selected
+(function syncBasemapButtons() {
+  document.querySelectorAll('.basemap-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.querySelector(`.basemap-btn[onclick*="'${activeBasemapKey}'"]`);
+  if (btn) btn.classList.add('active');
+})();
+
+window.addEventListener('pv-theme-change', (e) => {
+  if (userBasemapOverride || activeBasemapKey === 'satellite') return;
+  setBasemap(e.detail.theme === 'dark' ? 'dark' : 'light', null, true);
+});
 
 // ── Layer factories ─────────────────────────────────────────────
 function makeCircleLayer(geojson, color, radius) {
@@ -1051,7 +1065,7 @@ function makeCluster(color) {
           background:${color}cc;
           border:2px solid ${color};
           display:flex;align-items:center;justify-content:center;
-          font-family:'Syne',sans-serif;font-weight:700;font-size:${size > 34 ? 14 : 12}px;
+          font-family:'Fraunces',serif;font-weight:700;font-size:${size > 34 ? 14 : 12}px;
           color:white;box-shadow:0 0 10px ${color}66;
         ">${n}</div>`,
         className: '',
