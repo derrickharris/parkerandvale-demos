@@ -1034,8 +1034,8 @@ const map = L.map('map', {
   zoomControl: false,
 });
 
-// Zoom control placement (top-right, below topbar)
-L.control.zoom({ position: 'topright' }).addTo(map);
+// Zoom control placement (bottom-right, clear of topbar)
+L.control.zoom({ position: 'bottomright' }).addTo(map);
 
 // Fullscreen
 L.control.fullscreen({ position: 'topright' }).addTo(map);
