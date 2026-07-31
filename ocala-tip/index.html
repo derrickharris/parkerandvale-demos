@@ -65,7 +65,26 @@
       padding: 20px 24px 18px;
       border-bottom: 1px solid var(--rule);
       flex-shrink: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
     }
+    .sidebar-brand-copy { min-width: 0; flex: 1; }
+    .sidebar-close {
+      display: none;
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--rule);
+      background: var(--ink);
+      border-radius: var(--radius);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-secondary);
+    }
+    .sidebar-close:hover { color: var(--text-primary); background: var(--surface); }
 
     .brand-eyebrow {
       font-family: var(--font-mono);
@@ -371,18 +390,40 @@
     }
 
     #sidebar-toggle {
-      width: 36px;
-      height: 36px;
+      min-width: 34px;
+      height: 34px;
+      padding: 0 10px;
       background: var(--ink);
       border: 1px solid var(--rule);
       border-radius: var(--radius);
       cursor: pointer;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 8px;
       flex-shrink: 0;
+      color: var(--text-secondary);
     }
-    #sidebar-toggle svg { stroke: var(--text-secondary); }
+    #sidebar-toggle:hover { color: var(--text-primary); background: var(--surface); }
+    #sidebar-toggle svg { stroke: currentColor; }
+    #sidebar-toggle .toggle-label {
+      display: none;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    #sidebar-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 36, 48, 0.45);
+      z-index: 1050;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
 
     .topbar-title {
       font-family: var(--font-display);
@@ -499,19 +540,26 @@
 
     @media (max-width: 760px) {
       #sidebar {
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
+        width: min(100vw, var(--sidebar-w));
+        min-width: min(100vw, var(--sidebar-w));
         height: 100%;
         z-index: 1100;
         box-shadow: 4px 0 24px rgba(0,0,0,0.5);
+        transform: translateX(0);
       }
 
       #sidebar.collapsed {
-        width: var(--sidebar-w);
-        min-width: var(--sidebar-w);
-        transform: translateX(-100%);
+        width: min(100vw, var(--sidebar-w));
+        min-width: min(100vw, var(--sidebar-w));
+        transform: translateX(-105%);
+        pointer-events: none;
       }
+      #sidebar-backdrop.visible { display: block; }
+      .sidebar-close { display: inline-flex; }
+      #sidebar-toggle .toggle-label { display: inline; }
       #map-wrap { width: 100%; }
       .topbar-period { display: none; }
     }
@@ -519,11 +567,19 @@
 </head>
 <body>
 <div id="app">
-  <aside id="sidebar">
+  <button id="sidebar-backdrop" type="button" aria-label="Close panel" onclick="setSidebarOpen(false)"></button>
+  <aside id="sidebar" class="collapsed" aria-label="TIP filters and project list">
     <div class="sidebar-brand">
-      <div class="brand-eyebrow">Program Management</div>
-      <div class="brand-name">Parker <span>&</span> Vale</div>
-      <div class="brand-subtitle">Ocala Marion TPO FY 2026-2030 TIP tracker built from normalized public ArcGIS project layers.</div>
+      <div class="sidebar-brand-copy">
+        <div class="brand-eyebrow">Program Management</div>
+        <div class="brand-name">Parker <span>&</span> Vale</div>
+        <div class="brand-subtitle">Ocala Marion TPO FY 2026-2030 TIP tracker built from normalized public ArcGIS project layers.</div>
+      </div>
+      <button class="sidebar-close" type="button" onclick="setSidebarOpen(false)" title="Close panel" aria-label="Close panel">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/>
+        </svg>
+      </button>
     </div>
 
     <div class="sidebar-body">
@@ -603,12 +659,13 @@
 
   <div id="map-wrap">
     <div id="topbar">
-      <button id="sidebar-toggle" onclick="toggleSidebar()" title="Toggle sidebar" aria-label="Toggle sidebar">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round">
+      <button id="sidebar-toggle" type="button" onclick="toggleSidebar()" title="Toggle list panel" aria-label="Toggle list panel" aria-controls="sidebar" aria-expanded="false">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round" stroke="currentColor" aria-hidden="true">
           <line x1="2" y1="4" x2="14" y2="4"/>
           <line x1="2" y1="8" x2="14" y2="8"/>
           <line x1="2" y1="12" x2="14" y2="12"/>
         </svg>
+        <span class="toggle-label" id="sidebar-toggle-label">List</span>
       </button>
       <div>
         <div class="topbar-title">TIP Project Tracker · Ocala Marion TPO</div>
@@ -1022,6 +1079,7 @@ function selectProject(id, zoomTo) {
   }
 
   renderProjectList(getFilteredProjects());
+  if (zoomTo && isMobileLayout()) setSidebarOpen(false);
 }
 
 function applyFilters() {
@@ -1035,9 +1093,30 @@ function applyFilters() {
   renderProjectList(projects);
 }
 
-function toggleSidebar() {
-  document.getElementById("sidebar").classList.toggle("collapsed");
+function isMobileLayout() {
+  return window.matchMedia("(max-width: 760px)").matches;
+}
+
+function syncSidebarChrome(open) {
+  const toggle = document.getElementById("sidebar-toggle");
+  const label = document.getElementById("sidebar-toggle-label");
+  const backdrop = document.getElementById("sidebar-backdrop");
+  if (toggle) toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  if (label) label.textContent = open ? "Map" : "List";
+  if (backdrop) backdrop.classList.toggle("visible", open && isMobileLayout());
+  document.body.style.overflow = open && isMobileLayout() ? "hidden" : "";
+}
+
+function setSidebarOpen(open) {
+  const sidebar = document.getElementById("sidebar");
+  sidebar.classList.toggle("collapsed", !open);
+  syncSidebarChrome(open);
   setTimeout(() => map.invalidateSize(), 220);
+}
+
+function toggleSidebar() {
+  const open = document.getElementById("sidebar").classList.contains("collapsed");
+  setSidebarOpen(open);
 }
 
 function projectFromFeature(feature) {
@@ -1071,9 +1150,15 @@ async function loadProjectData() {
 
 async function initDashboard() {
   await loadProjectData();
+  setSidebarOpen(!isMobileLayout());
   setupFilters();
   applyFilters();
 }
+
+window.matchMedia("(max-width: 760px)").addEventListener("change", (event) => {
+  if (event.matches) setSidebarOpen(false);
+  else setSidebarOpen(true);
+});
 
 initDashboard();
 </script>
